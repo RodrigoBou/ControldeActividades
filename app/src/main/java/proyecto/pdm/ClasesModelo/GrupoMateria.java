@@ -12,11 +12,12 @@ public class GrupoMateria {
     private String diasImpartida;
     private int horario;
     private String numGrupo;
+    private int idGrupo;
 
     public GrupoMateria() {
     }
 
-    public GrupoMateria(int tipoGrupo, String materia, String docente, int ciclo, String local, String diasImpartida, int horario, String numGrupo) {
+    public GrupoMateria(int tipoGrupo, String materia, String docente, int ciclo, String local, String diasImpartida, int horario, String numGrupo, int idGrupo) {
         this.tipoGrupo = tipoGrupo;
         this.materia = materia;
         this.docente = docente;
@@ -25,6 +26,7 @@ public class GrupoMateria {
         this.diasImpartida = diasImpartida;
         this.horario = horario;
         this.numGrupo = numGrupo;
+        this.idGrupo=idGrupo;
     }
 
     public int getTipoGrupo() {
@@ -89,5 +91,13 @@ public class GrupoMateria {
 
     public void setNumGrupo(String numGrupo) {
         this.numGrupo = numGrupo;
+    }
+
+    public int getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
     }
 }
