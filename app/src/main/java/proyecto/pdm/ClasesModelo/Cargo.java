@@ -6,4 +6,28 @@ package proyecto.pdm.ClasesModelo;
 public class Cargo {
     private int idCargo;
     private String nomCargo;
+
+    public Cargo() {
+    }
+
+    public Cargo(int idCargo, String nomCargo) {
+        this.idCargo = idCargo;
+        this.nomCargo = nomCargo;
+    }
+
+    public int getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    public String getNomCargo() {
+        return nomCargo;
+    }
+
+    public void setNomCargo(String nomCargo) {
+        this.nomCargo = nomCargo;
+    }
 }

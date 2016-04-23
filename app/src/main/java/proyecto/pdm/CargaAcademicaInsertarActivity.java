@@ -3,7 +3,7 @@ package proyecto.pdm;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CargaAcademicaInsertarAcademica extends AppCompatActivity {
+public class CargaAcademicaInsertarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
