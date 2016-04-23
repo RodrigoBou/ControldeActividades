@@ -4,4 +4,16 @@
     <string name="title_activity_docente_menu">DocenteMenuActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="tipoGrupo">Tipo Grupo</string>
+    <string name="materia">Materia</string>
+    <string name="docente">Docente</string>
+    <string name="ciclo">Ciclo</string>
+    <string name="local">Local</string>
+    <string name="diasImpartida">Día que se imparte</string>
+    <string name="horario">Horario</string>
+    <string name="codDocente">Codigo Docente</string>
+    <string name="nomDocente">Nombre Docente</string>
+    <string name="codMateria">Codigo Materia</string>
+    <string name="nomMateria">Nombre Materia</string>
+
 </resources>

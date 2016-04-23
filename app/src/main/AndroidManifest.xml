@@ -60,7 +60,7 @@
         <activity android:name=".CargoEliminarActivity" />
         <activity android:name=".CargoConsultarActivity" />
         <activity android:name=".CargaAcademicaMenuActivity" />
-        <activity android:name=".CargaAcademicaInsertarAcademica" />
+        <activity android:name=".CargaAcademicaInsertarActivity" />
         <activity android:name=".CargaAcademicaActualizarActivity" />
         <activity android:name=".CargaAcademicaEliminarActivity" />
         <activity android:name=".CargaAcademicaConsultarActivity" />
@@ -71,8 +71,8 @@
         <activity android:name=".RecursoConsultarActivity" />
         <activity android:name=".ActividadMenuActivity" />
         <activity android:name=".ActividadInsertarActivity" />
-        <activity android:name=".ActividadActualizarActividad" />
-        <activity android:name=".ActividadEliminarActividad" />
+        <activity android:name=".ActividadActualizarActivity" />
+        <activity android:name=".ActividadEliminarActivity" />
         <activity android:name=".ActividadConsultarActivity" />
         <activity android:name=".CatergoriaRecursoMenuActivity" />
         <activity android:name=".CategoriaRecursoInsertarActivity" />

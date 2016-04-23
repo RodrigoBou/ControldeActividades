@@ -3,7 +3,7 @@ package proyecto.pdm;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ActividadEliminarActividad extends AppCompatActivity {
+public class ActividadEliminarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,7 +3,7 @@ package proyecto.pdm;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ActividadActualizarActividad extends AppCompatActivity {
+public class ActividadActualizarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
