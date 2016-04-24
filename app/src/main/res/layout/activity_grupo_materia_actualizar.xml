@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="proyecto.pdm.GrupoMateriaActualizarActivity">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="10dip"
+    android:stretchColumns="1">
 
-</RelativeLayout>
+    <TableRow>
+        <TextView android:text="@string/tipoGrupo" />
+        <EditText
+            android:id="@id/editTipoGrupo"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/idGrupo" />
+        <EditText
+            android:id="@id/editIdGrupo"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/materia"/>
+        <EditText
+            android:id="@id/editMateria"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/docente"/>
+        <EditText
+            android:id="@id/editDocente"
+            android:inputType="text"
+            android:maxLength="7"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/ciclo"/>
+        <EditText
+            android:id="@id/editCiclo"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/local"/>
+        <EditText
+            android:id="@id/editLocal"
+            android:inputType="text"
+            android:maxLength="10" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/diasImpartida" />
+        <EditText
+            android:id="@id/editDiasImpartida"
+            android:inputType="text"
+            android:maxLength="50"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/horario"/>
+        <EditText
+            android:id="@id/editHorario"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/numGrupo"/>
+        <EditText
+            android:id="@id/editNumGrupo"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+</TableLayout>

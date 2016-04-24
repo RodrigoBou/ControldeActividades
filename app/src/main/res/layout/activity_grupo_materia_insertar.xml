@@ -14,6 +14,14 @@
     </TableRow>
 
     <TableRow>
+        <TextView android:text="@string/idGrupo" />
+        <EditText
+            android:id="@+id/editIdGrupo"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
         <TextView android:text="@string/materia" />
         <EditText
             android:id="@+id/editMateria"
@@ -57,6 +65,14 @@
         <TextView android:text="@string/horario" />
         <EditText
             android:id="@+id/editHorario"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/numGrupo" />
+        <EditText
+            android:id="@+id/editNumGrupo"
             android:inputType="text"
             android:maxLength="2"/>
     </TableRow>

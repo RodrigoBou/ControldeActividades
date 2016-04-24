@@ -11,9 +11,14 @@
     <string name="local">Local</string>
     <string name="diasImpartida">Día que se imparte</string>
     <string name="horario">Horario</string>
+    <string name="idGrupo">Id Grupo</string>
+    <string name="numGrupo">Numero de Grupo</string>
     <string name="codDocente">Codigo Docente</string>
     <string name="nomDocente">Nombre Docente</string>
     <string name="codMateria">Codigo Materia</string>
     <string name="nomMateria">Nombre Materia</string>
+    <string name="consular">Consultar</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="eliminar">Eliminar</string>
 
 </resources>
