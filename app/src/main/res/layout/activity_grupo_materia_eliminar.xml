@@ -10,7 +10,7 @@
         android:text="@string/tipoGrupo"/>
 
     <EditText
-        android:id="@id/editTipoGrupo"
+        android:id="@+id/editTipoGrupo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -22,7 +22,7 @@
         android:text="@string/materia"/>
 
     <EditText
-        android:id="@id/editMateria"
+        android:id="@+id/editMateria"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -34,7 +34,7 @@
         android:text="@string/docente"/>
 
     <EditText
-        android:id="@id/editDocente"
+        android:id="@+id/editDocente"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -46,7 +46,7 @@
         android:text="@string/ciclo"/>
 
     <EditText
-        android:id="@id/editCiclo"
+        android:id="@+id/editCiclo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -58,7 +58,7 @@
         android:text="@string/horario"/>
 
     <EditText
-        android:id="@id/editHorario"
+        android:id="@+id/editHorario"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"

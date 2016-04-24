@@ -8,7 +8,7 @@
     <TableRow>
         <TextView android:text="@string/codMateria"/>
         <EditText
-            android:id="@id/editCodMateria"
+            android:id="@+id/editCodMateria"
             android:inputType="text"
             android:maxLength="6"/>
     </TableRow>
@@ -16,7 +16,7 @@
     <TableRow>
         <TextView android:text="@string/nomMateria"/>
         <EditText
-            android:id="@id/editNomMateria"
+            android:id="@+id/editNomMateria"
             android:inputType="text"
             android:maxLength="50"/>
     </TableRow>

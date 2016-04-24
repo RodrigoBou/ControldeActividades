@@ -10,7 +10,7 @@
         android:text="@string/codMateria"/>
 
     <EditText
-        android:id="@id/editCodMateria"
+        android:id="@+id/editCodMateria"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"

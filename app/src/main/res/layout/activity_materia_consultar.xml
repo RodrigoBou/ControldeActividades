@@ -10,7 +10,7 @@
         android:text="@string/codMateria"/>
 
     <EditText
-        android:id="@id/editCodMateria"
+        android:id="@+id/editCodMateria"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -22,14 +22,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@id/botonConsular"
+            android:id="@+id/botonConsular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/consular"
             android:onClick="consultarMateria"/>
 
         <Button
-            android:id="@id/botonLimpiar"
+            android:id="@+id/botonLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
@@ -43,7 +43,7 @@
         android:text="@string/nomMateria"/>
 
     <EditText
-        android:id="@id/editNomMateria"
+        android:id="@+id/editNomMateria"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
