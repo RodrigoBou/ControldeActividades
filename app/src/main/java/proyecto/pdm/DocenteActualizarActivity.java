@@ -1,13 +1,26 @@
 package proyecto.pdm;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
-public class DocenteActualizarActivity extends AppCompatActivity {
+public class DocenteActualizarActivity extends Activity {
+
+    EditText editCodDocente;
+    EditText editNomDocente;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_docente_actualizar);
+
+        editCodDocente = (EditText) findViewById(R.id.editCodDocente);
+        editNomDocente = (EditText) findViewById(R.id.editNomDocente);
+    }
+
+    public void limpiarTexto(View v){
+        editCodDocente.setText("");
+        editNomDocente.setText("");
     }
 }
