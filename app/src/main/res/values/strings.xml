@@ -20,5 +20,6 @@
     <string name="consular">Consultar</string>
     <string name="limpiar">Limpiar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="cargo" />
 
 </resources>
