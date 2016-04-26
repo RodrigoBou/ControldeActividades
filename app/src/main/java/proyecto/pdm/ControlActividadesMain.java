@@ -1,16 +1,11 @@
 package proyecto.pdm;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class ControlActividadesMain extends ListActivity  {
 
@@ -23,8 +18,8 @@ public class ControlActividadesMain extends ListActivity  {
             "HorarioMenuActivity","TipoGrupoMenuActivity","GrupoMateriaMenuActivity",
             "CategoriaRecursoMenuActivity","ReservaActividadMenuActivity",};
 
-    ListView ListaTablas;
-    ArrayList<String> tablas=new ArrayList<>();
+    ControlBD BDHelper;
+
 
 
 
@@ -36,11 +31,12 @@ public class ControlActividadesMain extends ListActivity  {
 
     setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
 
+        BDHelper=new ControlBD(this);
 
-
-
-
-
+        BDHelper.abrir();
+        //String tost=BDHelper.llenarBDCarnet();
+        BDHelper.cerrar();
+       // Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
 
     }
 
