@@ -21,5 +21,8 @@
     <string name="limpiar">Limpiar</string>
     <string name="eliminar">Eliminar</string>
     <string name="cargo" />
+    <string name="id_tipo_grupo">id_tipo_grupo</string>
+    <string name="tipo_grupo">tipo_grupo</string>
+    <string name="insertar">insertar</string>
 
 </resources>
