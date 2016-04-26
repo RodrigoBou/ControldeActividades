@@ -35,4 +35,17 @@ public class GrupoMateriaInsertarActivity extends Activity {
 
 
     }
+
+    public void limpiarTexto(View v){
+        editTipoGrupo.setText("");
+        editIdGrupo.setText("");
+        editMateria.setText("");
+        editDocente.setText("");
+        editCiclo.setText("");
+        editLocal.setText("");
+        editDiasImpartida.setText("");
+        editHorario.setText("");
+        editNumGrupo.setText("");
+    }
+
 }
