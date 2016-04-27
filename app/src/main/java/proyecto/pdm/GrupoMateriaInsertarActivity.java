@@ -63,7 +63,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         helper.abrir();
         regInsertados=helper.insertar(grupoMateria);
         helper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
 

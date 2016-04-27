@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import proyecto.pdm.ClasesModelo.Docente;
 import proyecto.pdm.ClasesModelo.GrupoMateria;
+import proyecto.pdm.ClasesModelo.Materia;
 
 public class ControlBD {
 
@@ -24,9 +25,27 @@ public class ControlBD {
         return null;
     }
 
+    public GrupoMateria consultarGrupoMateria(int grupoMateria){
+        return null;
+    }
+
     public String insertar(Docente docente){
         return null;
     }
+
+    public Materia consultarMateria(String materia){
+        return null;
+    }
+
+
+    public String insertar(Materia materia){
+        return null;
+    }
+
+    public Docente consultarDocente(String docente){
+        return null;
+    }
+
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
