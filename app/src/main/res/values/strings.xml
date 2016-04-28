@@ -26,4 +26,17 @@
     <string name="insertar">insertar</string>
     <string name="actualizar">actualizar</string>
 
+
+
+
+
+    <string name="id_actividad">ID Actividad</string>
+    <string name="nombre_actividad">Nombre</string>
+    <string name="detalle_actividad">Detalle</string>
+    <string name="fecha_actividad">Fecha</string>
+    <string name="horaI_actividad">Hora de inicio</string>
+    <string name="horaF_actividad">Hora de finalización</string>
+    <string name="docente_actividad">Docente encargado</string>
+
+
 </resources>
