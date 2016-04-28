@@ -5,6 +5,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import proyecto.pdm.ClasesModelo.Docente;
+import proyecto.pdm.ClasesModelo.GrupoMateria;
+import proyecto.pdm.ClasesModelo.Materia;
+
 public class ControlBD {
 
     private final Context context;
@@ -15,6 +19,31 @@ public class ControlBD {
     public ControlBD(Context ctx) {
         this.context = ctx;
         DBHelper = new DatabaseHelper(context);
+    }
+
+    public String insertar(GrupoMateria grupoMateria){
+        return null;
+    }
+
+    public GrupoMateria consultarGrupoMateria(int grupoMateria){
+        return null;
+    }
+
+    public String insertar(Docente docente){
+        return null;
+    }
+
+    public Materia consultarMateria(String materia){
+        return null;
+    }
+
+
+    public String insertar(Materia materia){
+        return null;
+    }
+
+    public Docente consultarDocente(String docente){
+        return null;
     }
 
 

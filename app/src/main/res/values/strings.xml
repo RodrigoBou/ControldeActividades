@@ -2,6 +2,8 @@
     <string name="app_name">Control de Actividades</string>
 
     <string name="title_activity_docente_menu">DocenteMenuActivity</string>
+    <string name="title_activity_materia_menu">MateriaMenuActivity</string>
+    <string name="title_activity_grupo_materia">GrupoMateriaMenuActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="tipoGrupo">Tipo Grupo</string>
