@@ -27,7 +27,7 @@ public class CargaAcademicaMenuActivity extends ListActivity {
         String nombreValue = activities[position];
         l.getChildAt(position).setBackgroundColor(Color.rgb(173,9,243));
         try{
-            Class<?> clase= Class.forName("proyecto.pdm"+nombreValue);
+            Class<?> clase= Class.forName(""+nombreValue);
             Intent inte = new Intent(this,clase);
             this.startActivity(inte);
         }catch (ClassNotFoundException e){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,89 +9,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="proyecto.pdm.ActividadInsertarActivity">
 
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView android:text="@string/id_actividad"
-            android:layout_width="match_parent" />
-        <EditText
-            android:id="@+id/editActividad"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
-
-
-
-    <TableRow>
-        <TextView android:text="@string/nombre_actividad" />
-        <EditText
-            android:id="@+id/editNombreActividad"
-            android:inputType="text"
-            android:maxLength="100" />
-    </TableRow>
-
-
-
-    <TableRow>
-        <TextView android:text="@string/detalle_actividad" />
-        <EditText
-            android:id="@+id/editDetalle"
-            android:inputType="text"
-            android:maxLength="100" />
-    </TableRow>
-
-
-
-    <TableRow>
-        <TextView android:text="@string/fecha_actividad" />
-        <EditText
-            android:id="@+id/editFecha"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
-
-
-
-    <TableRow>
-        <TextView android:text="@string/horaI_actividad" />
-        <EditText
-            android:id="@+id/editHoraI"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
-
-
-    <TableRow>
-        <TextView android:text="@string/horaF_actividad" />
-        <EditText
-            android:id="@+id/editHoraF"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
-
-
-    <TableRow>
-        <TextView android:text="@string/docente_actividad" />
-        <EditText
-            android:id="@+id/editDocente"
-            android:inputType="text"
-            android:maxLength="7" />
-    </TableRow>
-
-
-
-
-    <TableRow>
-
-        <Button
-            android:onClick="insertarActividad"
-            android:text="@string/insertar" />
-
-
-        <Button
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
-    </TableRow>
-
-
-</TableLayout>
+</RelativeLayout>

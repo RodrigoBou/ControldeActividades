@@ -4,7 +4,7 @@ package proyecto.pdm.ClasesModelo;
  * Created by kelly on 23/04/2016.
  */
 public class GrupoMateria {
-    private String tipoGrupo;
+    private int tipoGrupo;
     private String materia;
     private String docente;
     private int ciclo;
@@ -17,7 +17,7 @@ public class GrupoMateria {
     public GrupoMateria() {
     }
 
-    public GrupoMateria(String tipoGrupo, String materia, String docente, int ciclo, String local, String diasImpartida, int horario, String numGrupo, int idGrupo) {
+    public GrupoMateria(int tipoGrupo, String materia, String docente, int ciclo, String local, String diasImpartida, int horario, String numGrupo, int idGrupo) {
         this.tipoGrupo = tipoGrupo;
         this.materia = materia;
         this.docente = docente;
@@ -29,11 +29,11 @@ public class GrupoMateria {
         this.idGrupo=idGrupo;
     }
 
-    public String getTipoGrupo() {
+    public int getTipoGrupo() {
         return tipoGrupo;
     }
 
-    public void setTipoGrupo(String tipoGrupo) {
+    public void setTipoGrupo(int tipoGrupo) {
         this.tipoGrupo = tipoGrupo;
     }
 

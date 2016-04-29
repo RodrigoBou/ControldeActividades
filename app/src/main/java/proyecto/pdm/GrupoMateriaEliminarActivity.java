@@ -6,16 +6,22 @@ import android.widget.EditText;
 
 public class GrupoMateriaEliminarActivity extends Activity {
 
-    EditText editIdGrupo;
-
+    EditText editTipoGrupo;
+    EditText editMateria;
+    EditText editDocente;
+    EditText editCiclo;
+    EditText editHorario;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupo_materia_eliminar);
 
-        editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
-
+        editTipoGrupo = (EditText) findViewById(R.id.editTipoGrupo);
+        editMateria = (EditText) findViewById(R.id.editMateria);
+        editDocente = (EditText) findViewById(R.id.editDocente);
+        editCiclo = (EditText) findViewById(R.id.editCiclo);
+        editHorario= (EditText) findViewById(R.id.editDocente);
     }
 
 

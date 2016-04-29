@@ -8,15 +8,62 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/idGrupo"/>
+        android:text="@string/tipoGrupo"/>
 
     <EditText
-        android:id="@+id/editIdGrupo"
+        android:id="@+id/editTipoGrupo"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="2"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/materia"/>
+
+    <EditText
+        android:id="@+id/editMateria"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/docente"/>
+
+    <EditText
+        android:id="@+id/editDocente"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="7"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ciclo"/>
+
+    <EditText
+        android:id="@+id/editCiclo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/horario"/>
+
+    <EditText
+        android:id="@+id/editHorario"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="2"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -41,66 +88,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tipoGrupo"/>
+        android:text="@string/idGrupo"/>
 
     <EditText
-        android:id="@+id/editTipoGrupo"
+        android:id="@+id/editIdGrupo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/materia"/>
-
-    <EditText
-        android:id="@+id/editMateria"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/docente"/>
-
-    <EditText
-        android:id="@+id/editDocente"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ciclo"/>
-
-    <EditText
-        android:id="@+id/editCiclo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,9 +113,9 @@
         android:inputType="text"
         android:enabled="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -130,25 +129,9 @@
         android:inputType="text"
         android:enabled="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/horario"/>
-
-    <EditText
-        android:id="@+id/editHorario"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
+             android:focusableInTouchMode="false"
+             android:cursorVisible="false"
+             android:longClickable="false"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -162,8 +145,8 @@
         android:inputType="text"
         android:enabled="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
+             android:focusableInTouchMode="false"
+             android:cursorVisible="false"
+             android:longClickable="false"/>
 
 </LinearLayout>
