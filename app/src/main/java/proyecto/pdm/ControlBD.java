@@ -63,6 +63,19 @@ public class ControlBD {
                 db.execSQL("CREATE TABLE [GrupoMateria] ( [id_grupo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [tipo_grupo] VARCHAR(2) NOT NULL, [materia] VARCHAR(6) NOT NULL, [docente] VARCHAR(7) NOT NULL, [ciclo] INTEGER NOT NULL, [LOCAL] VARCHAR(10) NOT NULL, [diasImpartida] VARCHAR(50) NOT NULL, [num_grupo] VARCHAR(2) NOT NULL, [horario] INTEGER NOT NULL );");
 
 
+                // TRIGGERS
+
+                db.execSQL("CREATE TRIGGER [InsertarActividad] BEFORE INSERT ON [Actividad] FOR EACH ROW BEGIN SELECT CASE WHEN ((SELECT cod_docente FROM Docente WHERE Docente.cod_docente = NEW.docente) IS NULL) THEN RAISE(ABORT, \"No existe el docente\") END; END");
+
+                db.execSQL("CREATE TRIGGER [InsertarRecurso] BEFORE INSERT ON [Recurso] FOR EACH ROW BEGIN SELECT CASE WHEN ((SELECT id_categoria_recurso FROM CategoriaRecurso WHERE CategoriaRecurso.id_categoria_recurso = NEW.cat_recurso) IS NULL) THEN RAISE(ABORT, \"No existe esa categoria de recurso\") END; END");
+
+                db.execSQL("CREATE TRIGGER [InsertarReservaActividad] BEFORE INSERT ON [ReservaActividad] FOR EACH ROW BEGIN SELECT CASE WHEN ((SELECT id_actividad FROM Actividad WHERE Actividad.id_actividad = NEW.Actividad) IS NULL) THEN RAISE(ABORT, \"No existe la Actividad\") WHEN ((SELECT id_recurso FROM Recurso WHERE Recurso.id_recurso = NEW.recurso) IS NULL) THEN RAISE(ABORT, \"No existe el recurso\")END; END\n");
+
+                db.execSQL("CREATE TRIGGER InsertarCargaAcademica BEFORE INSERT ON CargaAcademica BEGIN SELECT CASE WHEN ((SELECT cod_materia FROM Materia WHERE cod_materia = NEW.materia) IS NULL) THEN RAISE(ABORT, 'No existe la materia') WHEN ((SELECT cod_docente FROM Docente WHERE cod_docente = NEW.docente) IS NULL) THEN RAISE(ABORT, 'No existe el docente') WHEN ((SELECT id_ciclo FROM Ciclo WHERE id_ciclo = NEW.ciclo) IS NULL) THEN RAISE(ABORT, 'No existe el ciclo') WHEN ((SELECT id_cargo FROM CARGO WHERE id_cargo = NEW.cargo) IS NULL) TEHN RAISE(ABORT, 'No existe el cargo') END; END\n");
+
+                db.execSQL("CREATE TRIGGER [InsertarReserva] BEFORE INSERT ON [Reservacion] FOR EACH ROW BEGIN SELECT CASE WHEN ((SELECT GrupoMateria.id_grupo FROM GrupoMateria WHERE GrupoMateria.id_grupo = NEW.grupo) IS NULL) THEN RAISE(ABORT, \"No existe el grupo\") WHEN ((SELECT Recurso.id_recurso FROM Recurso WHERE Recurso.id_recurso = NEW.recurso) IS NULL) THEN RAISE (ABORT, \"No existe ese recurso\") END; END\n");
+
+                db.execSQL("CREATE TRIGGER [InsertarGrupoMateria] BEFORE INSERT ON [GrupoMateria] FOR EACH ROW BEGIN SELECT CASE WHEN ((SELECT cod_tipo_grupo FROM TipoGrupo WHERE TipoGrupo.cod_tipo_grupo = NEW.tipo_grupo) IS NULL) THEN RAISE (ABORT, \"No existe el tipo de grupo\" WHEN ((SELECT cod_docente FROM Docente WHERE Docente.cod_docente = NEW.docente) IS NULL) THEN RAISE(ABORT, \"No existe el docente\") WHEN ((SELECT cod_materia FROM Materia WHERE Materia.cod_materia = NEW.materia) IS NULL) THEN RAISE(ABORT, \"No existe la materia\") WHEN ((SELECT id_ciclo FROM Ciclo WHERE Ciclo.id_ciclo = NEW.ciclo) IS NULL) THEN RAISE(ABORT, \"No existe el ciclo\") WHEN ((SELECT id_horario FROM Horario WHERE Horario.id_horario = NEW.horario) IS NULL) THEN RAISE(ABORT, \"No existe el horario\") END; END");
 
 
                 //INICIALIZANDO DATOS
@@ -102,6 +115,12 @@ public class ControlBD {
 
     }
 
+    public SQLiteDatabase getDb(){
+        abrir();
+        return db;
+    }
+
+    // Método que retorna el objeto de base de datos para poder manejarlo, afuera del contexto de esta clase
     public void abrir() throws SQLException{
         db = DBHelper.getWritableDatabase();
         return;

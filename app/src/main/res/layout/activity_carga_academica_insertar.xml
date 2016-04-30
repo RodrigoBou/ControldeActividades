@@ -33,4 +33,16 @@
             android:maxLength="255"/>
     </TableRow>
 
+    <TableRow>
+        <Button
+            android:onClick="insertarTipoGrupo"
+            android:text="@string/insertar"
+            />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"
+            />
+
+    </TableRow>
+
 </TableLayout>

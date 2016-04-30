@@ -2,6 +2,8 @@
     <string name="app_name">Control de Actividades</string>
 
     <string name="title_activity_docente_menu">DocenteMenuActivity</string>
+    <string name="title_activity_materia_menu">MateriaMenuActivity</string>
+    <string name="title_activity_grupo_materia">GrupoMateriaMenuActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="tipoGrupo">Tipo Grupo</string>
@@ -21,5 +23,21 @@
     <string name="limpiar">Limpiar</string>
     <string name="eliminar">Eliminar</string>
     <string name="cargo" />
+    <string name="id_tipo_grupo">id_tipo_grupo</string>
+    <string name="tipo_grupo">tipo_grupo</string>
+    <string name="insertar">insertar</string>
+    <string name="actualizar">actualizar</string>
+    <string name="categoriaRecurso">Categoria Recurso</string>
+
+
+
+
+    <string name="id_actividad">ID Actividad</string>
+    <string name="nombre_actividad">Nombre</string>
+    <string name="detalle_actividad">Detalle</string>
+    <string name="fecha_actividad">Fecha</string>
+    <string name="horaI_actividad">Hora de inicio</string>
+    <string name="horaF_actividad">Hora de finalización</string>
+    <string name="docente_actividad">Docente</string>
 
 </resources>

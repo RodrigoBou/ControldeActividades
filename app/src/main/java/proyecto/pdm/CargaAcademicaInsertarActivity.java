@@ -8,6 +8,6 @@ public class CargaAcademicaInsertarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carga_academica_insertar_academica);
+        setContentView(R.layout.activity_carga_academica_insertar);
     }
 }
