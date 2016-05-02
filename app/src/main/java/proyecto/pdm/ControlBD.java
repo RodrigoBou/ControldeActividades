@@ -1,11 +1,17 @@
 package proyecto.pdm;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import proyecto.pdm.ClasesModelo.Ciclo;
+
 public class ControlBD {
+
+    private static final String[] camposCiclo = new String[]{"id_ciclo", "anio_ciclo", "ciclo_num"};
 
     private final Context context;
     private DatabaseHelper DBHelper;
@@ -110,6 +116,54 @@ public class ControlBD {
     public void cerrar(){
         DBHelper.close();
     }
+
+    public String insertar(Ciclo ciclo) {
+        String regInsertados = "Registro Insertado No = ";
+        long contador = 0;
+        ContentValues cicl = new ContentValues();
+
+        cicl.put("idCiclo", ciclo.getId_ciclo());
+        cicl.put("anioCiclo", ciclo.getAnio_ciclo());
+        cicl.put("CicloNum", ciclo.getCiclo_num());
+
+        contador = db.insert("alumno", null, cicl);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
+    public String actualizar(Ciclo ciclo) {
+        return null;
+    }
+
+    public String eliminar(Ciclo ciclo) {
+        return null;
+    }
+
+    public Ciclo consultarCiclo(String idCiclo) {
+        String[] id = {idCiclo};
+        Cursor cursor = db.query("ciclo", camposCiclo, "id_ciclo = ?", id, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            Ciclo ciclo = new Ciclo();
+            //ciclo.setId_ciclo(cursor.getString(0));
+            ciclo.setAnio_ciclo(cursor.getString(1));
+            ciclo.setCiclo_num(cursor.getString(2));
+            return ciclo;
+        } else {
+
+            return null;
+        }
+    }
+
+
+
+
 
 
 
