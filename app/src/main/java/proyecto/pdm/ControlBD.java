@@ -141,11 +141,11 @@ public class ControlBD {
         long contador = 0;
         ContentValues cicl = new ContentValues();
 
-        cicl.put("idCiclo", ciclo.getId_ciclo());
-        cicl.put("anioCiclo", ciclo.getAnio_ciclo());
-        cicl.put("CicloNum", ciclo.getCiclo_num());
+        //cicl.put("id_ciclo", );
+        cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
+        cicl.put("ciclo_num", ciclo.getCiclo_num());
 
-        contador = db.insert("alumno", null, cicl);
+        contador = db.insert("Ciclo", null, cicl);
 
         if (contador == -1 || contador == 0) {
             regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -164,26 +164,19 @@ public class ControlBD {
         return null;
     }
 
-    public Ciclo consultarCiclo(String idCiclo) {
-        String[] id = {idCiclo};
-        Cursor cursor = db.query("ciclo", camposCiclo, "id_ciclo = ?", id, null, null, null);
+    public Ciclo consultarCiclo(String id_ciclo) {
+        String[] id = {id_ciclo};
+        Cursor cursor = db.query("Ciclo", camposCiclo, "id_ciclo = ?", id, null, null, null);
 
         if (cursor.moveToFirst()) {
             Ciclo ciclo = new Ciclo();
-            //ciclo.setId_ciclo(cursor.getString(0));
+            ciclo.setId_ciclo(cursor.getInt(0));
             ciclo.setAnio_ciclo(cursor.getString(1));
             ciclo.setCiclo_num(cursor.getString(2));
             return ciclo;
         } else {
-
             return null;
         }
     }
-
-
-
-
-
-
 
 }
