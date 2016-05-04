@@ -22,14 +22,13 @@
     <string name="consular">Consultar</string>
     <string name="limpiar">Limpiar</string>
     <string name="eliminar">Eliminar</string>
-    <string name="cargo" />
     <string name="id_tipo_grupo">id_tipo_grupo</string>
     <string name="tipo_grupo">tipo_grupo</string>
     <string name="insertar">insertar</string>
     <string name="actualizar">actualizar</string>
     <string name="categoriaRecurso">Categoria Recurso</string>
 
-
+    <string name="cargo">Cargo</string>
 
 
     <string name="id_actividad">ID Actividad</string>
@@ -39,5 +38,11 @@
     <string name="horaI_actividad">Hora de inicio</string>
     <string name="horaF_actividad">Hora de finalización</string>
     <string name="docente_actividad">Docente</string>
+
+    <string name="nom_recurso">Recurso</string>
+    <string name="det_recurso">Detalle Recurso</string>
+    <string name="estado">Estado</string>
+    <string name="inactivo">Inactivo</string>
+    <string name="activo">Activo</string>
 
 </resources>
