@@ -3,11 +3,11 @@ package proyecto.pdm;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CargaAcademicaEliminarActivity extends AppCompatActivity {
+public class CatergoriaRecursoMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carga_academica_eliminar);
+        setContentView(R.layout.activity_catergoria_recurso_menu);
     }
 }
