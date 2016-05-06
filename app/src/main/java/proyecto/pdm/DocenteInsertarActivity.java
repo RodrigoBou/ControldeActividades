@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import proyecto.pdm.CRUDTablas.DocenteBD;
+
 import proyecto.pdm.ClasesModelo.Docente;
 
 public class DocenteInsertarActivity extends Activity {
-    ControlBD helper;
+    DocenteBD helper;
     EditText editCodDocente;
     EditText editNomDocente;
 
@@ -17,7 +19,7 @@ public class DocenteInsertarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_docente_insertar);
-        helper = new ControlBD(this);
+        helper = new DocenteBD(this);
         editCodDocente = (EditText) findViewById(R.id.editCodDocente);
         editNomDocente = (EditText) findViewById(R.id.editNomDocente);
     }
@@ -29,10 +31,8 @@ public class DocenteInsertarActivity extends Activity {
         Docente docente = new Docente();
         docente.setCodDocente(codDocente);
         docente.setNomDocente(nomDocente);
-        helper.abrir();
-       // regInsertados = helper.insertar(docente);
-        helper.cerrar();
-       // Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        regInsertados = helper.insertar(docente);
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
     }
     public void limpiarTexto(View v){

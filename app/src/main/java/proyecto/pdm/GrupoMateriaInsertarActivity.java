@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
+import proyecto.pdm.CRUDTablas.GrupoMateriaBD;
 
 import proyecto.pdm.ClasesModelo.GrupoMateria;
 
 public class GrupoMateriaInsertarActivity extends Activity {
-    ControlBD helper;
+    GrupoMateriaBD helper;
 
     EditText editTipoGrupo;
     EditText editIdGrupo;
@@ -25,7 +26,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupo_materia_insertar);
-        helper = new ControlBD(this);
+        helper = new GrupoMateriaBD(this);
         editTipoGrupo = (EditText) findViewById(R.id.editTipoGrupo);
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
         editMateria = (EditText) findViewById(R.id.editMateria);
@@ -50,6 +51,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         String horario = editHorario.getText().toString();
         String numGrupo = editNumGrupo.getText().toString();
         String regInsertados;
+
         GrupoMateria grupoMateria = new GrupoMateria();
         grupoMateria.setIdGrupo(Integer.parseInt(idGrupo));
         grupoMateria.setTipoGrupo(tipoGrupo);
@@ -60,10 +62,9 @@ public class GrupoMateriaInsertarActivity extends Activity {
         grupoMateria.setDiasImpartida(diasImpartida);
         grupoMateria.setHorario(Integer.parseInt(horario));
         grupoMateria.setNumGrupo(numGrupo);
-        helper.abrir();
-       // regInsertados=helper.insertar(grupoMateria);
-        helper.cerrar();
-       // Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+
+        regInsertados=helper.insertar(grupoMateria);
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
 

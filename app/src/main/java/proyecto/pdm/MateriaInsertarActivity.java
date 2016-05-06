@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import proyecto.pdm.CRUDTablas.MateriaBD;
 import proyecto.pdm.ClasesModelo.Materia;
 
 public class MateriaInsertarActivity extends Activity {
-    ControlBD helper;
+    MateriaBD helper;
     EditText editNomMateria;
     EditText editCodMateria;
 
@@ -17,7 +17,7 @@ public class MateriaInsertarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_insertar);
-        helper = new ControlBD(this);
+        helper = new MateriaBD(this);
         editCodMateria = (EditText) findViewById(R.id.editCodMateria);
         editNomMateria = (EditText) findViewById(R.id.editNomMateria);
     }
@@ -29,10 +29,9 @@ public class MateriaInsertarActivity extends Activity {
         Materia materia = new Materia();
         materia.setCodMateria(codMateria);
         materia.setNomMateria(nomMateria);
-        helper.abrir();
-      //  regInsertados = helper.insertar(materia);
-        helper.cerrar();
-       // Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+
+        regInsertados = helper.insertar(materia);
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v){
