@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingTop="30dip"
-    android:stretchColumns="1">
-    <TableRow>
-        <TextView android:text="@string/cargo"/>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="proyecto.pdm.CargaAcademicaInsertarActivity">
+
+    <TableRow android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView android:text="@string/cargo"
+            android:layout_width="match_parent" />
         <EditText
             android:id="@+id/editcargo"
             android:inputType="text"
-            android:maxLength="250"/>
+            android:maxLength="100"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/materia"/>
         <EditText
             android:id="@+id/editMateria"
             android:inputType="text"
-            android:maxLength="255"/>
+            android:maxLength="100"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/docente"/>
         <EditText
             android:id="@+id/editDocente"
             android:inputType="text"
-            android:maxLength="255"/>
+            android:maxLength="100"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/ciclo"/>
         <EditText
             android:id="@+id/editCiclo"
             android:inputType="text"
-            android:maxLength="255"/>
+            android:maxLength="10"/>
     </TableRow>
 
     <TableRow>
         <Button
-            android:onClick="insertarTipoGrupo"
+            android:onClick="insertarCargaAcademica"
             android:text="@string/insertar"
             />
         <Button

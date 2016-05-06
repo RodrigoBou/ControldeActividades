@@ -55,6 +55,17 @@ public class CargaAcademicaBD {
     public String actualizar(CargaAcademica cargaAcademica){
        return null;
     }
-    
+
+
+    public void abrir() throws SecurityException{
+        controlBD.abrir();
+        return;
 
     }
+
+    public void cerrar() {
+        controlBD.cerrar();
+        return;
+
+    }
+}

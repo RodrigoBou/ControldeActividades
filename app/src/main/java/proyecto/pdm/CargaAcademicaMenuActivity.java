@@ -10,15 +10,17 @@ import android.widget.ListView;
 
 public class CargaAcademicaMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro","Actualizar Registro"};
-    String[] activities = {"CargaAcademicaInsetarActivity", "CargaAcademicaEliminarActivity","CargaAcademicaConsultarActivity", "CargaAcademicaConsultarActivity"};
+    String[] activities = {"CargaAcademicaInsertarActivity", "CargaAcademicaEliminarActivity","CargaAcademicaConsultarActivity", "CargaAcademicaActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
+
         ListView listView = getListView();
         listView.setBackgroundColor(Color.rgb(61, 165, 235));
+
         ArrayAdapter <String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,menu);
         setListAdapter(adapter);
     }
