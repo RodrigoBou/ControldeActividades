@@ -5,24 +5,24 @@ package proyecto.pdm.ClasesModelo;
  */
 public class TipoGrupo {
 
-    private int idTipoGrupo;
     private String codTipoGrupo;
+    private String TipoGrupo;
 
     public TipoGrupo(){
 
     }
 
-    public TipoGrupo(int idTipoGrupo, String codTipoGrupo) {
-        this.idTipoGrupo = idTipoGrupo;
+    public TipoGrupo(String codTipoGrupo, String tipoGrupo) {
         this.codTipoGrupo = codTipoGrupo;
+        TipoGrupo = tipoGrupo;
     }
 
-    public int getIdTipoGrupo() {
-        return idTipoGrupo;
+    public String getTipoGrupo() {
+        return TipoGrupo;
     }
 
-    public void setIdTipoGrupo(int idTipoGrupo) {
-        this.idTipoGrupo = idTipoGrupo;
+    public void setTipoGrupo(String tipoGrupo) {
+        TipoGrupo = tipoGrupo;
     }
 
     public String getcodTipoGrupo() {
