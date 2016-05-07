@@ -3,7 +3,9 @@ package proyecto.pdm.CRUDTablas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Switch;
 
 import proyecto.pdm.ClasesModelo.TipoGrupo;
 import proyecto.pdm.ControlBD;
@@ -56,5 +58,46 @@ public class TipoGrupoBD {
             return null;
         }
     }
+    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException{
+        switch(relacion){
+            case 1:
+            {
+                //Verificar que exista el Tipo grupo
+                TipoGrupo tipoGrupo =(TipoGrupo)dato;
+                String[] id = {tipoGrupo.getcodTipoGrupo()};
+                abrir();
+                Cursor c = db.query("TipoGrupo",null,"cod_tipo_grupo=?",id,null,null,null);
+                if(c.moveToFirst()){
+                    //se encontro Tipo Grupo
+                    return true;
+                }
+                return false;
+            }
+            default: return false;
+        }
+    }
+    public String actualizar(TipoGrupo tipoGrupo){
+        if(verificarIntegridad(tipoGrupo,1)){
+            String[]id= {tipoGrupo.getcodTipoGrupo()};
+            ContentValues cv=new ContentValues();
+            //cv.put("cod_tipo_dato",tipoGrupo.getcodTipoGrupo());
+            cv.put("tipo_grupo",tipoGrupo.getTipoGrupo());
+            db.update("TipoGrupo", cv,"cod_tipo_grupo=?",id);
+            return "Registro Actualizado Correctamente";
+        }else {
+            return "Registro con Codigo "+tipoGrupo.getcodTipoGrupo()+" no existe";
+        }
+    }
+    public String eliminar(TipoGrupo tipoGrupo){
+        String regAfectados ="filas Afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(tipoGrupo,1)){
+            contador+=db.delete("TipoGrupo", "cod_tipo_grupo='"+tipoGrupo.getcodTipoGrupo()+"'", null);
+        }
+        contador+=db.delete("TipoGrupo","cod_tipo_grupo='"+tipoGrupo.getcodTipoGrupo()+"'",null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
 
 }
