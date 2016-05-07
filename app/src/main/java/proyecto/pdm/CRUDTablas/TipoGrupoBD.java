@@ -2,6 +2,7 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import proyecto.pdm.ClasesModelo.TipoGrupo;
@@ -43,4 +44,17 @@ public class TipoGrupoBD {
         controlBD.cerrar();
         return;
     }
+    public TipoGrupo consultarTipoGrupo(String cod_tipo_grupo){
+        String[] id = {cod_tipo_grupo};
+        Cursor cursor = db.query("TipoGrupo", camposTipoGrupo,"cod_tipo_grupo=?", id, null, null, null );
+        if (cursor.moveToFirst()){
+            TipoGrupo tipoGrupo = new TipoGrupo();
+            tipoGrupo.setcodTipoGrupo(cursor.getString(0));
+            tipoGrupo.setTipoGrupo(cursor.getString(1));
+            return tipoGrupo;
+        }else{
+            return null;
+        }
+    }
+
 }
