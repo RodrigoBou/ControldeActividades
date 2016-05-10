@@ -3,7 +3,10 @@ package proyecto.pdm.CRUDTablas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import org.xml.sax.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +65,47 @@ public class GrupoMateriaBD {
     }
 
     public String eliminar(GrupoMateria grupoMateria){
-        return  null;
+        String regAfectados = "filas afectadas";
+        int contador = 0;
+
+        if (verificarIntegridad(grupoMateria, 1)) {
+            contador+= db.delete("Reservacion", "grupo='"+ grupoMateria.getIdGrupo()+"'", null);
+        }
+        contador+=db.delete("GrupoMateria", "id_grupo='"+grupoMateria.getIdGrupo()+"'", null);
+        regAfectados+=contador;
+        return  regAfectados;
     }
+
+
+    public void abrir() {
+        controlBD.abrir();
+        return;
+    }
+
+    public void cerrar() {
+        controlBD.cerrar();
+        return;
+    }
+
+    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
+        switch(relacion){
+            case 1:
+            {
+                //Verificar que exista el GrupoMateria
+                GrupoMateria grupoMateria =(GrupoMateria)dato;
+                String[] id = {String.valueOf(grupoMateria.getIdGrupo())};
+                abrir();
+                Cursor c = db.query("GrupoMateria",null,"id_grupo=?",id,null,null,null);
+                if(c.moveToFirst()){
+                    //se encontro GrupoMateria
+                    return true;
+                }
+                return false;
+            }
+            default: return false;
+        }
+    }
+
 
 
     public List<GrupoMateria> getGruposMateria(){

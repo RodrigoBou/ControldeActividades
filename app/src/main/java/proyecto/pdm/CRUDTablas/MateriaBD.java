@@ -3,6 +3,7 @@ package proyecto.pdm.CRUDTablas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -56,7 +57,45 @@ public class MateriaBD {
     }
 
     public String eliminar(Materia materia){
-        return  null;
+
+        String regAfectados = "filas afectadas";
+        int contador = 0;
+
+        if (verificarIntegridad(materia, 1)) {
+            contador+= db.delete("GrupoMateria", "cod_materia='"+ materia.getCodMateria()+"'", null);
+        }
+        contador+=db.delete("Materia", "cod_materia='"+materia.getCodMateria()+"'", null);
+        regAfectados+=contador;
+        return  regAfectados;
+    }
+
+    public void abrir() {
+        controlBD.abrir();
+        return;
+    }
+
+    public void cerrar() {
+        controlBD.cerrar();
+        return;
+    }
+
+    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
+        switch(relacion){
+            case 1:
+            {
+                //Verificar que exista la Materia
+                Materia materia =(Materia)dato;
+                String[] id = {materia.getCodMateria()};
+                abrir();
+                Cursor c = db.query("Docente",null,"cod_docente=?",id,null,null,null);
+                if(c.moveToFirst()){
+                    //se encontro Materia
+                    return true;
+                }
+                return false;
+            }
+            default: return false;
+        }
     }
 
     public List<Materia> getMaterias(){
