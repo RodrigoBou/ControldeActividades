@@ -45,8 +45,17 @@ public class DocenteBD {
     }
 
     public Docente consultar(String codDocente){
+        String id[] = {codDocente};
+        Cursor c = db.query("Docente", camposDocente, "cod_docente=?", id, null, null, null);
+        if (c.moveToFirst()){
+            Docente docente = new Docente();
+            docente.setCodDocente(c.getString(0));
+            docente.setNomDocente(c.getString(1));
+            return docente;
+        }else {
 
      return  null;
+        }
     }
 
     public String actualizar(Docente docente){

@@ -48,8 +48,16 @@ public class MateriaBD {
     }
 
     public Materia consultar(String codMateria){
-
-        return  null;
+        String id[] = {codMateria};
+        Cursor c = db.query("Materia", camposMateria, "cod_materia=?", id, null, null, null);
+        if (c.moveToFirst()){
+            Materia  materia = new Materia();
+            materia.setCodMateria(c.getString(0));
+            materia.setNomMateria(c.getString(1));
+            return materia;
+        }else {
+            return null;
+        }
     }
 
     public String actualizar(Materia materia){

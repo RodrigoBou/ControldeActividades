@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import proyecto.pdm.CRUDTablas.GrupoMateriaBD;
 
 import proyecto.pdm.ClasesModelo.GrupoMateria;
 
 public class GrupoMateriaConsultarActivity extends Activity {
-    ControlBD helper;
+    GrupoMateriaBD helper;
     EditText editTipoGrupo;
     EditText editIdGrupo;
     EditText editMateria;
@@ -24,7 +25,7 @@ public class GrupoMateriaConsultarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupo_materia_consultar);
-        helper = new ControlBD(this);
+        helper = new GrupoMateriaBD(this);
         editTipoGrupo = (EditText) findViewById(R.id.editTipoGrupo);
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
         editMateria = (EditText) findViewById(R.id.editMateria);
@@ -36,9 +37,9 @@ public class GrupoMateriaConsultarActivity extends Activity {
         editNumGrupo= (EditText) findViewById(R.id.editCiclo);
     }
 
-  /*  public  void consultarGrupoMateria(View v){
+    public  void consultarGrupoMateria(View v){
         helper.abrir();
-        GrupoMateria grupoMateria = helper.consultarGrupoMateria(Integer.parseInt(editIdGrupo.getText().toString()));
+        GrupoMateria grupoMateria = helper.consultar(Integer.parseInt(editIdGrupo.getText().toString()));
         helper.cerrar();
         if(grupoMateria == null){
             Toast.makeText(this, "Grupo Materia con Id" + editIdGrupo.getText().toString() + "no encontrado",
@@ -55,7 +56,7 @@ public class GrupoMateriaConsultarActivity extends Activity {
             editNumGrupo.setText(grupoMateria.getNumGrupo());
         }
 
-    }*/
+    }
     public void limpiarTexto(View v){
         editTipoGrupo.setText("");
         editIdGrupo.setText("");

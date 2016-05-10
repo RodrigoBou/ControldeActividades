@@ -7,9 +7,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import proyecto.pdm.ClasesModelo.Materia;
+import proyecto.pdm.CRUDTablas.MateriaBD;
 
 public class MateriaConsultarActivity extends Activity {
-    ControlBD helper;
+    MateriaBD helper;
     EditText editNomMateria;
     EditText editCodMateria;
 
@@ -17,14 +18,14 @@ public class MateriaConsultarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_consultar);
-        helper = new ControlBD(this);
+        helper = new MateriaBD(this);
         editCodMateria = (EditText) findViewById(R.id.editCodMateria);
         editNomMateria = (EditText) findViewById(R.id.editNomMateria);
     }
 
     public void consultarMateria(View v){
         helper.abrir();
-       /* Materia materia = helper.consultarMateria(editCodMateria.getText().toString());
+        Materia materia = helper.consultar(editCodMateria.getText().toString());
         helper.cerrar();
         if (materia == null){
             Toast.makeText(this, "Materia codigo:" + editCodMateria.getText().toString() + "no encontrado",
@@ -32,7 +33,7 @@ public class MateriaConsultarActivity extends Activity {
         }
         else {
             editNomMateria.setText(materia.getNomMateria());
-        }*/
+        }
     }
 
     public void limpiarTexto(View v){

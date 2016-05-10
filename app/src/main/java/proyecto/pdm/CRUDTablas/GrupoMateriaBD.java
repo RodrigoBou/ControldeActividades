@@ -55,9 +55,25 @@ public class GrupoMateriaBD {
 
     }
 
-    public GrupoMateria consultar(String idGrupo){
+    public GrupoMateria consultar(int idGrupo){
+        String[] id ={String.valueOf(idGrupo)};
+        Cursor c = db.query("GrupoMateria", camposGrupoMateria, "id_grupo=?", id, null, null, null);
+        if (c.moveToFirst()){
+            GrupoMateria grupoMateria = new GrupoMateria();
+            grupoMateria.setIdGrupo(c.getInt(0));
+            grupoMateria.setTipoGrupo(c.getString(1));
+            grupoMateria.setMateria(c.getString(2));
+            grupoMateria.setDocente(c.getString(3));
+            grupoMateria.setCiclo(c.getInt(4));
+            grupoMateria.setLocal(c.getString(5));
+            grupoMateria.setDiasImpartida(c.getString(6));
+            grupoMateria.setNumGrupo(c.getString(7));
+            grupoMateria.setHorario(c.getInt(8));
+            return grupoMateria;
+        }else {
+            return null;
+        }
 
-        return  null;
     }
 
     public String actualizar(GrupoMateria grupoMateria){
