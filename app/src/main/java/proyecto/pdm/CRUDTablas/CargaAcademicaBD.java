@@ -22,17 +22,18 @@ public class CargaAcademicaBD {
         db = controlBD.getDb();
     }
     public String insertar(CargaAcademica cargaAcademica){
-        String regIngresados="Registro Insertado N°=";
-        long contador =0;
-        ContentValues cargaA = new ContentValues();
-        cargaA.put("cargo", cargaAcademica.getCargo());
-        cargaA.put("materia", cargaAcademica.getMateria());
-        cargaA.put("docente", cargaAcademica.getDocente());
-        cargaA.put("ciclo", cargaAcademica.getCiclo());
-        contador=db.insert("CagaAcademica", null,cargaA);
+        String regIngresados="Registro Insertados N°= ";
+        long contador=0;
+        if(verificarIntegriad(cargaAcademica,1)){
+            ContentValues ca= new ContentValues();
+            ca.put("Docente",cargaAcademica.getDocente());
+            ca.put("Matera", cargaAcademica.getMateria());
+            ca.put("Cargo", cargaAcademica.getCargo());
+            ca.put("Ciclo",cargaAcademica.getCiclo());
+            contador =db.insert("CargaAcademica",null,ca);
+        }
         if (contador==-1||contador==0){
-            regIngresados="Error al Insertar el registro. Registro duplicado. Verificar la insercion";
-
+            regIngresados="Error al insertar el registro, registro duplicado, verificar insercion";
         }else{
             regIngresados=regIngresados+contador;
         }
@@ -66,6 +67,43 @@ public class CargaAcademicaBD {
     public void cerrar() {
         controlBD.cerrar();
         return;
+
+    }
+    private boolean verificarIntegriad(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:
+            {
+                //verifica si el docente, el cargo, la meteria y el ciclo existe
+                CargaAcademica cargaAcademica=(CargaAcademica)dato;
+                String[] id1 = {cargaAcademica.getDocente()};
+                String[] id2 ={String.valueOf(cargaAcademica.getCargo())};
+                String[] id3 = {cargaAcademica.getMateria()};
+                String[] id4 = {String.valueOf(cargaAcademica.getCiclo())};
+
+                //abrir;
+                Cursor cursor1=db.query("Docente", null,"cod_docente=?", id1,null,null,null);
+                Cursor cursor2=db.query("Cargo", null,"id_cargo=?",id2,null,null,null);
+                Cursor cursor3=db.query("Materia", null,"cod_materia=?",id3,null,null,null);
+                Cursor cursor4=db.query("Ciclo", null, "id_ciclo=?", id4, null, null, null);
+                if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
+            case 2:{
+                //verificar si la carga academica existe
+                CargaAcademica cargaAcademica2 =(CargaAcademica)dato;
+                String[] id ={cargaAcademica2.getDocente()};
+                abrir();
+                Cursor c2 =db.query("CargaAcademica", null,"docente=?",id,null,null,null);
+                if(c2.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
+            default:return false;
+
+        }
 
     }
 }

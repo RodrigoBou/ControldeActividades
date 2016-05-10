@@ -28,11 +28,12 @@ public class CargaAcademicaInsertarActivity extends Activity {
         editCiclo=(EditText)findViewById(R.id.editCiclo);
     }
     public void insertarCargaAcademica(View v){
+        String regInsertados;
         Integer cargo=Integer.valueOf(editCargo.getText().toString());
         String docente =editDocente.getText().toString();
         String materia = editMateria.getText().toString();
         Integer ciclo = Integer.valueOf(editCiclo.getText().toString());
-        String regInsertados;
+
         CargaAcademica cargaAcademica= new CargaAcademica();
         cargaAcademica.setCargo(cargo);
         cargaAcademica.setDocente(docente);
