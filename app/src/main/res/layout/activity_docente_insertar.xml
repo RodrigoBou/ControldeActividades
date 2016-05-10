@@ -20,5 +20,15 @@
             android:inputType="text"
             android:maxLength="150"/>
     </TableRow>
+    <TableRow>
+    <Button
+        android:onClick="insertarDocente"
+        android:text="@string/insertar"
+        />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"
+            />
+    </TableRow>
 
 </TableLayout>

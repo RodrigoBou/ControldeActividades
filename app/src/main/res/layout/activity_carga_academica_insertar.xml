@@ -9,35 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="proyecto.pdm.CargaAcademicaInsertarActivity">
 
-    <TableRow android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-        <TextView android:text="@string/cargo"
-            android:layout_width="match_parent" />
-        <EditText
-            android:id="@+id/editcargo"
-            android:inputType="text"
-            android:maxLength="100"/>
+    <TableRow>
+        <TextView android:text="@string/docente"/>
+        <Spinner android:id="@+id/spinnerDocente"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/cargo"/>
+        <Spinner android:id="@+id/spinnerCargo"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/materia"/>
-        <EditText
-            android:id="@+id/editMateria"
-            android:inputType="text"
-            android:maxLength="100"/>
-    </TableRow>
-    <TableRow>
-        <TextView android:text="@string/docente"/>
-        <EditText
-            android:id="@+id/editDocente"
-            android:inputType="text"
-            android:maxLength="100"/>
+        <Spinner android:id="@+id/spinnerMateria"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/ciclo"/>
-        <EditText
-            android:id="@+id/editCiclo"
-            android:inputType="text"
-            android:maxLength="10"/>
+        <Spinner android:id="@+id/spinnerCiclo"/>
     </TableRow>
 
     <TableRow>
