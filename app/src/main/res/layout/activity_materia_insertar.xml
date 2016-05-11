@@ -21,5 +21,12 @@
             android:maxLength="50"/>
     </TableRow>
 
-
+    <TableRow>
+        <Button
+            android:onClick="insertarMateria"
+            android:text="@string/insertar"/>
+        <Button
+            android:onClick="limpiarTextoMateria"
+            android:text="@string/limpiar"/>
+    </TableRow>
 </TableLayout>

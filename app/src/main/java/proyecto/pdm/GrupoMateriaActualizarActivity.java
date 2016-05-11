@@ -53,7 +53,7 @@ public class GrupoMateriaActualizarActivity extends Activity {
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
-    public void limpiarTexto(View v){
+    public void limpiarTextoGrupoMateria(View v){
         editTipoGrupo.setText("");
         editIdGrupo.setText("");
         editMateria.setText("");

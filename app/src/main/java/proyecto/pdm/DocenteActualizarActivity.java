@@ -37,7 +37,7 @@ public class DocenteActualizarActivity extends Activity {
 
     }
 
-    public void limpiarTexto(View v){
+    public void limpiarTextoDocente(View v){
         editCodDocente.setText("");
         editNomDocente.setText("");
     }

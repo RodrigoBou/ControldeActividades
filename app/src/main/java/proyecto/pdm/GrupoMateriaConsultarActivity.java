@@ -57,7 +57,7 @@ public class GrupoMateriaConsultarActivity extends Activity {
         }
 
     }
-    public void limpiarTexto(View v){
+    public void limpiarTextoGrupoMateria(View v){
         editTipoGrupo.setText("");
         editIdGrupo.setText("");
         editMateria.setText("");

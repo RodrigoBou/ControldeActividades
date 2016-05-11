@@ -36,7 +36,7 @@ public class MateriaConsultarActivity extends Activity {
         }
     }
 
-    public void limpiarTexto(View v){
+    public void limpiarTextoMateria(View v){
         editCodMateria.setText("");
         editNomMateria.setText("");
     }

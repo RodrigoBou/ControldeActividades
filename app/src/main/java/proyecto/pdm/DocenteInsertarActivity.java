@@ -35,7 +35,7 @@ public class DocenteInsertarActivity extends Activity {
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
     }
-    public void limpiarTexto(View v){
+    public void limpiarTextoDocente(View v){
         editCodDocente.setText("");
         editNomDocente.setText("");
     }
