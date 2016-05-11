@@ -2,7 +2,11 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.pdm.ClasesModelo.Cargo;
 import proyecto.pdm.ClasesModelo.CategoriaRecurso;
@@ -40,5 +44,19 @@ public class CargoDB {
         }
         controlBD.cerrar();
         return registrosInsertados;
+    }
+
+    public List<Cargo> getCargos() {
+        Cursor c =db.query("Cargo", camposCargo,null,null,null,null,null);
+        List<Cargo> cargoList = new ArrayList<Cargo>();
+                if (c.moveToFirst()){
+                    do {
+                        Cargo cargo = new Cargo();
+                        cargo.setIdCargo(c.getInt(0));
+                        cargo.setNomCargo(c.getString(1));
+                              cargoList.add(cargo);
+                    }while (c.moveToNext());
+                }
+        return cargoList;
     }
 }
