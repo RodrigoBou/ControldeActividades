@@ -7,6 +7,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Switch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import proyecto.pdm.ClasesModelo.TipoGrupo;
 import proyecto.pdm.ControlBD;
 
@@ -97,6 +100,19 @@ public class TipoGrupoBD {
         contador+=db.delete("TipoGrupo","cod_tipo_grupo='"+tipoGrupo.getcodTipoGrupo()+"'",null);
         regAfectados+=contador;
         return regAfectados;
+    }
+    public List<TipoGrupo> getTipoGrupos(){
+        Cursor c = db.query("TipoGrupo",camposTipoGrupo,null,null,null,null,null);
+        List<TipoGrupo>tipoGrupoList= new ArrayList<TipoGrupo>();
+        if (c.moveToFirst()){
+            do{
+                TipoGrupo tipoGrupo = new TipoGrupo();
+                tipoGrupo.setcodTipoGrupo(c.getString(0));
+                tipoGrupo.setTipoGrupo(c.getString(1));
+                tipoGrupoList.add(tipoGrupo);
+            }while (c.moveToNext());
+        }
+        return tipoGrupoList;
     }
 
 
