@@ -29,8 +29,8 @@ public class DocenteBD {
         long contador = 0;
 
         ContentValues doc = new ContentValues();
-        doc.put("codDocente", docente.getCodDocente());
-        doc.put("nomDocente", docente.getNomDocente());
+        doc.put("cod_docente", docente.getCodDocente());
+        doc.put("nom_docente", docente.getNomDocente());
 
         contador = db.insert("Docente", null, doc);
         if (contador == 0 || contador == -1){
@@ -45,7 +45,7 @@ public class DocenteBD {
     }
 
     public Docente consultar(String codDocente){
-        String id[] = {codDocente};
+        String[] id = {codDocente};
         Cursor c = db.query("Docente", camposDocente, "cod_docente=?", id, null, null, null);
         if (c.moveToFirst()){
             Docente docente = new Docente();
@@ -59,7 +59,17 @@ public class DocenteBD {
     }
 
     public String actualizar(Docente docente){
-        return  null;
+        if (verificarIntegridad(docente, 1)) {
+            String[] id = {docente.getCodDocente()};
+            ContentValues doc = new ContentValues();
+            doc.put("cod_docente", docente.getCodDocente());
+            doc.put("nom_docente", docente.getNomDocente());
+            db.update("Materia", doc, "cod_materia=?", id);
+            return "Registro Actualizado Correctamente";
+        }else {
+            return "Registro con Codigo docente: " + docente.getCodDocente() + "no existe";
+        }
+
     }
 
     public String eliminar(Docente docente){

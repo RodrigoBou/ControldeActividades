@@ -48,7 +48,7 @@ public class MateriaBD {
     }
 
     public Materia consultar(String codMateria){
-        String id[] = {codMateria};
+        String [] id = {codMateria};
         Cursor c = db.query("Materia", camposMateria, "cod_materia=?", id, null, null, null);
         if (c.moveToFirst()){
             Materia  materia = new Materia();
@@ -61,7 +61,17 @@ public class MateriaBD {
     }
 
     public String actualizar(Materia materia){
-        return  null;
+        if (verificarIntegridad(materia, 1)) {
+            String[] id = {materia.getCodMateria()};
+            ContentValues doc = new ContentValues();
+            doc.put("cod_materia", materia.getCodMateria());
+            doc.put("nom_materia", materia.getNomMateria());
+            db.update("Materia", doc, "cod_materia=?", id);
+            return "Registro Actualizado Correctamente";
+        }else {
+            return "Registro con Codigo materia: " +materia.getCodMateria() + "no existe";
+        }
+
     }
 
     public String eliminar(Materia materia){

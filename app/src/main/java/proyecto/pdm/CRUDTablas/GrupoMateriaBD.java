@@ -77,7 +77,22 @@ public class GrupoMateriaBD {
     }
 
     public String actualizar(GrupoMateria grupoMateria){
-        return  null;
+        if (verificarIntegridad(grupoMateria, 1)){
+            String[] id={String.valueOf(grupoMateria.getIdGrupo())};
+            ContentValues grupMa = new ContentValues();
+            grupMa.put("tipoGrupo", grupoMateria.getTipoGrupo());
+            grupMa.put("materia", grupoMateria.getMateria());
+            grupMa.put("docente", grupoMateria.getDocente());
+            grupMa.put("ciclo", grupoMateria.getCiclo());
+            grupMa.put("local", grupoMateria.getLocal());
+            grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
+            grupMa.put("numGrupo", grupoMateria.getNumGrupo());
+            grupMa.put("horario", grupoMateria.getHorario());
+            db.update("GrupoMateria", grupMa, "id_grupo=?", id);
+            return "Registro Actualizado Correctamente";
+        }else {
+            return "Registro con idGrupo" + grupoMateria.getIdGrupo() + "no existe";
+        }
     }
 
     public String eliminar(GrupoMateria grupoMateria){

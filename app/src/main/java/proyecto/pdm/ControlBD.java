@@ -48,7 +48,7 @@ public class ControlBD {
 
                 db.execSQL("CREATE TABLE [TipoGrupo] ( [cod_tipo_grupo] VARCHAR(5) NOT NULL PRIMARY KEY, [tipo_grupo] VARCHAR(25) NOT NULL );");
 
-                db.execSQL("CREATE TABLE Docente (cod_docente VARCHAR (7) PRIMARY KEY NOT NULL, nom_docente VARCHAR (150) NOT NULL);");
+                db.execSQL("CREATE TABLE [Docente] (cod_docente VARCHAR (7) PRIMARY KEY NOT NULL, nom_docente VARCHAR (150) NOT NULL);");
 
                 db.execSQL("CREATE TABLE [Ciclo] ( [id_ciclo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [anio_ciclo] VARCHAR(4) NOT NULL, [ciclo_num] VARCHAR(2) NOT NULL );");
 
