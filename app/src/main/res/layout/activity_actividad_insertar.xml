@@ -10,18 +10,18 @@
     tools:context="proyecto.pdm.ActividadInsertarActivity">
 
     <TableRow android:layout_width="wrap_content"
-           android:layout_height="wrap_content">
-     <TextView android:text="@string/id_actividad"
-      android:layout_width="match_parent" />
+        android:layout_height="wrap_content">
+        <TextView android:text="@string/id_actividad"
+            android:layout_width="match_parent" />
         <EditText
-                android:id="@+id/editActividad"
-                android:inputType="text"
-                android:maxLength="10" />
+            android:id="@+id/editActividad"
+            android:inputType="numberSigned"
+            android:maxLength="10" />
     </TableRow>
 
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/nombre_actividad" />
         <EditText
             android:id="@+id/editNombreActividad"
@@ -31,7 +31,7 @@
 
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/detalle_actividad" />
         <EditText
             android:id="@+id/editDetalle"
@@ -41,58 +41,58 @@
 
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/fecha_actividad" />
 
 
-            <Spinner
-                android:id="@+id/dia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/dia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-                android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown" />
 
-            <Spinner
-                android:id="@+id/mes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/mes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-                android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown" />
 
-            <Spinner
-                android:id="@+id/anio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/anio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-                android:spinnerMode="dropdown" />
-
-
+            android:spinnerMode="dropdown" />
 
 
 
-        </TableRow>
+
+
+    </TableRow>
 
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/horaI_actividad" />
         <EditText
             android:id="@+id/editHoraI"
-            android:inputType="text"
+            android:inputType="time"
             android:maxLength="10" />
     </TableRow>
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/horaF_actividad" />
         <EditText
             android:id="@+id/editHoraF"
-            android:inputType="text"
+            android:inputType="time"
             android:maxLength="10" />
     </TableRow>
 
 
-        <TableRow>
+    <TableRow>
         <TextView android:text="@string/docente_actividad" />
         <EditText
             android:id="@+id/editDocente"
@@ -103,7 +103,7 @@
 
 
 
-        <TableRow>
+    <TableRow>
 
         <Button
             android:onClick="insertarActividad"
@@ -116,4 +116,4 @@
     </TableRow>
 
 
-    </TableLayout>
+</TableLayout>

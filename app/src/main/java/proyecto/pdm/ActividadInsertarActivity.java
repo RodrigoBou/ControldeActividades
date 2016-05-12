@@ -70,7 +70,7 @@ public class ActividadInsertarActivity extends Activity {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                vDia= (String) adapterView.getItemAtPosition(position);
+                vDia = (String) adapterView.getItemAtPosition(position);
             }
 
             @Override
@@ -87,7 +87,7 @@ public class ActividadInsertarActivity extends Activity {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                vMes=  (String) adapterView.getItemAtPosition(position);
+                vMes = (String) adapterView.getItemAtPosition(position);
             }
 
             @Override
@@ -116,7 +116,7 @@ public class ActividadInsertarActivity extends Activity {
         });
 
 
-        editHoraI = (EditText) findViewById(R.id.editHoraI);
+       editHoraI = (EditText) findViewById(R.id.editHoraI);
         editHoraF = (EditText) findViewById(R.id.editHoraF);
         editDocente = (EditText) findViewById(R.id.editDocente);
 
@@ -134,8 +134,8 @@ public class ActividadInsertarActivity extends Activity {
         actividad.setIdActividad(Integer.parseInt(editID.getText().toString()));
         actividad.setDetalleActividad(editDetalle.getText().toString());
         actividad.setNomActividad(editNombre.getText().toString());
-        actividad.setHoraFin(Time.valueOf("05:05:05"));
-        actividad.setHoraIni(Time.valueOf("03:05:05"));
+        actividad.setHoraFin(Time.valueOf((editHoraF.getText().toString()) + ":00"));
+        actividad.setHoraIni(Time.valueOf((editHoraI.getText().toString()) + ":00"));
         actividad.setDocente(editDocente.getText().toString());
         actividad.setFecha(Date.valueOf(vAnio + "-" + vMes + "-" + vDia));
         regInsertados = dbHelper.Insertar(actividad);
@@ -150,6 +150,8 @@ public class ActividadInsertarActivity extends Activity {
         editNombre.setText("");
         editDetalle.setText("");
         editDocente.setText("");
+        editHoraF.setText("");
+        editHoraI.setText("");
 
 
     }
