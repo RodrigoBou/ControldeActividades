@@ -2,6 +2,7 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import proyecto.pdm.ClasesModelo.Actividad;
@@ -51,5 +52,61 @@ public class ActividadBD {
         }
         controlBD.cerrar();
         return registrosInsertados;
+    }
+
+
+
+
+    public String Eliminar(Actividad actividad){
+
+        String regAfectados="";
+        int contador = 0;
+
+    try{
+        contador+=db.delete("Actividad", "id_actividad='"+actividad.getIdActividad()+"'", null);
+        regAfectados = "filas afectadas";
+        regAfectados+=contador;
+
+        }
+
+    catch(SQLException e){
+
+       e.printStackTrace();
+
+    }
+
+        return  regAfectados;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void abrir() {
+        controlBD.abrir();
+        return;
+    }
+
+    public void cerrar() {
+        controlBD.cerrar();
+        return;
     }
 }
