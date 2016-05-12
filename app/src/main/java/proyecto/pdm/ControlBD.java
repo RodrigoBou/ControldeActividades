@@ -26,7 +26,7 @@ public class ControlBD {
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
-        private static final String BASE_DATOS = "PDM.s3db";
+        private static final String BASE_DATOS = "PDMv2.s3db";
         private static final int VERSION = 1;
 
         public DatabaseHelper(Context context) {
@@ -60,7 +60,7 @@ public class ControlBD {
 
                 db.execSQL("CREATE TABLE [Reservacion] ( [id_reservacion] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, [recurso] INTEGER NOT NULL, [grupo] INTEGER NOT NULL );");
 
-                db.execSQL("CREATE TABLE [Actividad] ( [id_actividad] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, [nom_actividad] VARCHAR(100) NOT NULL, [detalle_actividad] VARCHAR(500) NOT NULL, [fecha] VARCHAR(9) NOT NULL, [hora_ini] VARCHAR(8) NOT NULL, [hora_fin] VARCHAR(8) NOT NULL, [docente] VARCHAR(7) NOT NULL );");
+                db.execSQL("CREATE TABLE [Actividad] ( [id_actividad] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, [nom_actividad] VARCHAR(100) NOT NULL, [detalle_actividad] VARCHAR(500) NOT NULL, [fecha] VARCHAR(10) NOT NULL, [hora_ini] VARCHAR(8) NOT NULL, [hora_fin] VARCHAR(8) NOT NULL, [docente] VARCHAR(7) NOT NULL );");
 
                 db.execSQL("CREATE TABLE Materia (cod_materia VARCHAR (6) PRIMARY KEY NOT NULL, nom_materia VARCHAR (50) NOT NULL);");
 

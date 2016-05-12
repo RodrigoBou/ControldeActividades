@@ -43,11 +43,34 @@
 
         <TableRow>
         <TextView android:text="@string/fecha_actividad" />
-        <EditText
-            android:id="@+id/editFecha"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
+
+
+            <Spinner
+                android:id="@+id/dia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/mes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/anio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:spinnerMode="dropdown" />
+
+
+
+
+
+        </TableRow>
 
 
 
