@@ -32,8 +32,8 @@ public class MateriaBD {
         long contador = 0;
 
         ContentValues doc = new ContentValues();
-        doc.put("codMateria", materia.getCodMateria());
-        doc.put("nomMateria", materia.getNomMateria());
+        doc.put("cod_materia", materia.getCodMateria());
+        doc.put("nom_materia", materia.getNomMateria());
 
         contador = db.insert("Materia", null, doc);
         if (contador == 0 || contador == -1){
@@ -105,7 +105,7 @@ public class MateriaBD {
                 Materia materia =(Materia)dato;
                 String[] id = {materia.getCodMateria()};
                 abrir();
-                Cursor c = db.query("Docente",null,"cod_docente=?",id,null,null,null);
+                Cursor c = db.query("Materia",null,"cod_materia=?",id,null,null,null);
                 if(c.moveToFirst()){
                     //se encontro Materia
                     return true;
