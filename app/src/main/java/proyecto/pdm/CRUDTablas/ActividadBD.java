@@ -2,8 +2,12 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.sql.Date;
+import java.sql.Time;
 
 import proyecto.pdm.ClasesModelo.Actividad;
 import proyecto.pdm.ControlBD;
@@ -15,13 +19,20 @@ public class ActividadBD {
 
     private SQLiteDatabase db;
     private ControlBD controlBD;
-    private static final String [] camposCargaAcademica=new String[]{"id_actividad","nom_actividad","detalle_actividad",
+    private static final String [] camposActividad=new String[]{"id_actividad","nom_actividad","detalle_actividad",
                                 "fecha", "hora_ini", "hora_fin", "docente"};
 
 
     public ActividadBD(Context ctx) {
         controlBD = new ControlBD(ctx);
         db = controlBD.getDb();
+
+
+
+
+
+
+
     }
 
     public String Insertar(Actividad actividad){
@@ -57,6 +68,12 @@ public class ActividadBD {
 
 
 
+
+
+
+
+
+
     public String Eliminar(Actividad actividad){
 
         String regAfectados="";
@@ -81,6 +98,31 @@ public class ActividadBD {
 
 
 
+
+
+
+
+
+    public Actividad consultar(String idActividad){
+        String[] id = {idActividad};
+        Cursor c = db.query("Actividad", camposActividad, "id_actividad=?", id, null, null, null);
+        if (c.moveToFirst()){
+            Actividad act = new Actividad();
+
+            act.setIdActividad(Integer.parseInt(c.getString(0)));
+            act.setNomActividad(c.getString(1));
+            act.setDetalleActividad(c.getString(2));
+            act.setFecha(Date.valueOf(c.getString(3)));
+            act.setHoraIni(Time.valueOf(c.getString(4)));
+            act.setHoraFin(Time.valueOf(c.getString(5)));
+            act.setDocente(c.getString(6));
+
+            return act;
+        }else {
+
+            return  null;
+        }
+    }
 
 
 

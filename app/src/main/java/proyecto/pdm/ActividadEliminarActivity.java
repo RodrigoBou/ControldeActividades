@@ -31,5 +31,6 @@ public class ActividadEliminarActivity extends AppCompatActivity {
         regEliminadas=controlHelper.Eliminar(actividad);
         controlHelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        editActividadID.setText("");
     }
 }
