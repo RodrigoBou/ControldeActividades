@@ -105,6 +105,21 @@ public class CargaAcademicaInsertarActivity extends Activity {
         adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCargo.setAdapter(adapter04);
     }
+    public void insertarCargaAcademica(View v){
+        String doc =SpinDocente.getSelectedItem().toString();
+        String mat =SpinMateria.getSelectedItem().toString();
+        String cic= SpinCiclo.getSelectedItem().toString();
+        String car =SpinCargo.getSelectedItem().toString();
+        String regInsertados = "";
+        CargaAcademica cargaAcademica= new CargaAcademica();
+        cargaAcademica.setDocente(spinnerMapDocente.get(doc));
+        cargaAcademica.setMateria(spinnerMapMateria.get(mat));
+        cargaAcademica.setCiclo(spinnerMapCiclo.get(cic));
+        cargaAcademica.setCargo(spinnerMapCargo.get(car));
+        regInsertados = helper.insertar(cargaAcademica);
+        Toast.makeText(this,regInsertados,Toast.LENGTH_SHORT).show();
+
+    }
 
 
 

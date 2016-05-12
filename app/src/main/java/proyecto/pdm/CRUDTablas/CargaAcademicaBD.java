@@ -41,9 +41,10 @@ public class CargaAcademicaBD {
         }else{
             regIngresados=regIngresados+contador;
         }
+        controlBD.cerrar();
         return regIngresados;
     }
-    public CargaAcademica consultarCargaAcademica(String docente){
+    public CargaAcademica consultar(String docente){
         String[] id = {docente};
         Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=?",id,null,null,null);
         if (cursor.moveToFirst()){
@@ -58,7 +59,19 @@ public class CargaAcademicaBD {
         }
     }
     public String actualizar(CargaAcademica cargaAcademica){
-       return null;
+
+        return null;
+    }
+    public String eliminar(CargaAcademica cargaAcademica){
+        String regAfectados ="filas afectadas= ";
+        int contador = 0;
+        String where="docente= '"+cargaAcademica.getDocente()+"'";
+        where = where+"AND docente ='"+cargaAcademica.getDocente()+"'";
+        where=where+"AND ciclo='"+String.valueOf(cargaAcademica.getCiclo())+"'";
+        where=where+"AND cargo='"+String.valueOf(cargaAcademica.getCargo());
+        contador+=db.delete("CargaAcademica",where,null);
+        regAfectados+=contador;
+        return regAfectados;
     }
 
 
