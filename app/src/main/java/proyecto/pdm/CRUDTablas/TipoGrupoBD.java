@@ -37,6 +37,7 @@ public class TipoGrupoBD {
         }else{
             regIngresados=regIngresados+contador;
         }
+        controlBD.cerrar();
         return regIngresados;
     }
 
