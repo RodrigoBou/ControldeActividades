@@ -64,7 +64,7 @@ public class GrupoMateriaBD {
             grupoMateria.setTipoGrupo(c.getString(1));
             grupoMateria.setMateria(c.getString(2));
             grupoMateria.setDocente(c.getString(3));
-            grupoMateria.setCiclo(c.getInt(4));
+            grupoMateria.setCiclo(c.getString(4));
             grupoMateria.setLocal(c.getString(5));
             grupoMateria.setDiasImpartida(c.getString(6));
             grupoMateria.setNumGrupo(c.getString(7));
@@ -150,7 +150,7 @@ public class GrupoMateriaBD {
                 grupoMateria.setTipoGrupo(c.getString(1));
                 grupoMateria.setMateria(c.getString(2));
                 grupoMateria.setDocente(c.getString(3));
-                grupoMateria.setCiclo(c.getInt(4));
+                grupoMateria.setCiclo(c.getString(4));
                 grupoMateria.setLocal(c.getString(5));
                 grupoMateria.setDiasImpartida(c.getString(6));
                 grupoMateria.setNumGrupo(c.getString(7));

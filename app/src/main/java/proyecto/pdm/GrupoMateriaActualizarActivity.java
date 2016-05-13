@@ -41,7 +41,7 @@ public class GrupoMateriaActualizarActivity extends Activity {
         grupoMateria.setTipoGrupo(editTipoGrupo.getText().toString());
         grupoMateria.setMateria(editMateria.getText().toString());
         grupoMateria.setDocente(editDocente.getText().toString());
-        grupoMateria.setCiclo(Integer.parseInt(editCiclo.getText().toString()));
+        grupoMateria.setCiclo(editCiclo.getText().toString());
         grupoMateria.setLocal(editLocal.getText().toString());
         grupoMateria.setDiasImpartida(editDiasImpartida.getText().toString());
         grupoMateria.setHorario(Integer.parseInt(editHorario.getText().toString()));

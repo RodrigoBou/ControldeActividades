@@ -52,7 +52,7 @@ public class CargaAcademicaBD {
             cargaAcademica.setDocente(cursor.getString(0));
             cargaAcademica.setCargo(cursor.getInt(1));
             cargaAcademica.setMateria(cursor.getString(2));
-            cargaAcademica.setCiclo(cursor.getInt(3));
+            cargaAcademica.setCiclo(cursor.getString(3));
             return cargaAcademica;
         }else{
             return null;

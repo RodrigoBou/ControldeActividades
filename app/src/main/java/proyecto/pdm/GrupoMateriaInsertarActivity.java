@@ -34,7 +34,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
     private HashMap<String, String> spinnerMapDocente = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapMateria = new HashMap<String, String>();
     private HashMap<String, Integer> spinnerMapHorario = new HashMap<String, Integer>();
-    private HashMap<String, Integer> spinnerMapCiclo= new HashMap<String,Integer>();
+    private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
     private HashMap<String,String> spinnerMapTipoGrupo = new HashMap<String, String>();
     EditText editTipoGrupo;
     EditText editIdGrupo;
@@ -88,7 +88,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
 
 
         List<Ciclo>cicloList = cicloBD.getCiclos();
-        Integer[] spinnerRosurse03= new Integer[cicloList.size()];
+        String[] spinnerRosurse03 = new String[cicloList.size()];
         int k = 0;
         for (Ciclo c : cicloList){
             spinnerMapCiclo.put(c.getCiclo_num(),c.getId_ciclo());
@@ -96,7 +96,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
             k++;
         }
         SpinCiclo1=(Spinner)findViewById(R.id.spinnerCiclo1);
-        ArrayAdapter<Integer> adapter03 =new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,  spinnerRosurse03);
+        ArrayAdapter<String> adapter03 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse03);
         adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCiclo1.setAdapter(adapter03);
 
