@@ -127,9 +127,9 @@ public class CargaAcademicaBD {
             case 2:{
                 //verificar si la carga academica existe
                 CargaAcademica cargaAcademica2 =(CargaAcademica)dato;
-                String[] id ={cargaAcademica2.getDocente()};
+                String[] id ={cargaAcademica2.getDocente(), cargaAcademica2.getCiclo(), };
                 abrir();
-                Cursor c2 =db.query("CargaAcademica", null,"docente=?",id,null,null,null);
+                Cursor c2 =db.query("CargaAcademica", null,"docente=? AND ciclo =?",id,null,null,null);
                 if(c2.moveToFirst()){
                     return true;
                 }
