@@ -2,7 +2,11 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.pdm.ClasesModelo.Recurso;
 import proyecto.pdm.DatabaseHelper;
@@ -42,5 +46,30 @@ public class RecursoDB {
         }
         return registrosInsertados;
 
+    }
+
+
+
+    public List<Recurso> getRecursos(){
+        db = DBHelper.getWritableDatabase();
+        Cursor c = db.query("Recurso", camposRecurso, null, null, null, null, null, null);
+        List<Recurso> recursoList = new ArrayList<Recurso>();
+        if(c.moveToFirst())
+        {
+            do {
+
+                Recurso recurso=new Recurso();
+
+                recurso.setIdRecurso(Integer.parseInt(c.getString(0)));
+                recurso.setNomRecurso(c.getString(1));
+                recurso.setDetalleRecurso(c.getString(2));
+                recurso.setEstado(Integer.parseInt(c.getString(3)));
+                recurso.setCatRecurso(Integer.parseInt(c.getString(4)));
+
+                recursoList.add(recurso);
+            }while(c.moveToNext());
+        }
+        DBHelper.close();
+        return recursoList;
     }
 }
