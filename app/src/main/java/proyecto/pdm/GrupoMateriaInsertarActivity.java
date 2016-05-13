@@ -55,6 +55,8 @@ public class GrupoMateriaInsertarActivity extends Activity {
         cicloBD=new CicloBD(this);
         materiaBD=new MateriaBD(this);
         tipoGrupoBD=new TipoGrupoBD(this);
+
+
         List<Docente> docenteList = docenteBD.getDocentes();
         String[] spinnerResource = new String[docenteList.size()];
         int i = 0;
@@ -95,12 +97,12 @@ public class GrupoMateriaInsertarActivity extends Activity {
         adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCiclo1.setAdapter(adapter03);
 
-        List<TipoGrupo>tipoGrupoListList = tipoGrupoBD.getTipoGrupos();
-        String[] spinnerRosurse04= new String[cicloList.size()];
+        List<TipoGrupo>tipoGrupoList = tipoGrupoBD.getTipoGrupos();
+        String[] spinnerRosurse04= new String[tipoGrupoList.size()];
         int z = 0;
-        for (TipoGrupo o : tipoGrupoListList){
-            spinnerMapTipoGrupo.put(o.getTipoGrupo(), o.getTipoGrupo());
-            spinnerRosurse04[z]=o.getcodTipoGrupo();
+        for (TipoGrupo p : tipoGrupoList){
+            spinnerMapTipoGrupo.put(p.getTipoGrupo(), p.getTipoGrupo());
+            spinnerRosurse04[z]=p.getcodTipoGrupo();
             z++;
         }
         SpinTipoGrupo=(Spinner)findViewById(R.id.spinnerTipoGrupo);
