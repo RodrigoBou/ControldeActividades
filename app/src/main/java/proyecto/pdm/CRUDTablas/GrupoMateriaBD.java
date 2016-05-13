@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto.pdm.ClasesModelo.GrupoMateria;
-import proyecto.pdm.ControlBD;
+
+import proyecto.pdm.DatabaseHelper;
 
 /**
  * Created by kelly on 06/05/2016.
@@ -21,14 +22,15 @@ public class GrupoMateriaBD {
 
     private String[] camposGrupoMateria = {"id_grupo", "tipo_grupo", "materia", "docente", "ciclo", "LOCAL", "diasImpartida", "num_grupo", "horario"};
     private SQLiteDatabase db;
-    private ControlBD controlBD;
+    private DatabaseHelper dbHelper;
 
     public GrupoMateriaBD(Context ctx){
-        controlBD = new ControlBD(ctx);
-        db = controlBD.getDb();
+        dbHelper = DatabaseHelper.getInstance(ctx);
+
 
     }
     public String insertar(GrupoMateria grupoMateria){
+        db = dbHelper.getWritableDatabase();
         String regInsertados="Registro Insertado N°:";
         long contador = 0;
 
@@ -50,12 +52,13 @@ public class GrupoMateriaBD {
             regInsertados = regInsertados + contador;
         }
 
-        controlBD.cerrar();
+        dbHelper.close();
         return regInsertados;
 
     }
 
     public GrupoMateria consultar(int idGrupo){
+        db = dbHelper.getWritableDatabase();
         String[] id ={String.valueOf(idGrupo)};
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, "id_grupo=?", id, null, null, null);
         if (c.moveToFirst()){
@@ -69,14 +72,17 @@ public class GrupoMateriaBD {
             grupoMateria.setDiasImpartida(c.getString(6));
             grupoMateria.setNumGrupo(c.getString(7));
             grupoMateria.setHorario(c.getInt(8));
+            dbHelper.close();
             return grupoMateria;
         }else {
+            dbHelper.close();
             return null;
         }
 
     }
 
     public String actualizar(GrupoMateria grupoMateria){
+        db = dbHelper.getWritableDatabase();
         if (verificarIntegridad(grupoMateria, 1)){
             String[] id={String.valueOf(grupoMateria.getIdGrupo())};
             ContentValues grupMa = new ContentValues();
@@ -89,13 +95,16 @@ public class GrupoMateriaBD {
             grupMa.put("numGrupo", grupoMateria.getNumGrupo());
             grupMa.put("horario", grupoMateria.getHorario());
             db.update("GrupoMateria", grupMa, "id_grupo=?", id);
+            dbHelper.close();
             return "Registro Actualizado Correctamente";
         }else {
+            dbHelper.close();
             return "Registro con idGrupo" + grupoMateria.getIdGrupo() + "no existe";
         }
     }
 
     public String eliminar(GrupoMateria grupoMateria){
+        db = dbHelper.getWritableDatabase();
         String regAfectados = "filas afectadas";
         int contador = 0;
 
@@ -104,42 +113,39 @@ public class GrupoMateriaBD {
         }
         contador+=db.delete("GrupoMateria", "id_grupo='"+grupoMateria.getIdGrupo()+"'", null);
         regAfectados+=contador;
+        dbHelper.close();
         return  regAfectados;
     }
 
 
-    public void abrir() {
-        controlBD.abrir();
-        return;
-    }
-
-    public void cerrar() {
-        controlBD.cerrar();
-        return;
-    }
 
     public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
+        db = dbHelper.getWritableDatabase();
         switch(relacion){
             case 1:
             {
                 //Verificar que exista el GrupoMateria
                 GrupoMateria grupoMateria =(GrupoMateria)dato;
                 String[] id = {String.valueOf(grupoMateria.getIdGrupo())};
-                abrir();
+
                 Cursor c = db.query("GrupoMateria",null,"id_grupo=?",id,null,null,null);
                 if(c.moveToFirst()){
                     //se encontro GrupoMateria
+                    dbHelper.close();
                     return true;
                 }
+                dbHelper.close();
                 return false;
             }
-            default: return false;
+            default: dbHelper.close();
+                return false;
         }
     }
 
 
 
     public List<GrupoMateria> getGruposMateria(){
+        db = dbHelper.getWritableDatabase();
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, null, null, null, null, null, null);
         List<GrupoMateria> grupoMateriaList = new ArrayList<GrupoMateria>();
         if(c.moveToFirst())
@@ -158,7 +164,7 @@ public class GrupoMateriaBD {
                 grupoMateriaList.add(grupoMateria);
             }while(c.moveToNext());
         }
-
+        dbHelper.close();
         return grupoMateriaList;
     }
 }

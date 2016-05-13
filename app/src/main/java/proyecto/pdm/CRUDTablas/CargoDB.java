@@ -34,6 +34,7 @@ public class CargoDB {
 
         dbHelper.getWritableDatabase();
         contador = db.insert("Cargo", null, cat);
+
         dbHelper.close();
 
         if (contador == 0 || contador == -1){

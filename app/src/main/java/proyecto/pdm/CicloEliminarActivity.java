@@ -28,9 +28,9 @@ public class CicloEliminarActivity extends Activity {
         String regEliminadas;
         Ciclo ciclo = new Ciclo();
         ciclo.setId_ciclo(editIdCiclo.getText().toString());
-        helper.abrir();
+
         regEliminadas = helper.eliminar(ciclo);
-        helper.cerrar();
+
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

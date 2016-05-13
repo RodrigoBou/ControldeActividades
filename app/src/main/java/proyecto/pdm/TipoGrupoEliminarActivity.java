@@ -24,9 +24,9 @@ public class TipoGrupoEliminarActivity extends Activity {
         String regEliminadas;
         TipoGrupo tipoGrupo =new TipoGrupo();
         tipoGrupo.setcodTipoGrupo(editCodTipoGrupo.getText().toString());
-        controlhelper.abrir();
+
         regEliminadas =controlhelper.eliminar(tipoGrupo);
-        controlhelper.cerrar();
+
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

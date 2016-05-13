@@ -24,9 +24,9 @@ public class MateriaConsultarActivity extends Activity {
     }
 
     public void consultarMateria(View v){
-        helper.abrir();
+
         Materia materia = helper.consultar(editCodMateria.getText().toString());
-        helper.cerrar();
+
         if (materia == null){
             Toast.makeText(this, "Materia codigo:" + editCodMateria.getText().toString() + "no encontrado",
                     Toast.LENGTH_LONG).show();

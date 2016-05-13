@@ -28,9 +28,9 @@ public class CicloConsultarActivity extends Activity {
     }
 
     public void consultarCiclo(View v) {
-        helper.abrir();
+
         Ciclo ciclo = helper.consultar(editIdCiclo.getText().toString());
-        helper.cerrar();
+
         if (ciclo == null) {
             Toast.makeText(this, "Ciclo id: " + editIdCiclo.getText().toString() + "no encontrado", Toast.LENGTH_LONG).show();
         } else {

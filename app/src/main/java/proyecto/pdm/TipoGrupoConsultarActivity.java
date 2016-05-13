@@ -23,9 +23,9 @@ public class TipoGrupoConsultarActivity extends Activity {
         editTipoGrupo=(EditText) findViewById(R.id.editTipoGrupo);
     }
     public void consultarTipoGrupo(View v){
-        helper.abrir();
+
         TipoGrupo tipoGrupo= helper.consultarTipoGrupo(editCod_tipo_grupo.getText().toString());
-        helper.cerrar();
+
         if (tipoGrupo==null)
             Toast.makeText(this, "Tipo Grupo con codigo de Grupo" + editCod_tipo_grupo.getText().toString()+"no encontrado",Toast.LENGTH_SHORT).show();
         else {

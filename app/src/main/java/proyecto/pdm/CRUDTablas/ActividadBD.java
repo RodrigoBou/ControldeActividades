@@ -10,7 +10,8 @@ import java.sql.Date;
 import java.sql.Time;
 
 import proyecto.pdm.ClasesModelo.Actividad;
-import proyecto.pdm.ControlBD;
+
+import proyecto.pdm.DatabaseHelper;
 
 /**
  * Created by Rodrigo on 5/11/2016.
@@ -18,20 +19,13 @@ import proyecto.pdm.ControlBD;
 public class ActividadBD {
 
     private SQLiteDatabase db;
-    private ControlBD controlBD;
+    private DatabaseHelper dbHelper;
     private static final String [] camposActividad=new String[]{"id_actividad","nom_actividad","detalle_actividad",
                                 "fecha", "hora_ini", "hora_fin", "docente"};
 
 
     public ActividadBD(Context ctx) {
-        controlBD = new ControlBD(ctx);
-        db = controlBD.getDb();
-
-
-
-
-
-
+        dbHelper = DatabaseHelper.getInstance(ctx);
 
     }
 
@@ -51,17 +45,16 @@ public class ActividadBD {
         reg.put("docente", actividad.getDocente());
 
 
-
-
+        db = dbHelper.getWritableDatabase();
         contador = db.insert("Actividad", null, reg);
-
+        dbHelper.close();
         if (contador == 0 || contador == -1){
             registrosInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
         else {
             registrosInsertados = "Registro Insertado Nº=" + contador;
         }
-        controlBD.cerrar();
+
         return registrosInsertados;
     }
 
@@ -78,8 +71,10 @@ public class ActividadBD {
 
         String regAfectados="";
         int contador = 0;
+        db = dbHelper.getWritableDatabase();
 
     try{
+
         contador+=db.delete("Actividad", "id_actividad='"+actividad.getIdActividad()+"'", null);
         regAfectados = "filas afectadas";
         regAfectados+=contador;
@@ -91,7 +86,7 @@ public class ActividadBD {
        e.printStackTrace();
 
     }
-
+        dbHelper.close();
         return  regAfectados;
     }
 
@@ -105,6 +100,7 @@ public class ActividadBD {
 
     public Actividad consultar(String idActividad){
         String[] id = {idActividad};
+        db = dbHelper.getWritableDatabase();
         Cursor c = db.query("Actividad", camposActividad, "id_actividad=?", id, null, null, null);
         if (c.moveToFirst()){
             Actividad act = new Actividad();
@@ -116,12 +112,13 @@ public class ActividadBD {
             act.setHoraIni(Time.valueOf(c.getString(4)));
             act.setHoraFin(Time.valueOf(c.getString(5)));
             act.setDocente(c.getString(6));
-
+            dbHelper.close();
             return act;
         }else {
-
+            dbHelper.close();
             return  null;
         }
+
     }
 
 
@@ -142,13 +139,5 @@ public class ActividadBD {
 
 
 
-    public void abrir() {
-        controlBD.abrir();
-        return;
-    }
 
-    public void cerrar() {
-        controlBD.cerrar();
-        return;
-    }
 }

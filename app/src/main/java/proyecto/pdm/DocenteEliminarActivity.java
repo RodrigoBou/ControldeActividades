@@ -26,9 +26,9 @@ public class DocenteEliminarActivity extends Activity {
         String regEliminadas;
         Docente docente = new Docente();
         docente.setCodDocente(editCodDocente.getText().toString());
-        controlHelper.abrir();
+
         regEliminadas=controlHelper.eliminar(docente);
-        controlHelper.cerrar();
+
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

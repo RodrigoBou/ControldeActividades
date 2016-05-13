@@ -74,14 +74,14 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
             ImageButton editar = new ImageButton(this);
             editar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            editar.setImageResource(R.drawable.files_edit_file_icon24);
+            //editar.setImageResource(R.drawable.files_edit_file_icon24);
             editar.setId(100+cat.getIdCatRecurso());
             editar.setOnClickListener(this);
 
             ImageButton eliminar = new ImageButton(this);
             eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            eliminar.setImageResource(R.drawable.delete_file_icon24);
+            //eliminar.setImageResource(R.drawable.delete_file_icon24);
             eliminar.setId(5100+cat.getIdCatRecurso());
             eliminar.setOnClickListener(this);
 

@@ -24,9 +24,9 @@ public class DocenteConsultarActivity extends Activity {
     }
 
   public void consultarDocente(View v){
-        helper.abrir();
+
         Docente docente = helper.consultar(editCodDocente.getText().toString());
-        helper.cerrar();
+
         if (docente == null){
             Toast.makeText(this, "Docente codigo" + editCodDocente.getText().toString() + "no encontrado",
                     Toast.LENGTH_LONG).show();

@@ -28,9 +28,9 @@ public class MateriaActualizarActivity extends Activity {
         materia.setCodMateria(editCodMateria.getText().toString());
         materia.setNomMateria(editNomMateria.getText().toString());
 
-        helper.abrir();
+
         String estado = helper.actualizar(materia);
-        helper.cerrar();
+
 
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
 

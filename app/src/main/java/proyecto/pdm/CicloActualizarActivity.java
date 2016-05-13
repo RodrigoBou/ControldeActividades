@@ -40,9 +40,9 @@ public class CicloActualizarActivity extends Activity {
         ciclo.setCiclo_num(numCiclo);
 
 
-        helper.abrir();
+
         regInsertados = helper.actualizar(ciclo);
-        helper.cerrar();
+
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
     }
