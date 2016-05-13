@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
+            android:onClick="limpiarTextoDocente"/>
     </LinearLayout>
 
     <TextView
@@ -42,7 +42,7 @@
         android:text="@string/nomDocente" />
     <EditText
         android:id="@+id/editNomDocente"
-        android:layout_width="100dp"
+        android:layout_width="201dp"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"

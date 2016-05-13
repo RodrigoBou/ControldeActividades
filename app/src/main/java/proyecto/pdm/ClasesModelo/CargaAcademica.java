@@ -7,13 +7,13 @@ public class CargaAcademica {
     private int cargo;
     private String materia;
     private String docente;
-    private int ciclo;
+    private String ciclo;
 
     public CargaAcademica(){
 
     }
 
-    public CargaAcademica(int cargo, String materia, String docente, int ciclo) {
+    public CargaAcademica(int cargo, String materia, String docente, String ciclo) {
         this.cargo = cargo;
         this.materia = materia;
         this.docente = docente;
@@ -44,11 +44,11 @@ public class CargaAcademica {
         this.docente = docente;
     }
 
-    public int getCiclo() {
+    public String getCiclo() {
         return ciclo;
     }
 
-    public void setCiclo(int ciclo) {
+    public void setCiclo(String ciclo) {
         this.ciclo = ciclo;
     }
 }

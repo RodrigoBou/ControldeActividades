@@ -77,4 +77,12 @@
             android:maxLength="2"/>
     </TableRow>
 
+    <TableRow>
+        <Button
+            android:onClick="actualizarGrupoMateria"
+            android:text="@string/actualizar"/>
+        <Button
+            android:onClick="limpiarTextoGrupoMateria"
+            android:text="@string/limpiar"/>
+    </TableRow>
 </TableLayout>

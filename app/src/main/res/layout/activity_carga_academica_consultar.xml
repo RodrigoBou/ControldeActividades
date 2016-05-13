@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/consular"
                 android:onClick="consultarCargaAcademica"
-                />
+               />
             <Button
                 android:id="@+id/botonLimpiar"
                 android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
             />
         <EditText
             android:id="@+id/editMateria"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:enabled="false"

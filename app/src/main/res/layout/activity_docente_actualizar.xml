@@ -19,6 +19,17 @@
             android:id="@+id/editNomDocente"
             android:inputType="text"
             android:maxLength="150"/>
+
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="actualizarDocente"
+            android:text="@string/actualizar"/>
+
+        <Button
+            android:onClick="limpiarTextoDocente"
+            android:text="@string/limpiar"/>
     </TableRow>
 
 </TableLayout>

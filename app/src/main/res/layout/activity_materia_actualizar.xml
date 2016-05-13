@@ -20,4 +20,13 @@
             android:inputType="text"
             android:maxLength="50"/>
     </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="actualizarMateria"
+            android:text="@string/actualizar"/>
+        <Button
+            android:onClick="limpiarTextoMateria"
+            android:text="@string/limpiar"/>
+    </TableRow>
 </TableLayout>

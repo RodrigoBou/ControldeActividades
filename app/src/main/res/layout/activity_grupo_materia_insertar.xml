@@ -6,14 +6,6 @@
     android:stretchColumns="1">
 
     <TableRow>
-        <TextView android:text="@string/tipoGrupo" />
-        <EditText
-            android:id="@+id/editTipoGrupo"
-            android:inputType="text"
-            android:maxLength="2"/>
-    </TableRow>
-
-    <TableRow>
         <TextView android:text="@string/idGrupo" />
         <EditText
             android:id="@+id/editIdGrupo"
@@ -22,27 +14,24 @@
     </TableRow>
 
     <TableRow>
+        <TextView android:text="@string/tipoGrupo" />
+        <Spinner android:id="@+id/spinnerTipoGrupo"/>
+    </TableRow>
+
+
+    <TableRow>
         <TextView android:text="@string/materia" />
-        <EditText
-            android:id="@+id/editMateria"
-            android:inputType="text"
-            android:maxLength="6"/>
+        <Spinner android:id="@+id/spinnerMateria1"/>
     </TableRow>
 
     <TableRow>
         <TextView android:text="@string/docente"/>
-        <EditText
-            android:id="@+id/editDocente"
-            android:inputType="text"
-            android:maxLength="7"/>
+        <Spinner android:id="@+id/spinnerDocente1"/>
     </TableRow>
 
     <TableRow>
         <TextView android:text="@string/ciclo"/>
-        <EditText
-            android:id="@+id/editCiclo"
-            android:inputType="text"
-            android:maxLength="2"/>
+        <Spinner android:id="@+id/spinnerCiclo1"/>
     </TableRow>
 
     <TableRow>
@@ -63,10 +52,7 @@
 
     <TableRow>
         <TextView android:text="@string/horario" />
-        <EditText
-            android:id="@+id/editHorario"
-            android:inputType="text"
-            android:maxLength="2"/>
+        <Spinner android:id="@+id/spinnerHorario"/>
     </TableRow>
 
     <TableRow>
@@ -75,5 +61,14 @@
             android:id="@+id/editNumGrupo"
             android:inputType="text"
             android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="insertarGrupoMateria"
+            android:text="@string/insertar" />
+        <Button
+            android:onClick="limpiarTextoGrupoMateria"
+            android:text="@string/limpiar"/>
     </TableRow>
 </TableLayout>

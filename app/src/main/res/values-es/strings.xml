@@ -26,10 +26,7 @@
     <string name="tipo_grupo">tipo_grupo</string>
     <string name="insertar">insertar</string>
     <string name="actualizar">actualizar</string>
-
     <string name="categoriaRecurso">Categoria Recurso</string>
-    <string name="id">ID</string>
-    <string name="acciones">Acciones</string>
 
     <string name="cargo">Cargo</string>
 
@@ -65,7 +62,6 @@
 
     </string-array>
     <string name="InsertarCicloHeader">Insertar Valores</string>
-    <string name="InsertarCicloHint1" translatable="false">ID</string>
     <string name="InsertarCicloHint2">Año</string>
     <string name="InsertarCicloHint3">Numero</string>
     <string name="InsertarCicloButton1">Insertar</string>

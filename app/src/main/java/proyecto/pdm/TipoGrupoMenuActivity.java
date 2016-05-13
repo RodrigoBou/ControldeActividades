@@ -11,7 +11,7 @@ import android.widget.ListView;
 public class TipoGrupoMenuActivity extends ListActivity {
 
     String[] menu = {"Insertar Registro", "Eliminar Registro", "Consultar Registro", "Actualizar Registro"};
-    String[] activities = {"TipoGrupoInsertarActivity", "TipoGrupoEliminarActivity", "TipoGrupoConsultarActivity", "TipoGrupoConsultarActivity"};
+    String[] activities = {"TipoGrupoInsertarActivity", "TipoGrupoEliminarActivity", "TipoGrupoConsultarActivity", "TipoGrupoActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
