@@ -61,5 +61,10 @@
         <item>12</item>
 
     </string-array>
+    <string name="InsertarCicloHeader">Insertar Valores</string>
+    <string name="InsertarCicloHint2">Año</string>
+    <string name="InsertarCicloHint3">Numero</string>
+    <string name="InsertarCicloButton1">Insertar</string>
+    <string name="InsertarCicloButton2">Limpiar Valores</string>
 
 </resources>

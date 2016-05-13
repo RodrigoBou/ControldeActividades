@@ -9,13 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import proyecto.pdm.CargaAcademicaInsertarActivity;
 import proyecto.pdm.ClasesModelo.Ciclo;
 import proyecto.pdm.ControlBD;
 
-/**
- * Created by pc on 10/05/2016.
- */
 public class CicloBD {
     private String[] camposCiclo = {"id_ciclo", "anio_ciclo", "ciclo_num"};
     private SQLiteDatabase db;

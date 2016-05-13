@@ -11,8 +11,6 @@ import proyecto.pdm.ClasesModelo.Ciclo;
 
 public class ControlBD {
 
-    private static final String[] camposCiclo = new String[]{"id_ciclo", "anio_ciclo", "ciclo_num"};
-
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -156,49 +154,6 @@ public class ControlBD {
 
     public void cerrar(){
         DBHelper.close();
-    }
-
-    public String insertar(Ciclo ciclo) {
-        String regInsertados = "Registro Insertado No = ";
-        long contador = 0;
-        ContentValues cicl = new ContentValues();
-
-        //cicl.put("id_ciclo", );
-        cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
-        cicl.put("ciclo_num", ciclo.getCiclo_num());
-
-        contador = db.insert("Ciclo", null, cicl);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
-    }
-
-    public String actualizar(Ciclo ciclo) {
-        return null;
-    }
-
-    public String eliminar(Ciclo ciclo) {
-        return null;
-    }
-
-    public Ciclo consultarCiclo(String id_ciclo) {
-        String[] id = {id_ciclo};
-        Cursor cursor = db.query("Ciclo", camposCiclo, "id_ciclo = ?", id, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            Ciclo ciclo = new Ciclo();
-            ciclo.setId_ciclo(cursor.getInt(0));
-            ciclo.setAnio_ciclo(cursor.getString(1));
-            ciclo.setCiclo_num(cursor.getString(2));
-            return ciclo;
-        } else {
-            return null;
-        }
     }
 
 }

@@ -41,7 +41,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
     private MateriaBD materiaBD;
     private HashMap<String, String> spinnerMapDocente = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapMateria = new HashMap<String, String>();
-    private HashMap<String, Integer> spinnerMapCiclo= new HashMap<String,Integer>();
+    private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
     private HashMap<String,Integer> spinnerMapCargo = new HashMap<String, Integer>();
 
     @Override
