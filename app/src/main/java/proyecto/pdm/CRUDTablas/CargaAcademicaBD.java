@@ -14,26 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto.pdm.ClasesModelo.CargaAcademica;
-import proyecto.pdm.DatabaseHelper;
 
+import proyecto.pdm.DatabaseHelper;
 
 public class CargaAcademicaBD {
     private static final String [] camposCargaAcademica=new String[]{"cargo","materia","docente","ciclo"};
     private SQLiteDatabase db;
-    private DatabaseHelper dbHelper;
-
+    private DatabaseHelper controlBD;
 
     public CargaAcademicaBD(Context ctx) {
-
-        dbHelper = DatabaseHelper.getInstance(ctx);
+        controlBD = DatabaseHelper.getInstance(ctx);
     }
-
-
     public String insertar(CargaAcademica cargaAcademica){
-
-        db = dbHelper.getWritableDatabase();
-
-
         String regIngresados="Registro Insertados N°= ";
         long contador=0;
         if(verificarIntegriad(cargaAcademica,1)){
@@ -49,35 +41,39 @@ public class CargaAcademicaBD {
         }else{
             regIngresados=regIngresados+contador;
         }
-        dbHelper.close();
+        controlBD.close();
         return regIngresados;
-
-
     }
-    public CargaAcademica consultar(String docente){
-
-        db = dbHelper.getWritableDatabase();
-        String[] id = {docente};
-        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=?",id,null,null,null);
+    public CargaAcademica consultar(String docente, String ciclo){
+        db=controlBD.getWritableDatabase();
+        String[] id = {docente,ciclo};
+        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
             cargaAcademica.setDocente(cursor.getString(0));
             cargaAcademica.setCargo(cursor.getInt(1));
             cargaAcademica.setMateria(cursor.getString(2));
             cargaAcademica.setCiclo(cursor.getString(3));
-            dbHelper.close();
             return cargaAcademica;
         }else{
-            dbHelper.close();
             return null;
         }
     }
     public String actualizar(CargaAcademica cargaAcademica){
 
-        return null;
+        if(verificarIntegriad(cargaAcademica,1)){
+            String[] id={cargaAcademica.getDocente(), cargaAcademica.getCiclo()};
+            ContentValues cv = new ContentValues();
+            cv.put("CargaAcademica", cargaAcademica.getCargo());
+            cv.put("CargaAcademica", cargaAcademica.getMateria());
+            db.update("CargaAcademica", cv,"docente = ? AND ciclo =?", id);
+            return "Registro Actualizado correctamente";
+
+        }else{
+            return "No existe";
+        }
     }
     public String eliminar(CargaAcademica cargaAcademica){
-        db = dbHelper.getWritableDatabase();
         String regAfectados ="filas afectadas= ";
         int contador = 0;
         String where="docente= '"+cargaAcademica.getDocente()+"'";
@@ -86,14 +82,22 @@ public class CargaAcademicaBD {
         where=where+"AND cargo='"+String.valueOf(cargaAcademica.getCargo());
         contador+=db.delete("CargaAcademica",where,null);
         regAfectados+=contador;
-        dbHelper.close();
         return regAfectados;
     }
 
 
+    public void abrir() throws SQLException{
+        controlBD.getWritableDatabase();
+        return;
 
+    }
+
+    public void cerrar() {
+        controlBD.close();
+        return;
+
+    }
     private boolean verificarIntegriad(Object dato, int relacion) throws SQLException{
-        db = dbHelper.getWritableDatabase();
         switch (relacion){
             case 1:
             {
@@ -110,28 +114,22 @@ public class CargaAcademicaBD {
                 Cursor cursor3=db.query("Materia", null,"cod_materia=?",id3,null,null,null);
                 Cursor cursor4=db.query("Ciclo", null, "id_ciclo=?", id4, null, null, null);
                 if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
-                    dbHelper.close();
                     return true;
                 }
-                dbHelper.close();
                 return false;
-
             }
             case 2:{
                 //verificar si la carga academica existe
                 CargaAcademica cargaAcademica2 =(CargaAcademica)dato;
                 String[] id ={cargaAcademica2.getDocente()};
-
+                abrir();
                 Cursor c2 =db.query("CargaAcademica", null,"docente=?",id,null,null,null);
                 if(c2.moveToFirst()){
-                    dbHelper.close();
                     return true;
                 }
-                dbHelper.close();
                 return false;
             }
-            default:dbHelper.close();
-                return false;
+            default:return false;
 
         }
 
