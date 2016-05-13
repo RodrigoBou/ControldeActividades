@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto.pdm.ClasesModelo.CargaAcademica;
-import proyecto.pdm.ControlBD;
+
+import proyecto.pdm.DatabaseHelper;
 
 public class CargaAcademicaBD {
     private static final String [] camposCargaAcademica=new String[]{"cargo","materia","docente","ciclo"};
     private SQLiteDatabase db;
-    private ControlBD controlBD;
+    private DatabaseHelper controlBD;
 
     public CargaAcademicaBD(Context ctx) {
-        controlBD = new ControlBD(ctx);
-        db = controlBD.getDb();
+        controlBD = DatabaseHelper.getInstance(ctx);
     }
     public String insertar(CargaAcademica cargaAcademica){
         String regIngresados="Registro Insertados N°= ";
@@ -41,12 +41,13 @@ public class CargaAcademicaBD {
         }else{
             regIngresados=regIngresados+contador;
         }
-        controlBD.cerrar();
+        controlBD.close();
         return regIngresados;
     }
-    public CargaAcademica consultar(String docente){
-        String[] id = {docente};
-        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=?",id,null,null,null);
+    public CargaAcademica consultar(String docente, String ciclo){
+        db=controlBD.getWritableDatabase();
+        String[] id = {docente,ciclo};
+        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
             cargaAcademica.setDocente(cursor.getString(0));
@@ -75,14 +76,14 @@ public class CargaAcademicaBD {
     }
 
 
-    public void abrir() throws SecurityException{
-        controlBD.abrir();
+    public void abrir() throws SQLException{
+        controlBD.getWritableDatabase();
         return;
 
     }
 
     public void cerrar() {
-        controlBD.cerrar();
+        controlBD.close();
         return;
 
     }
