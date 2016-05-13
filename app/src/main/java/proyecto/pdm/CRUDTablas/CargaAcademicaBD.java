@@ -61,7 +61,17 @@ public class CargaAcademicaBD {
     }
     public String actualizar(CargaAcademica cargaAcademica){
 
-        return null;
+        if(verificarIntegriad(cargaAcademica,1)){
+            String[] id={cargaAcademica.getDocente(), cargaAcademica.getCiclo()};
+            ContentValues cv = new ContentValues();
+            cv.put("CargaAcademica", cargaAcademica.getCargo());
+            cv.put("CargaAcademica", cargaAcademica.getMateria());
+            db.update("CargaAcademica", cv,"docente = ? AND ciclo =?", id);
+            return "Registro Actualizado correctamente";
+
+        }else{
+            return "No existe";
+        }
     }
     public String eliminar(CargaAcademica cargaAcademica){
         String regAfectados ="filas afectadas= ";
