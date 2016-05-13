@@ -52,7 +52,7 @@ public class CicloBD {
 
             cicl.put("id_ciclo", ciclo.getId_ciclo());
             cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
-            cicl.put("ciclo_num", ciclo.getAnio_ciclo());
+            cicl.put("ciclo_num", ciclo.getCiclo_num());
 
             db.update("Ciclo", cicl, "id_ciclo=?", id);
             return "Registro Actualizado Correctamente";
@@ -60,6 +60,21 @@ public class CicloBD {
             return "Registro con Codigo ciclo: " + ciclo.getId_ciclo() + "no existe";
         }
 
+    }
+
+    public Ciclo consultar(String idCiclo) {
+        String[] id = {idCiclo};
+        Cursor c = db.query("Ciclo", camposCiclo, "id_ciclo=?", id, null, null, null);
+        if (c.moveToFirst()) {
+            Ciclo ciclo = new Ciclo();
+            ciclo.setId_ciclo(c.getString(0));
+            ciclo.setAnio_ciclo(c.getString(1));
+            ciclo.setCiclo_num(c.getString(2));
+            return ciclo;
+        } else {
+
+            return null;
+        }
     }
 
     public String eliminar(Ciclo ciclo) {
@@ -70,7 +85,7 @@ public class CicloBD {
         if (verificarIntegridad(ciclo, 1)) {
             contador += db.delete("GrupoMateria", "ciclo='" + ciclo.getId_ciclo() + "'", null);
         }
-        contador += db.delete("Ciclo", "id_ciclo'" + ciclo.getId_ciclo() + "'", null);
+        contador += db.delete("Ciclo", "id_ciclo='" + ciclo.getId_ciclo() + "'", null);
         regAfectados += contador;
         return regAfectados;
     }

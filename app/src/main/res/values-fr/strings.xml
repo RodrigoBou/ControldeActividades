@@ -66,5 +66,11 @@
     <string name="InsertarCicloHint3">Nombre</string>
     <string name="InsertarCicloButton1">Insérer</string>
     <string name="InsertarCicloButton2">Effacer valeurs</string>
+    <string name="ActualizarCicloHeader">Mettre à jour les valeurs</string>
+    <string name="ActualizarCicloButton1">Mettre à jour</string>
+    <string name="ConsultarCicloHeader">Lire la valeur</string>
+    <string name="ConsultarCicloButton1">Lire</string>
+    <string name="EliminarCicloButton1">Effacer</string>
+    <string name="EliminarCicloHeader">Supprimer Valeur</string>
 
 </resources>

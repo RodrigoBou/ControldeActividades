@@ -7,11 +7,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="65dp"
+        android:paddingTop="10dp"
         android:text="@string/InsertarCicloHeader"
-        android:textSize="35dp"
-        android:paddingLeft="50dp"
         android:textColor="@color/colorAccent"
-        android:paddingTop="10dp" />
+        android:textSize="35dp" />
 
     <EditText
         android:id="@+id/editIdCiclo"
@@ -41,19 +41,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="35dp">
+        android:paddingTop="30dp">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/InsertarCicloButton1"
-            android:onClick="insertarCiclo" />
+            android:onClick="insertarCiclo"
+            android:text="@string/InsertarCicloButton1" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/InsertarCicloButton2"
-            android:onClick="limpiarTextoCiclo" />
+            android:onClick="limpiarTextoCiclo"
+            android:text="@string/InsertarCicloButton2" />
+
     </LinearLayout>
 
 
