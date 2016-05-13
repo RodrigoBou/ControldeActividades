@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import proyecto.pdm.ClasesModelo.Actividad;
 
@@ -127,7 +129,31 @@ public class ActividadBD {
 
 
 
+    public List<Actividad> getActividades(){
+        db = dbHelper.getWritableDatabase();
+        Cursor c = db.query("Actividad", camposActividad, null, null, null, null, null, null);
+        List<Actividad> actividadList = new ArrayList<Actividad>();
+        if(c.moveToFirst())
+        {
+            do {
 
+
+                Actividad act=new Actividad();
+
+                act.setIdActividad(Integer.parseInt(c.getString(0)));
+                act.setNomActividad(c.getString(1));
+                act.setDetalleActividad(c.getString(2));
+                act.setFecha(Date.valueOf(c.getString(3)));
+                act.setHoraIni(Time.valueOf(c.getString(4)));
+                act.setHoraFin(Time.valueOf(c.getString(5)));
+                act.setDocente(c.getString(6));
+
+                 actividadList.add(act);
+            }while(c.moveToNext());
+        }
+        dbHelper.close();
+        return actividadList;
+    }
 
 
 
