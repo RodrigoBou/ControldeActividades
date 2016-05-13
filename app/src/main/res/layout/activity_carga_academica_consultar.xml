@@ -4,17 +4,29 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/docente"
-            />
-        <EditText
-            android:id="@+id/editDocente"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="255"
-            />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/docente"
+    />
+    <EditText
+        android:id="@+id/editDocente"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="255"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ciclo"
+        />
+    <EditText
+        android:id="@+id/editCiclo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="255"
+        />
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -66,21 +78,7 @@
             android:cursorVisible="false"
             android:longClickable="false"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ciclo"/>
-        <EditText
-            android:id="@+id/editCiclo"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:enabled="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false"
-            />
+
 
 
 
