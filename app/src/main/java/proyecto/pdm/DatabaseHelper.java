@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.execSQL("CREATE TABLE Materia (cod_materia VARCHAR (6) PRIMARY KEY NOT NULL, nom_materia VARCHAR (50) NOT NULL);");
 
-            db.execSQL("CREATE TABLE [CargaAcademica] ( [materia] VARCHAR(6) NOT NULL, [docente] VARCHAR(7) NOT NULL, [ciclo] VARCHAR (7) NOT NULL, [cargo] VARCHAR (20) NOT NULL, PRIMARY KEY ([materia],[docente],[ciclo],[cargo]) );");
+            db.execSQL("CREATE TABLE [CargaAcademica] ( [materia] VARCHAR(50) NOT NULL, [docente] VARCHAR(50) NOT NULL, [ciclo] VARCHAR (7) NOT NULL, [cargo] VARCHAR (20) NOT NULL, PRIMARY KEY ([materia],[docente],[ciclo],[cargo]) );");
 
             db.execSQL("CREATE TABLE [GrupoMateria] ( [id_grupo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [tipo_grupo] VARCHAR(2) NOT NULL, [materia] VARCHAR(6) NOT NULL, [docente] VARCHAR(7) NOT NULL, [ciclo] INTEGER NOT NULL, [LOCAL] VARCHAR(10) NOT NULL, [diasImpartida] VARCHAR(50) NOT NULL, [num_grupo] VARCHAR(2) NOT NULL, [horario] INTEGER NOT NULL );");
 

@@ -24,9 +24,7 @@ public class CargaAcademica {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+
 
     public String getMateria() {
         return materia;
@@ -50,5 +48,9 @@ public class CargaAcademica {
 
     public void setCiclo(String ciclo) {
         this.ciclo = ciclo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo=cargo;
     }
 }

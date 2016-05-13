@@ -31,11 +31,15 @@ public class CargaAcademicaBD {
         long contador=0;
         if(verificarIntegriad(cargaAcademica,1)){
             ContentValues ca= new ContentValues();
+            ca.put("materia", cargaAcademica.getMateria());
             ca.put("docente",cargaAcademica.getDocente());
-            ca.put("matera", cargaAcademica.getMateria());
-            ca.put("cargo", cargaAcademica.getCargo());
             ca.put("ciclo",cargaAcademica.getCiclo());
+
+            ca.put("cargo", cargaAcademica.getCargo());
+
+            db= controlBD.getWritableDatabase();
             contador =db.insert("CargaAcademica",null,ca);
+            controlBD.close();
         }
         if (contador==-1||contador==0){
             regIngresados="Error al insertar el registro, registro duplicado, verificar insercion";
@@ -111,10 +115,10 @@ public class CargaAcademicaBD {
                 String[] id3 = {cargaAcademica.getCiclo()};
 
                 //abrir;
-                Cursor cursor1=db.query("docente", null,"nom_docente=?", id2,null,null,null);
-                Cursor cursor2=db.query("cargo", null,"nom_cargo=?",id4,null,null,null);
-                Cursor cursor3=db.query("materia", null,"nom_materia=?",id1,null,null,null);
-                Cursor cursor4=db.query("ciclo", null, "ciclo_num=?", id3, null, null, null);
+                Cursor cursor1=db.query("Docente", null,"nom_docente=?", id2,null,null,null);
+                Cursor cursor2=db.query("Cargo", null,"nom_cargo=?",id4,null,null,null);
+                Cursor cursor3=db.query("Materia", null,"nom_materia=?",id1,null,null,null);
+                Cursor cursor4=db.query("Ciclo", null, "ciclo_num=?", id3, null, null, null);
                 if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
                     return true;
                 }
