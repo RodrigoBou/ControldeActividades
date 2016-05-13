@@ -25,9 +25,9 @@ import proyecto.pdm.ClasesModelo.Materia;
 import proyecto.pdm.ClasesModelo.TipoGrupo;
 
 public class GrupoMateriaInsertarActivity extends Activity {
-    GrupoMateriaBD helper;
+    private GrupoMateriaBD helper;
     private Spinner SpinDocente1;
-    private Spinner SpinHorario;
+    //private Spinner SpinHorario;
     private Spinner SpinCiclo1;
     private Spinner SpinMateria1;
     private Spinner SpinTipoGrupo;
@@ -36,18 +36,13 @@ public class GrupoMateriaInsertarActivity extends Activity {
     private HashMap<String, Integer> spinnerMapHorario = new HashMap<String, Integer>();
     private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
     private HashMap<String,String> spinnerMapTipoGrupo = new HashMap<String, String>();
-    EditText editTipoGrupo;
-    EditText editIdGrupo;
-    EditText editMateria;
-    EditText editDocente;
-    EditText editCiclo;
-    EditText editLocal;
-    EditText editDiasImpartida;
-    EditText editHorario;
-    EditText editNumGrupo;
+    private EditText editIdGrupo;
+    private  EditText editLocal;
+    private EditText editDiasImpartida;
+    private EditText editNumGrupo;
     private DocenteBD docenteBD;
     private CicloBD cicloBD;
-   // private HorarioBD horarioBD;
+   //private HorarioBD horarioBD;
     private MateriaBD materiaBD;
     private TipoGrupoBD tipoGrupoBD;
 
@@ -130,7 +125,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         String ciclo = SpinCiclo1.getSelectedItem().toString();
         String local = editLocal.getText().toString();
         String diasImpartida = editDiasImpartida.getText().toString();
-        String horario = SpinHorario.getSelectedItem().toString();
+      // String horario = SpinHorario.getSelectedItem().toString();
         String numGrupo = editNumGrupo.getText().toString();
         String regInsertados;
 
@@ -142,7 +137,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         grupoMateria.setCiclo(spinnerMapCiclo.get(ciclo));
         grupoMateria.setLocal(local);
         grupoMateria.setDiasImpartida(diasImpartida);
-        grupoMateria.setHorario(spinnerMapHorario.get(horario));
+      //  grupoMateria.setHorario(spinnerMapHorario.get(horario));
         grupoMateria.setNumGrupo(numGrupo);
 
         regInsertados=helper.insertar(grupoMateria);
@@ -151,14 +146,10 @@ public class GrupoMateriaInsertarActivity extends Activity {
 
 
     public void limpiarTexto(View v){
-        editTipoGrupo.setText("");
+
         editIdGrupo.setText("");
-        editMateria.setText("");
-        editDocente.setText("");
-        editCiclo.setText("");
         editLocal.setText("");
         editDiasImpartida.setText("");
-        editHorario.setText("");
         editNumGrupo.setText("");
     }
 
