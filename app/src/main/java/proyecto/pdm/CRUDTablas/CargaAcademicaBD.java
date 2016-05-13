@@ -25,15 +25,16 @@ public class CargaAcademicaBD {
     public CargaAcademicaBD(Context ctx) {
         controlBD = DatabaseHelper.getInstance(ctx);
     }
+
     public String insertar(CargaAcademica cargaAcademica){
         String regIngresados="Registro Insertados N°= ";
         long contador=0;
         if(verificarIntegriad(cargaAcademica,1)){
             ContentValues ca= new ContentValues();
-            ca.put("Docente",cargaAcademica.getDocente());
-            ca.put("Matera", cargaAcademica.getMateria());
-            ca.put("Cargo", cargaAcademica.getCargo());
-            ca.put("Ciclo",cargaAcademica.getCiclo());
+            ca.put("docente",cargaAcademica.getDocente());
+            ca.put("matera", cargaAcademica.getMateria());
+            ca.put("cargo", cargaAcademica.getCargo());
+            ca.put("ciclo",cargaAcademica.getCiclo());
             contador =db.insert("CargaAcademica",null,ca);
         }
         if (contador==-1||contador==0){
@@ -44,16 +45,17 @@ public class CargaAcademicaBD {
         controlBD.close();
         return regIngresados;
     }
+
     public CargaAcademica consultar(String docente, String ciclo){
         db=controlBD.getWritableDatabase();
         String[] id = {docente,ciclo};
-        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo",id,null,null,null);
+        Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo=?",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
             cargaAcademica.setDocente(cursor.getString(0));
-            cargaAcademica.setCargo(cursor.getInt(1));
+            cargaAcademica.setCargo(cursor.getString(3));
             cargaAcademica.setMateria(cursor.getString(2));
-            cargaAcademica.setCiclo(cursor.getString(3));
+            cargaAcademica.setCiclo(cursor.getString(1));
             return cargaAcademica;
         }else{
             return null;
@@ -61,12 +63,12 @@ public class CargaAcademicaBD {
     }
     public String actualizar(CargaAcademica cargaAcademica){
 
-        if(verificarIntegriad(cargaAcademica,1)){
+        if(verificarIntegriad(cargaAcademica, 1)){
             String[] id={cargaAcademica.getDocente(), cargaAcademica.getCiclo()};
             ContentValues cv = new ContentValues();
             cv.put("CargaAcademica", cargaAcademica.getCargo());
             cv.put("CargaAcademica", cargaAcademica.getMateria());
-            db.update("CargaAcademica", cv,"docente = ? AND ciclo =?", id);
+            db.update("CargaAcademica", cv, "docente = ? AND ciclo =?", id);
             return "Registro Actualizado correctamente";
 
         }else{
@@ -103,16 +105,16 @@ public class CargaAcademicaBD {
             {
                 //verifica si el docente, el cargo, la meteria y el ciclo existe
                 CargaAcademica cargaAcademica=(CargaAcademica)dato;
-                String[] id1 = {cargaAcademica.getDocente()};
-                String[] id2 ={String.valueOf(cargaAcademica.getCargo())};
-                String[] id3 = {cargaAcademica.getMateria()};
-                String[] id4 = {String.valueOf(cargaAcademica.getCiclo())};
+                String[] id2 = {cargaAcademica.getDocente()};
+                String[] id4 ={cargaAcademica.getCargo()};
+                String[] id1 = {cargaAcademica.getMateria()};
+                String[] id3 = {cargaAcademica.getCiclo()};
 
                 //abrir;
-                Cursor cursor1=db.query("Docente", null,"cod_docente=?", id1,null,null,null);
-                Cursor cursor2=db.query("Cargo", null,"id_cargo=?",id2,null,null,null);
-                Cursor cursor3=db.query("Materia", null,"cod_materia=?",id3,null,null,null);
-                Cursor cursor4=db.query("Ciclo", null, "id_ciclo=?", id4, null, null, null);
+                Cursor cursor1=db.query("docente", null,"nom_docente=?", id2,null,null,null);
+                Cursor cursor2=db.query("cargo", null,"nom_cargo=?",id4,null,null,null);
+                Cursor cursor3=db.query("materia", null,"nom_materia=?",id1,null,null,null);
+                Cursor cursor4=db.query("ciclo", null, "ciclo_num=?", id3, null, null, null);
                 if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
                     return true;
                 }
@@ -134,5 +136,6 @@ public class CargaAcademicaBD {
         }
 
     }
+
 
 }
