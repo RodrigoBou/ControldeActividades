@@ -19,7 +19,7 @@ public class ControlActividadesMain extends ListActivity {
             "HorarioMenuActivity", "TipoGrupoMenuActivity", "GrupoMateriaMenuActivity",
             "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity",};
 
-    ControlBD BDHelper;
+    DatabaseHelper dbHelper;
 
 
     @Override
@@ -27,7 +27,7 @@ public class ControlActividadesMain extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
-        BDHelper = new ControlBD(this);
+        dbHelper = DatabaseHelper.getInstance(this);
 
     }
 
@@ -49,9 +49,9 @@ public class ControlActividadesMain extends ListActivity {
                 e.printStackTrace();
             }
         } else {
-            BDHelper.abrir();
+            dbHelper.getWritableDatabase();
             //String tost = BDHelper.llenarBDCarnet();
-            BDHelper.cerrar();
+            dbHelper.close();
             //Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }

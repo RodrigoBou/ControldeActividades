@@ -8,13 +8,15 @@
     <TableRow>
         <TextView android:text="@string/nom_recurso"/>
         <EditText android:id="@+id/editNomRecurso"
-            android:inputType="text"/>
+            android:inputType="text" />
     </TableRow>
 
     <TableRow>
         <TextView android:text="@string/det_recurso" />
         <EditText android:id="@+id/editDetRecurso"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="4"/>
     </TableRow>
 
     <TableRow>

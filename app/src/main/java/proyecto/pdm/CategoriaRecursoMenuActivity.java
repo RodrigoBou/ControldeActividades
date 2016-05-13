@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 public class CategoriaRecursoMenuActivity extends ListActivity {
 
-    String[] menu = {"Insertar Registro", "Eliminar Registro", "Consultar Registro", "Actualizar Regsitro"};
+    String[] menu = {"Insertar Registro", "Eliminar Registro", "Actualizar Registro", "Consultar Registro"};
     String[] activities = {"CategoriaRecursoInsertarActivity", "CategoriaRecursoEliminarActivity", "CategoriaRecursoActualizarActivity",
     "CategoriaRecursoConsultarActivity"};
 

@@ -26,7 +26,10 @@
     <string name="tipo_grupo">tipo_grupo</string>
     <string name="insertar">insertar</string>
     <string name="actualizar">actualizar</string>
+
     <string name="categoriaRecurso">Categoria Recurso</string>
+    <string name="id">ID</string>
+    <string name="acciones">Acciones</string>
 
     <string name="cargo">Cargo</string>
 
