@@ -47,13 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="insertarCiclo"
-            android:text="@string/InsertarCicloButton1" />
+            android:text="@string/InsertarCicloButton1"
+            style="@style/BotonEstilo"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="limpiarTextoCiclo"
-            android:text="@string/InsertarCicloButton2" />
+            android:text="@string/InsertarCicloButton2"
+            style="@style/BotonEstilo"/>
 
     </LinearLayout>
 

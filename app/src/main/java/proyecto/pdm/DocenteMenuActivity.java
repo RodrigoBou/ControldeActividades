@@ -18,7 +18,8 @@ public class DocenteMenuActivity extends ListActivity{
     public void onPostCreate(Bundle savedInstanceState){
         super.onPostCreate(savedInstanceState);
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(64, 255, 0));
+        listView.setBackgroundColor(Color.rgb(41, 154, 179));
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
@@ -29,7 +30,7 @@ public class DocenteMenuActivity extends ListActivity{
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(135, 245, 99));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(136, 190, 203));
 
         try {
             Class<?> clase = Class.forName("proyecto.pdm." + nombreValue);

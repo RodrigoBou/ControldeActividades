@@ -33,10 +33,12 @@
 
     <TableRow>
         <Button android:onClick="insertarCargo"
-            android:text="@string/insertar" />
+            android:text="@string/insertar"
+            style="@style/BotonEstilo"/>
 
         <Button android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/limpiar"
+            style="@style/BotonEstilo"/>
     </TableRow>
 
 </TableLayout>

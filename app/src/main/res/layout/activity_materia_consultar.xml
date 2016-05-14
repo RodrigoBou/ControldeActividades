@@ -26,14 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/consular"
-            android:onClick="consultarMateria"/>
+            android:onClick="consultarMateria"
+            style="@style/BotonEstilo"/>
 
         <Button
             android:id="@+id/botonLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
-            android:onClick="limpiarTextoMateria"/>
+            android:onClick="limpiarTextoMateria"
+            style="@style/BotonEstilo"/>
 
     </LinearLayout>
 

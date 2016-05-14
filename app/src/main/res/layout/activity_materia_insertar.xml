@@ -24,9 +24,11 @@
     <TableRow>
         <Button
             android:onClick="insertarMateria"
-            android:text="@string/insertar"/>
+            android:text="@string/insertar"
+            style="@style/BotonEstilo"/>
         <Button
             android:onClick="limpiarTextoMateria"
-            android:text="@string/limpiar"/>
+            android:text="@string/limpiar"
+            style="@style/BotonEstilo"/>
     </TableRow>
 </TableLayout>

@@ -67,9 +67,10 @@
         <Button
             android:onClick="insertarGrupoMateria"
             android:text="@string/insertar"
-            android:background="#f4d7f1" />
+            style="@style/BotonEstilo" />
         <Button
             android:onClick="limpiarTextoGrupoMateria"
-            android:text="@string/limpiar"/>
+            android:text="@string/limpiar"
+            style="@style/BotonEstilo"/>
     </TableRow>
 </TableLayout>

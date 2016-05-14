@@ -120,12 +120,15 @@
 
         <Button
             android:onClick="insertarActividad"
-            android:text="@string/insertar" />
+            android:text="@string/insertar"
+            style="@style/BotonEstilo"
+            />
 
 
         <Button
             android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/limpiar"
+            style="@style/BotonEstilo"/>
     </TableRow>
 
 

@@ -44,16 +44,21 @@
         android:paddingTop="30dp">
 
         <Button
+            style="@style/BotonEstilo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarCiclo"
-            android:text="@string/ActualizarCicloButton1" />
+            android:text="@string/ActualizarCicloButton1"
+           />
 
         <Button
+            style="@style/BotonEstilo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="limpiarTextoCiclo"
-            android:text="@string/InsertarCicloButton2" />
+            android:text="@string/InsertarCicloButton2"
+
+            />
 
     </LinearLayout>
 

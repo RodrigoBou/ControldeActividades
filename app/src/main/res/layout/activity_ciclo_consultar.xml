@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="consultarCiclo"
-            android:text="@string/ConsultarCicloButton1" />
+            android:text="@string/ConsultarCicloButton1"
+            style="@style/BotonEstilo"/>
 
     </LinearLayout>
 

@@ -30,7 +30,8 @@
 
         <Button
             android:onClick="EliminarActividad"
-            android:text="@string/eliminar" />
+            android:text="@string/eliminar"
+            style="@style/BotonEstilo"/>
 
     </TableRow>
 

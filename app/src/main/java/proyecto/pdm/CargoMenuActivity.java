@@ -17,7 +17,8 @@ public class CargoMenuActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(0, 0, 255));
+        listView.setBackgroundColor(Color.rgb(41, 154, 179));
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
@@ -28,7 +29,7 @@ public class CargoMenuActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         String nombreValue= activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(136, 190, 203));
 
         try
         {Class<?> clase=Class.forName("proyecto.pdm." + nombreValue);

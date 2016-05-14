@@ -26,12 +26,14 @@
         <Button
             android:onClick="actualizarTipoGrupo"
             android:text="@string/actualizar"
+            style="@style/BotonEstilo"
             />
     </TableRow>
         <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"
+            style="@style/BotonEstilo"
             />
     </TableRow>
 

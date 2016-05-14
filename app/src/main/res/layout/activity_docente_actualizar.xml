@@ -25,11 +25,13 @@
     <TableRow>
         <Button
             android:onClick="actualizarDocente"
-            android:text="@string/actualizar"/>
+            android:text="@string/actualizar"
+            style="@style/BotonEstilo"/>
 
         <Button
             android:onClick="limpiarTextoDocente"
-            android:text="@string/limpiar"/>
+            android:text="@string/limpiar"
+            style="@style/BotonEstilo"/>
     </TableRow>
 
 </TableLayout>

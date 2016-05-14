@@ -29,13 +29,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/consular"
-            android:onClick="consultarGrupoMateria"/>
+            android:onClick="consultarGrupoMateria"
+            style="@style/BotonEstilo"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
-            android:onClick="limpiarTextoGrupoMateria"/>
+            android:onClick="limpiarTextoGrupoMateria"
+            style="@style/BotonEstilo"/>
 
     </LinearLayout>
 

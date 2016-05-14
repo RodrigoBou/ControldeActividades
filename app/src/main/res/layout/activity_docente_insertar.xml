@@ -21,14 +21,19 @@
             android:maxLength="150"/>
     </TableRow>
     <TableRow>
-    <Button
-        android:onClick="insertarDocente"
-        android:text="@string/insertar"
-        />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:layout_column="0"
+            android:background="@mipmap/savee"
+            android:onClick="insertarDocente"/>
         <Button
             android:onClick="limpiarTextoDocente"
             android:text="@string/limpiar"
+            style="@style/BotonEstilo"
             />
     </TableRow>
+
 
 </TableLayout>

@@ -41,12 +41,19 @@
         <Button
             android:onClick="actualizarCargaAcademica"
             android:text="@string/actualizar"
+            style="@style/BotonEstilo"
             />
     </TableRow>
-    <TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"
+            style="@style/BotonEstilo"
             />
     </TableRow>
 </TableLayout>

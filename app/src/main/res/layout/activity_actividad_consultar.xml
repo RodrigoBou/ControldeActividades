@@ -26,7 +26,8 @@
 
         <Button
             android:onClick="ConsultarActividad"
-            android:text="@string/consular" />
+            android:text="@string/consular"
+            style="@style/BotonEstilo"/>
 
 
 
@@ -105,7 +106,8 @@
 
               <Button
             android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/limpiar"
+                  style="@style/BotonEstilo"/>
     </TableRow>
 
 

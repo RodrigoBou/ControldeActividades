@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/consular"
                 android:onClick="consultarTipoGrupo"
+                style="@style/BotonEstilo"
                 />
             <Button
                 android:id="@id/botonLimpiar"
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/limpiar"
                 android:onClick="limpiarTexto"
+                style="@style/BotonEstilo"
                 />
     </LinearLayout>
         <TextView

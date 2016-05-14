@@ -19,7 +19,8 @@ public class CargaAcademicaMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(61, 165, 235));
+        listView.setBackgroundColor(Color.rgb(41, 154, 179));
+
 
         ArrayAdapter <String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,menu);
         setListAdapter(adapter);
@@ -27,7 +28,7 @@ public class CargaAcademicaMenuActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l,View v, int position,long id){
         String nombreValue = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(173,9,243));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(136, 190, 203));
         try{
             Class<?> clase= Class.forName("proyecto.pdm."+nombreValue);
             Intent inte = new Intent(this,clase);
