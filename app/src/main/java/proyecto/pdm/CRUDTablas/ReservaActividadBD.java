@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import proyecto.pdm.ClasesModelo.Actividad;
 import proyecto.pdm.ClasesModelo.Recurso;
 import proyecto.pdm.ClasesModelo.ReservaActividad;
 import proyecto.pdm.DatabaseHelper;
@@ -27,7 +31,7 @@ public class ReservaActividadBD {
 
     public String insertar(ReservaActividad ra){
 
-        String regIngresados="Registro Insertados N°= ";
+        String regIngresados="Registro Insertados NÂ°= ";
         long contador=0;
 
 
@@ -60,23 +64,92 @@ public class ReservaActividadBD {
 
         db=dbHelper.getWritableDatabase();
 
-                //verificar si la carga academica existe
+        //verificar si la reserva de actividad existe
 
-                String rec=Integer.valueOf(resAc.getRecurso()).toString();
-                String[] id ={rec};
+        String rec=Integer.valueOf(resAc.getRecurso()).toString();
+        String act=Integer.valueOf(resAc.getActividad()).toString();
+        String[] id ={rec, act};
 
-                Cursor c2 =db.query("ReservaActividad", null,"recurso=?",id,null,null,null);
-                if(c2.moveToFirst()){
-                    dbHelper.close();
-                    return true;
-                }
-               dbHelper.close();
-                return false;
+        Cursor c2 =db.query("ReservaActividad", null,"recurso=? AND actividad=?",id,null,null,null);
+        if(c2.moveToFirst()){
+            dbHelper.close();
+            return true;
+        }
+        dbHelper.close();
+        return false;
+
+    }
+
+
+
+    public String eliminar(ReservaActividad resAc){
+
+
+        String regAfectados="";
+        int contador = 0;
+        db = dbHelper.getWritableDatabase();
+
+        String rec=Integer.valueOf(resAc.getRecurso()).toString();
+        String act=Integer.valueOf(resAc.getActividad()).toString();
+        String[] id ={rec, act};
+
+
+
+        try{
+
+            contador+=db.delete("ReservaActividad", "actividad=? AND recurso=?", id);
+            regAfectados = "filas afectadas";
+            regAfectados+=contador;
 
         }
 
+        catch(SQLException e){
+
+            e.printStackTrace();
+
+        }
+        dbHelper.close();
+        return  regAfectados;
 
 
+    }
+
+
+
+
+    public List<String> getRecursosActividad(Actividad act){
+
+        String[] camposRecurso = {"recurso"};
+
+        db = dbHelper.getWritableDatabase();
+
+        String actividad= Integer.valueOf(act.getIdActividad()).toString();
+
+        String[] id={actividad};
+
+
+
+        Cursor c = db.query("ReservaActividad", camposRecurso, "actividad=?", id, null, null, null, null);
+        List<String> recursosActListt = new ArrayList<String>();
+        if(c.moveToFirst())
+        {
+            do {
+
+
+                recursosActListt.add(c.getString(0));
+
+            }while(c.moveToNext());
+        }
+        dbHelper.close();
+        return recursosActListt;
+    }
 
 }
+
+
+
+
+
+
+
 

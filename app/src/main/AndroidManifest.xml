@@ -83,7 +83,6 @@
         <activity android:name=".ReservaActividadInsertarActivity" />
         <activity android:name=".ReservaActividadActualizarActivity" />
         <activity android:name=".ReservaActividadEliminarActivity" />
-        <activity android:name=".ReservaActividadConsultarActivity"></activity>
     </application>
 
 </manifest>
