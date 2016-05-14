@@ -109,7 +109,7 @@ public class GrupoMateriaBD {
         int contador = 0;
 
         if (verificarIntegridad(grupoMateria, 1)) {
-            contador+= db.delete("Reservacion", "grupo='"+ grupoMateria.getIdGrupo()+"'", null);
+            contador += db.delete("Reserva", "grupo='" + grupoMateria.getIdGrupo() + "'", null);
         }
         contador+=db.delete("GrupoMateria", "id_grupo='"+grupoMateria.getIdGrupo()+"'", null);
         regAfectados+=contador;
