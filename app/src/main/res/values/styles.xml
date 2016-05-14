@@ -22,7 +22,7 @@
     </style>
 
     <style name="BotonEstilo">
-        <item name="android:background">#82FA58</item>
+        <item name="android:background">#97DC4C</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>
