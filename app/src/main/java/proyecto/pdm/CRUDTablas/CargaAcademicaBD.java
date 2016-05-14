@@ -29,14 +29,12 @@ public class CargaAcademicaBD {
     public String insertar(CargaAcademica cargaAcademica){
         String regIngresados="Registro Insertados N°= ";
         long contador=0;
-        if(verificarIntegriad(cargaAcademica,1)){
+        if(verificarIntegriad(cargaAcademica,3)){
             ContentValues ca= new ContentValues();
             ca.put("materia", cargaAcademica.getMateria());
             ca.put("docente",cargaAcademica.getDocente());
             ca.put("ciclo",cargaAcademica.getCiclo());
-
             ca.put("cargo", cargaAcademica.getCargo());
-
             db= controlBD.getWritableDatabase();
             contador =db.insert("CargaAcademica",null,ca);
             controlBD.close();
@@ -134,6 +132,10 @@ public class CargaAcademicaBD {
                     return true;
                 }
                 return false;
+            }
+            case 3:{
+
+                return true;
             }
             default:return false;
 
