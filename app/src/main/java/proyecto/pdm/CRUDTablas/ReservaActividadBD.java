@@ -119,7 +119,7 @@ public class ReservaActividadBD {
 
     public List<String> getRecursosActividad(Actividad act){
 
-        String[] camposRecurso = {"recurso"};
+        String[] camposRecurso = {"nom_recurso"};
 
         db = dbHelper.getWritableDatabase();
 
@@ -129,14 +129,26 @@ public class ReservaActividadBD {
 
 
 
-        Cursor c = db.query("ReservaActividad", camposRecurso, "actividad=?", id, null, null, null, null);
+        Cursor c = db.query("ReservaActividad", camposReservaActividad, "actividad=?", id, null, null, null, null);
         List<String> recursosActListt = new ArrayList<String>();
         if(c.moveToFirst())
         {
+
             do {
 
 
-                recursosActListt.add(c.getString(0));
+                String[] idr={c.getString(0)};
+
+
+
+                Cursor c2=db.query("Recurso", camposRecurso, "id_recurso=?", idr, null, null, null, null);
+                if (c2.moveToFirst()){
+
+                recursosActListt.add(c2.getString(0));
+
+
+                }
+
 
             }while(c.moveToNext());
         }

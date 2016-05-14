@@ -21,7 +21,7 @@ import proyecto.pdm.ClasesModelo.Actividad;
 import proyecto.pdm.ClasesModelo.Recurso;
 import proyecto.pdm.ClasesModelo.ReservaActividad;
 
-public class ReservaActividadConsultarActivity extends Activity {
+public class ReservaActividadConsultarActivity extends ListActivity {
 
     private Spinner SpinRecursos;
     private ReservaActividadBD helper;
@@ -65,7 +65,7 @@ public class ReservaActividadConsultarActivity extends Activity {
 
     }
 
-    /*
+
 
     public void consultarReservaActividad(View v){
 
@@ -83,23 +83,14 @@ public class ReservaActividadConsultarActivity extends Activity {
 
         List<String> recs = helper.getRecursosActividad(actividad);
 
-        String[] lista =new String[]{};
 
-        String[] listaResource = new String[recs.size()];
-        int i = 0;
-        for ( String r: recs){
-
-
-            lista[i]=r.toString();
-            i++;
-        }
 
 
         ListView listView = getListView();
 
-        listView.setBackgroundColor(Color.rgb(41, 154, 179));
 
-        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recs);
         setListAdapter(adapter);
 
 
@@ -108,7 +99,7 @@ public class ReservaActividadConsultarActivity extends Activity {
 
 
 
-    } */
+    }
 
 
 
