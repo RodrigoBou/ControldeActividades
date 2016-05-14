@@ -4,7 +4,7 @@ package proyecto.pdm.ClasesModelo;
  * Created by kelly on 23/04/2016.
  */
 public class CargaAcademica {
-    private int cargo;
+    private String cargo;
     private String materia;
     private String docente;
     private String ciclo;
@@ -13,20 +13,18 @@ public class CargaAcademica {
 
     }
 
-    public CargaAcademica(int cargo, String materia, String docente, String ciclo) {
+    public CargaAcademica(String cargo, String materia, String docente, String ciclo) {
         this.cargo = cargo;
         this.materia = materia;
         this.docente = docente;
         this.ciclo = ciclo;
     }
 
-    public int getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(int cargo) {
-        this.cargo = cargo;
-    }
+
 
     public String getMateria() {
         return materia;
@@ -50,5 +48,9 @@ public class CargaAcademica {
 
     public void setCiclo(String ciclo) {
         this.ciclo = ciclo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo=cargo;
     }
 }

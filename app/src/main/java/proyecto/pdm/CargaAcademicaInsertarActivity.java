@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -112,10 +112,10 @@ public class CargaAcademicaInsertarActivity extends Activity {
         String car =SpinCargo.getSelectedItem().toString();
         String regInsertados = "";
         CargaAcademica cargaAcademica= new CargaAcademica();
-        cargaAcademica.setDocente(spinnerMapDocente.get(doc));
         cargaAcademica.setMateria(spinnerMapMateria.get(mat));
+        cargaAcademica.setDocente(spinnerMapDocente.get(doc));
         cargaAcademica.setCiclo(spinnerMapCiclo.get(cic));
-        cargaAcademica.setCargo(spinnerMapCargo.get(car));
+        cargaAcademica.setCargo(String.valueOf(spinnerMapCargo.get(car)));
         regInsertados = helper.insertar(cargaAcademica);
         Toast.makeText(this,regInsertados,Toast.LENGTH_SHORT).show();
 
