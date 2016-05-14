@@ -12,9 +12,13 @@
             android:inputType="text"/>
     </TableRow>
     <TableRow>
-        <Button android:onClick="insertarCategoriaRecurso"
-            android:text="@string/insertar"
-            style="@style/BotonEstilo"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:layout_column="0"
+            android:background="@mipmap/savee"
+            android:onClick="insertarCategoriaRecurso" />
 
         <Button android:onClick="limpiarTexto"
             android:text="@string/limpiar"

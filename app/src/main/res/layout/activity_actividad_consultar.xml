@@ -23,14 +23,13 @@
 
 
     <TableRow>
-
-        <Button
-            android:onClick="ConsultarActividad"
-            android:text="@string/consular"
-            style="@style/BotonEstilo"/>
-
-
-
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:layout_column="0"
+            android:background="@mipmap/buscar"
+            android:onClick="ConsultarActividad"/>
     </TableRow>
 
 

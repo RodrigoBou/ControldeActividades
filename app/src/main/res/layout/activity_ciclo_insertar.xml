@@ -42,13 +42,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="30dp">
-
-        <Button
-            android:layout_width="match_parent"
+        <ImageButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:background="@mipmap/savee"
             android:onClick="insertarCiclo"
-            android:text="@string/InsertarCicloButton1"
-            style="@style/BotonEstilo"/>
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
