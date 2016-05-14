@@ -9,4 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="proyecto.pdm.ReservaActividadConsultarActivity">
 
+    <TextView android:text="@string/Actividad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+
+    <Spinner
+        android:id="@+id/spinActividad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>

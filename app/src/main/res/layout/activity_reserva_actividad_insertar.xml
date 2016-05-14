@@ -64,10 +64,7 @@
             android:layout_column="0"
             android:background="@mipmap/savee"
             android:onClick="insertarReservaActividad"/>
-        <Button
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar"
-            style="@style/BotonEstilo"/>
+
     </TableRow>
 
 

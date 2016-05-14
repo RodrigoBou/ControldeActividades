@@ -82,8 +82,8 @@
         <activity android:name=".ReservaActividadMenuActivity" />
         <activity android:name=".ReservaActividadInsertarActivity" />
         <activity android:name=".ReservaActividadActualizarActivity" />
+        <activity android:name=".ReservaActividadConsultarActivity" />
         <activity android:name=".ReservaActividadEliminarActivity" />
-        <activity android:name=".ReservaActividadConsultarActivity"></activity>
     </application>
 
 </manifest>
