@@ -82,13 +82,22 @@ public class CargaAcademicaBD {
     public String eliminar(CargaAcademica cargaAcademica){
         String regAfectados ="filas afectadas= ";
         int contador = 0;
-        String where="docente= '"+cargaAcademica.getDocente()+"'";
-        where = where+"AND docente ='"+cargaAcademica.getDocente()+"'";
-        where=where+"AND ciclo='"+String.valueOf(cargaAcademica.getCiclo())+"'";
-        where=where+"AND cargo='"+String.valueOf(cargaAcademica.getCargo());
-        contador+=db.delete("CargaAcademica",where,null);
-        regAfectados+=contador;
-        return regAfectados;
+        db=controlBD.getWritableDatabase();
+        String mat = cargaAcademica.getMateria().toString();
+        String doc = cargaAcademica.getDocente().toString();
+        String cic = cargaAcademica.getCiclo().toString();
+        String car = cargaAcademica.getCargo().toString();
+        String[]id={mat, doc, cic, car};
+        try{
+            contador+=db.delete("CargaAcademica", "materia=? AND docente=? AND ciclo=? AND cargo=?", id);
+            regAfectados="filas afectadas";
+            regAfectados+=contador;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        controlBD.close();
+        return  regAfectados;
     }
 
 
