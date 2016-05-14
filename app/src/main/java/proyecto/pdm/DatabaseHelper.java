@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by kevin on 05-11-16.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String BASE_DATOS = "PDM.s3db";
+    private static final String BASE_DATOS = "PDMv1.s3db";
     private static final int VERSION = 1;
 
     private static DatabaseHelper ourInstance;
@@ -27,6 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+
         try{
 
 

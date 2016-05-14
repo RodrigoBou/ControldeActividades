@@ -32,7 +32,7 @@ public class CargoDB {
 
         cat.put("nom_cargo", cargo.getNomCargo());
 
-        dbHelper.getWritableDatabase();
+        db=dbHelper.getWritableDatabase();
         contador = db.insert("Cargo", null, cat);
 
         dbHelper.close();

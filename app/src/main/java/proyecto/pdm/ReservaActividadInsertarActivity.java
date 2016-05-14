@@ -3,8 +3,10 @@ package proyecto.pdm;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -86,11 +88,28 @@ public class ReservaActividadInsertarActivity extends Activity {
         SpinActividad.setAdapter(adapter02);
 
 
+    }
+
+    public void insertarReservaActividad(View v){
 
 
+        String act =SpinActividad.getSelectedItem().toString();
+        String rec= SpinRecursos.getSelectedItem().toString();
 
 
+        String regInsertados = "";
 
+        ReservaActividad reservaActividad = new ReservaActividad();
+
+        reservaActividad.setActividad(spinnerMapActividad.get(act));
+        reservaActividad.setRecurso(spinnerMapRecurso.get(rec));
+
+        regInsertados = helper.insertar(reservaActividad);
+        Toast.makeText(this,regInsertados,Toast.LENGTH_SHORT).show();
 
     }
+
+
+
+
 }

@@ -49,21 +49,10 @@
     <string name="activo">Activo</string>
 
 
-    <string-array name="meses">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
+    <string name="Recurso">Recurso</string>
+    <string name="Actividad">Actividad</string>
 
-    </string-array>
+
     <string name="InsertarCicloHeader">Insertar Valores</string>
     <string name="InsertarCicloHint1" translatable="false">ID</string>
     <string name="InsertarCicloHint2">Año</string>
