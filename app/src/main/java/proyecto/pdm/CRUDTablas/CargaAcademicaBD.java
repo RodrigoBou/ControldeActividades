@@ -104,6 +104,7 @@ public class CargaAcademicaBD {
 
     }
     private boolean verificarIntegriad(Object dato, int relacion) throws SQLException{
+        db= controlBD.getWritableDatabase();
         switch (relacion){
             case 1:
             {
@@ -120,8 +121,10 @@ public class CargaAcademicaBD {
                 Cursor cursor3=db.query("Materia", null,"nom_materia=?",id1,null,null,null);
                 Cursor cursor4=db.query("Ciclo", null, "ciclo_num=?", id3, null, null, null);
                 if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
+                    controlBD.close();
                     return true;
                 }
+                controlBD.close();
                 return false;
             }
             case 2:{
@@ -131,11 +134,14 @@ public class CargaAcademicaBD {
                 abrir();
                 Cursor c2 =db.query("CargaAcademica", null,"docente=? AND ciclo =?",id,null,null,null);
                 if(c2.moveToFirst()){
+                    controlBD.close();
                     return true;
                 }
+                controlBD.close();
                 return false;
             }
-            default:return false;
+            default:controlBD.close();
+                return false;
 
         }
 
