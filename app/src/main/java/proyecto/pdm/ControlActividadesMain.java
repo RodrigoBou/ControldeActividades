@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 public class ControlActividadesMain extends ListActivity {
 
-    String[] menu = {"Reservacion", "Materia", "Docente", "Recurso", "Carga academica", "Cargo", "Actividad",
-            "Ciclo", "Horario", "Tipo de grupo", "Grupo-Materia", "Categoria de recursos", "Reservacion para actividades"};
+    String[] menu = {"Reserva", "Materia", "Docente", "Recurso", "Carga academica", "Cargo", "Actividad",
+            "Ciclo", "Horario", "Tipo de grupo", "Grupo-Materia", "Categoria de recursos", "Reserva para actividades"};
 
 
     String[] activities = {"ReservaMenuActivity", "MateriaMenuActivity", "DocenteMenuActivity",

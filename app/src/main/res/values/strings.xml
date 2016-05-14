@@ -65,5 +65,6 @@
     <string name="ConsultarCicloButton1">Consultar</string>
     <string name="EliminarCicloButton1">Eliminar</string>
     <string name="EliminarCicloHeader">Eliminar Valor</string>
+    <string name="EliminarCargaAcademicaButton1">EliminarCargaAcademica</string>
 
 </resources>

@@ -72,5 +72,11 @@
     <string name="ConsultarCicloButton1">Read</string>
     <string name="EliminarCicloButton1">Delete</string>
     <string name="EliminarCicloHeader">Delete Value</string>
+    <string name="HorarioHint1">Date Start</string>
+    <string name="HorarioHint2">Date Finish</string>
+    <string name="ActualizarHorarioHeader">Update Schedule</string>
+    <string name="ConsultarHorarioHeader">Read Schedule</string>
+    <string name="EliminarHorarioHeader">Delete Schedule</string>
+    <string name="InsertarHorarioHeader">Insert Schedule</string>
 
 </resources>

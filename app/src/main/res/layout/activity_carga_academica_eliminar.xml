@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/docente"
-        />
-    <EditText
-        android:id="@+id/editDocente"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="7"
-        />
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="proyecto.pdm.CargaAcademicaInsertarActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ciclo"
-        />
-    <EditText
-        android:id="@+id/editCiclo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="7"
-        />
+    <TableRow>
+        <TextView android:text="@string/docente"/>
+        <Spinner android:id="@+id/spinnerDocente"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/cargo"/>
+        <Spinner android:id="@+id/spinnerCargo"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/materia"/>
+        <Spinner android:id="@+id/spinnerMateria"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/ciclo"/>
+        <Spinner android:id="@+id/spinnerCiclo"/>
+    </TableRow>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eliminar"
-        android:onClick="eliminarCargaAcademica"
-        style="@style/BotonEstilo"
-        />
+    <TableRow>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarCargaAcademica"
+            android:text="@string/EliminarCargaAcademicaButton1"
+            style="@style/BotonEstilo"/>
 
-</LinearLayout>
+    </TableRow>
+
+</TableLayout>

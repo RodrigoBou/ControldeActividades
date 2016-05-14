@@ -5,18 +5,18 @@ package proyecto.pdm.ClasesModelo;
  * and
  * Modified by Yohalmo
  */
-public class Reservacion {
+public class Reserva {
     private int id_reserva;
-    private int grupo;
+    private int grupo_materia;
     private int recurso;
 
-    public Reservacion() {
+    public Reserva() {
     }
 
 
-    public Reservacion(int id_reserva, int grupo, int recurso) {
+    public Reserva(int id_reserva, int grupo, int recurso) {
         this.id_reserva = id_reserva;
-        this.grupo = grupo;
+        this.grupo_materia = grupo;
         this.recurso = recurso;
     }
 
@@ -29,11 +29,11 @@ public class Reservacion {
     }
 
     public int getGrupo() {
-        return grupo;
+        return grupo_materia;
     }
 
     public void setGrupo(int grupo) {
-        this.grupo = grupo;
+        this.grupo_materia = grupo;
     }
 
     public int getRecurso() {

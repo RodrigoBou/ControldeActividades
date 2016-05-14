@@ -72,5 +72,11 @@
     <string name="ConsultarCicloButton1">Lire</string>
     <string name="EliminarCicloButton1">Effacer</string>
     <string name="EliminarCicloHeader">Supprimer Valeur</string>
+    <string name="HorarioHint2">Date de finition</string>
+    <string name="HorarioHint1">Date de départ</string>
+    <string name="ActualizarHorarioHeader">Mise à jour de l\'annexe</string>
+    <string name="ConsultarHorarioHeader">Lire l\'annexe</string>
+    <string name="EliminarHorarioHeader">Supprimer l\'annexe</string>
+    <string name="InsertarHorarioHeader">Insérer l\'annexe</string>
 
 </resources>
