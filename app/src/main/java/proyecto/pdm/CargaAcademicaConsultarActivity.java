@@ -30,9 +30,9 @@ public class CargaAcademicaConsultarActivity extends Activity {
         editCiclo=(EditText)findViewById(R.id.editCiclo);
     }
     public void consultarCargaAcademica(View v){
-        helper.abrir();
+
         CargaAcademica cargaAcademica=helper.consultar(editDocente.getText().toString(),editCiclo.getText().toString());
-        helper.cerrar();
+
         if (cargaAcademica==null)
             Toast.makeText(this,"Carga Academica no registrada "+editDocente.getText().toString()+editCiclo.getText().toString(), Toast.LENGTH_SHORT).show();
         else {

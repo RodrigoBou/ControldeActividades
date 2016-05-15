@@ -27,6 +27,8 @@ public class CargaAcademicaBD {
     }
 
     public String insertar(CargaAcademica cargaAcademica){
+
+
         String regIngresados="Registro Insertados N°= ";
         long contador=0;
         if(verificarIntegriad(cargaAcademica,3)){
@@ -58,12 +60,15 @@ public class CargaAcademicaBD {
             cargaAcademica.setCargo(Integer.valueOf(cursor.getInt(3)));
             cargaAcademica.setMateria(cursor.getString(0));
             cargaAcademica.setCiclo(Integer.valueOf(cursor.getInt(2)));
+            controlBD.close();
             return cargaAcademica;
         }else{
+            controlBD.close();
             return null;
         }
     }
     public String actualizar(CargaAcademica cargaAcademica){
+        db=controlBD.getWritableDatabase();
 
         if(verificarIntegriad(cargaAcademica, 1)){
             String[] id={cargaAcademica.getDocente(), String.valueOf(cargaAcademica.getCiclo())};
@@ -71,35 +76,32 @@ public class CargaAcademicaBD {
             cv.put("CargaAcademica", cargaAcademica.getCargo());
             cv.put("CargaAcademica", cargaAcademica.getMateria());
             db.update("CargaAcademica", cv, "docente = ? AND ciclo =?", id);
+            controlBD.close();
             return "Registro Actualizado correctamente";
 
         }else{
+            controlBD.close();
             return "No existe";
         }
     }
     public String eliminar(CargaAcademica cargaAcademica){
+        db=controlBD.getWritableDatabase();
         String regAfectados ="filas afectadas= ";
         int contador = 0;
         String where="docente ='"+cargaAcademica.getDocente()+"'";
         where = where + " AND ciclo="+cargaAcademica.getCiclo();
         contador+=db.delete("CargaAcademica",where,null);
         regAfectados+=contador;
+        controlBD.close();
         return regAfectados;
     }
 
 
-    public void abrir() throws SQLException{
-        controlBD.getWritableDatabase();
-        return;
 
-    }
 
-    public void cerrar() {
-        controlBD.close();
-        return;
 
-    }
     private boolean verificarIntegriad(Object dato, int relacion) throws SQLException{
+        db=controlBD.getWritableDatabase();
         switch (relacion){
             case 1:
             {
@@ -116,25 +118,33 @@ public class CargaAcademicaBD {
                 Cursor cursor3=db.query("Materia", null,"nom_materia=?",id1,null,null,null);
                 Cursor cursor4=db.query("Ciclo", null, "ciclo_num=?", id3, null, null, null);
                 if (cursor1.moveToFirst()&&cursor2.moveToFirst()&&cursor3.moveToFirst()&&cursor4.moveToFirst()){
+                    controlBD.close();
                     return true;
                 }
+                controlBD.close();
                 return false;
             }
             case 2:{
                 //verificar si la carga academica existe
                 CargaAcademica cargaAcademica2 =(CargaAcademica)dato;
                 String[] id ={cargaAcademica2.getDocente(), String.valueOf(cargaAcademica2.getCiclo()) };
-                abrir();
+
                 Cursor c2 =db.query("CargaAcademica", null,"docente=? AND ciclo =?",id,null,null,null);
                 if(c2.moveToFirst()){
+                    controlBD.close();
                     return true;
                 }
+                controlBD.close();
                 return false;
             }
             case 3:{
+                controlBD.close();
                 return true;
+
+
             }
-            default:return false;
+            default: controlBD.close();
+                return false;
 
         }
 

@@ -113,8 +113,8 @@ public class CargaAcademicaInsertarActivity extends Activity {
         String car =SpinCargo.getSelectedItem().toString();
         String regInsertados = "";
         CargaAcademica cargaAcademica= new CargaAcademica();
-        cargaAcademica.setMateria(spinnerMapMateria.get(mat));
-        cargaAcademica.setDocente(spinnerMapDocente.get(doc));
+        cargaAcademica.setMateria(mat);
+        cargaAcademica.setDocente(doc);
         cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
         cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regInsertados = helper.insertar(cargaAcademica);
