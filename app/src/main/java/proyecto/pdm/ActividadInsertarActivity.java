@@ -26,7 +26,9 @@ public class ActividadInsertarActivity extends Activity {
     Spinner mes;
     Spinner anio;
     EditText editHoraI;
+    EditText editMinI;
     EditText editHoraF;
+    EditText editMinF;
     EditText editDocente;
 
 
@@ -49,15 +51,15 @@ public class ActividadInsertarActivity extends Activity {
         editNombre = (EditText) findViewById(R.id.editNombreActividad);
         editDetalle = (EditText) findViewById(R.id.editDetalle);
 
-        String[] meses = {"00","01","02","03","04","05","06","07","08","09","10","11","12",};
+        String[] meses = {"01","02","03","04","05","06","07","08","09","10","11","12",};
 
 
-        String[] dias = {"00","01","02","03","04","05","06","07","08","09","10","11","12",
+        String[] dias = {"01","02","03","04","05","06","07","08","09","10","11","12",
                 "13","14","15","16","17","18","19","20","21","22","23","24","25","26","27",
                 "28","29","30","31"};
 
 
-        String[] anios = {"----","2013","2014","2015","2016",};
+        String[] anios = {"2013","2014","2015","2016",};
 
 
 
@@ -116,9 +118,53 @@ public class ActividadInsertarActivity extends Activity {
         });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        editHoraI = (EditText) findViewById(R.id.editHoraI);
         editHoraF = (EditText) findViewById(R.id.editHoraF);
         editDocente = (EditText) findViewById(R.id.editDocente);
+        editMinI=(EditText) findViewById(R.id.editMinI);
+        editMinF=(EditText) findViewById(R.id.editMinF);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -134,8 +180,8 @@ public class ActividadInsertarActivity extends Activity {
         actividad.setIdActividad(Integer.parseInt(editID.getText().toString()));
         actividad.setDetalleActividad(editDetalle.getText().toString());
         actividad.setNomActividad(editNombre.getText().toString());
-        actividad.setHoraFin(Time.valueOf((editHoraF.getText().toString()) + ":00"));
-        actividad.setHoraIni(Time.valueOf((editHoraI.getText().toString()) + ":00"));
+        actividad.setHoraFin(Time.valueOf((editHoraF.getText().toString()) + ":" + (editMinI.getText().toString())+ ":00"));
+        actividad.setHoraIni(Time.valueOf((editHoraI.getText().toString()) + ":" +(editMinF.getText().toString()) + ":00"));
         actividad.setDocente(editDocente.getText().toString());
         actividad.setFecha(Date.valueOf(vAnio + "-" + vMes + "-" + vDia));
         regInsertados = dbHelper.Insertar(actividad);
@@ -152,6 +198,8 @@ public class ActividadInsertarActivity extends Activity {
         editDocente.setText("");
         editHoraF.setText("");
         editHoraI.setText("");
+        editMinF.setText("");
+        editMinI.setText("");
 
 
     }

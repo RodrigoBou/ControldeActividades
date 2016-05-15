@@ -19,8 +19,15 @@ public class ActividadConsultarActivity extends AppCompatActivity {
     EditText editDetalle;
     EditText editFecha;
     EditText editHoraI;
+    EditText editMinI;
     EditText editHoraF;
+    EditText editMinF;
     EditText editDocente;
+
+
+    EditText editDia;
+    EditText editMes;
+    EditText editAnio;
 
 
     @Override
@@ -36,6 +43,12 @@ public class ActividadConsultarActivity extends AppCompatActivity {
         editHoraI = (EditText) findViewById(R.id.editHoraI);
         editHoraF = (EditText) findViewById(R.id.editHoraF);
         editDocente = (EditText) findViewById(R.id.editDocente);
+        editMinI=(EditText) findViewById(R.id.editMinI);
+        editMinF=(EditText) findViewById(R.id.editMinF);
+
+        editDia=(EditText) findViewById(R.id.editDia);
+        editMes= (EditText) findViewById(R.id.editMes);
+        editAnio=(EditText) findViewById(R.id.editAnio);
 
 
     }
@@ -48,11 +61,41 @@ public class ActividadConsultarActivity extends AppCompatActivity {
         }
         else {
 
-            editFecha.setText(actividad.getFecha().toString());
+
+            String fecha=actividad.getFecha().toString();
+
+            String dia=fecha.substring(8,10);
+            String mes=fecha.substring(5,7);
+            String anio=fecha.substring(0,4);
+
+
+
+
+
+            String horaI=actividad.getHoraIni().toString();
+
+            String hi=horaI.substring(0,2);
+            String mi=horaI.substring(3,5);
+
+
+            String horaF=actividad.getHoraFin().toString();
+
+            String hf=horaF.substring(0,2);
+            String mf=horaF.substring(3,5);
+
+
+
             editDetalle.setText(actividad.getDetalleActividad());
             editDocente.setText(actividad.getDocente());
-            editHoraF.setText(actividad.getHoraFin().toString());
-            editHoraI.setText(actividad.getHoraIni().toString());
+            editDia.setText(dia);
+            editMes.setText(mes);
+            editAnio.setText(anio);
+
+
+            editHoraF.setText(hf);
+            editMinF.setText(mf);
+            editHoraI.setText(hi);
+            editMinI.setText(mi);
             editNombre.setText(actividad.getNomActividad());
 
         }
