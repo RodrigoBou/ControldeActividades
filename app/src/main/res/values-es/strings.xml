@@ -78,5 +78,11 @@
     <string name="ConsultarHorarioHeader">Consultar Horario</string>
     <string name="EliminarHorarioHeader">Eliminar Horario</string>
     <string name="InsertarHorarioHeader">Insertar Horario</string>
+    <string name="ActualizarReservaHeader">Actualizar Reserva</string>
+    <string name="ReservaHint1">Recurso</string>
+    <string name="ReservaHint2">Grupo</string>
+    <string name="ConsultarReservaHeader">Consultar Reserva</string>
+    <string name="EliminarReservaHeader">Eliminar Reserva</string>
+    <string name="InsertarReservaHeader">Insertar Reserva</string>
 
 </resources>

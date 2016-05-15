@@ -94,10 +94,10 @@ public class HorarioBD {
         String regAfectados = "filas afectadas";
         int contador = 0;
 
-        if (verificarIntegridad(horario, 1)) {
+        if (verificarIntegridad(horario, 2)) {
             contador += db.delete("GrupoMateria", "horario='" + horario.getId_horario() + "'", null);
         }
-        contador += db.delete("Ciclo", "id_horario='" + horario.getId_horario() + "'", null);
+        contador += db.delete("Horario", "id_horario='" + horario.getId_horario() + "'", null);
         regAfectados += contador;
         dbHelper.close();
         return regAfectados;
@@ -113,15 +113,24 @@ public class HorarioBD {
 
                 Cursor c = db.query("Horario", null, "id_horario=?", id, null, null, null);
                 if (c.moveToFirst()) {
-                    //se encontro Ciclo
-                    dbHelper.close();
+                    //se encontro Horario
                     return true;
                 }
-                dbHelper.close();
+                return false;
+            }
+            case 2: {
+                //Verificar que exista Horario
+                Horario horario = (Horario) dato;
+                String[] id = {String.valueOf(horario.getId_horario())};
+
+                Cursor c = db.query("GrupoMateria", null, "horario=?", id, null, null, null);
+                if (c.moveToFirst()) {
+                    //se encontro Horario en GrupoMateria
+                    return true;
+                }
                 return false;
             }
             default:
-                dbHelper.close();
                 return false;
         }
     }

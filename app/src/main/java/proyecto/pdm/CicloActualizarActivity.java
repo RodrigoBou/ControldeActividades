@@ -1,7 +1,6 @@
 package proyecto.pdm;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,20 +27,13 @@ public class CicloActualizarActivity extends Activity {
     }
 
     public void actualizarCiclo(View v) {
-
-        String idCiclo = editIdCiclo.getText().toString();
-        String anioCiclo = editAnioCiclo.getText().toString();
-        String numCiclo = editNumCiclo.getText().toString();
-        String regInsertados;
-
         Ciclo ciclo = new Ciclo();
-        ciclo.setId_ciclo(idCiclo);
-        ciclo.setAnio_ciclo(anioCiclo);
-        ciclo.setCiclo_num(numCiclo);
+        ciclo.setId_ciclo(editIdCiclo.getText().toString());
+        ciclo.setAnio_ciclo(editAnioCiclo.getText().toString());
+        ciclo.setCiclo_num(editNumCiclo.getText().toString());
 
 
-
-        regInsertados = helper.actualizar(ciclo);
+        String regInsertados = helper.actualizar(ciclo);
 
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 

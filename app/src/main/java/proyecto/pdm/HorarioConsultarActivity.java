@@ -34,7 +34,7 @@ public class HorarioConsultarActivity extends Activity {
         if (horario == null) {
             Toast.makeText(this, "Horario id: " + editIdHorario.getText().toString() + "no encontrado", Toast.LENGTH_LONG).show();
         } else {
-            editIdHorario.setText(horario.getId_horario());
+            editIdHorario.setText(String.valueOf(horario.getId_horario()));
             editHoraIni.setText(horario.getHora_ini());
             editHoraFin.setText(horario.getHora_fin());
         }

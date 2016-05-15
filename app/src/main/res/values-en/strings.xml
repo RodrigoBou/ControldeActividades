@@ -78,5 +78,11 @@
     <string name="ConsultarHorarioHeader">Read Schedule</string>
     <string name="EliminarHorarioHeader">Delete Schedule</string>
     <string name="InsertarHorarioHeader">Insert Schedule</string>
+    <string name="ActualizarReservaHeader">Update Reservation</string>
+    <string name="ReservaHint1">Resource</string>
+    <string name="ReservaHint2">Group</string>
+    <string name="ConsultarReservaHeader">Read Reservation</string>
+    <string name="EliminarReservaHeader">Delete Reservation</string>
+    <string name="InsertarReservaHeader">Insert Reservation</string>
 
 </resources>

@@ -78,5 +78,11 @@
     <string name="ConsultarHorarioHeader">Lire l\'annexe</string>
     <string name="EliminarHorarioHeader">Supprimer l\'annexe</string>
     <string name="InsertarHorarioHeader">Insérer l\'annexe</string>
+    <string name="ActualizarReservaHeader"> Mise à jour de la réservation</string>
+    <string name="ReservaHint2">Groupe</string>
+    <string name="ReservaHint1"> Ressource</string>
+    <string name="ConsultarReservaHeader">Lire la réservation</string>
+    <string name="EliminarReservaHeader">Supprimer Réservation</string>
+    <string name="InsertarReservaHeader">Insérer Réservation</string>
 
 </resources>

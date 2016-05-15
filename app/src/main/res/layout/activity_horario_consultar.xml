@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/HorarioHint1"
-        android:inputType="number"
+        android:inputType="time"
         android:paddingTop="45dp" />
 
     <EditText
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/HorarioHint2"
-        android:inputType="number"
+        android:inputType="time"
         android:paddingTop="20dp" />
 
 </LinearLayout>

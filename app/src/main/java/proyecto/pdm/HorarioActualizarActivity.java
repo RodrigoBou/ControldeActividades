@@ -1,7 +1,6 @@
 package proyecto.pdm;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,19 +27,13 @@ public class HorarioActualizarActivity extends Activity {
     }
 
     public void actualizarHorario(View v) {
-
-        String idHorario = editIdHorario.getText().toString();
-        String horaIni = editHoraIni.getText().toString();
-        String horaFin = editHoraFin.getText().toString();
-        String regInsertados;
-
         Horario horario = new Horario();
-        horario.setId_horario(Integer.parseInt(idHorario));
-        horario.setHora_ini(horaIni);
-        horario.setHora_fin(horaFin);
+        horario.setId_horario(Integer.parseInt(editIdHorario.getText().toString()));
+        horario.setHora_ini(editHoraIni.getText().toString());
+        horario.setHora_fin(editHoraFin.getText().toString());
 
 
-        regInsertados = helper.actualizar(horario);
+        String regInsertados = helper.actualizar(horario);
 
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 

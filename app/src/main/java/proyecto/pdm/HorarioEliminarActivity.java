@@ -24,7 +24,7 @@ public class HorarioEliminarActivity extends Activity {
         editIdHorario = (EditText) findViewById(R.id.editIdHorario);
     }
 
-    public void eliminarhorario(View v) {
+    public void eliminarHorario(View v) {
         String regEliminadas;
         Horario horario = new Horario();
         horario.setId_horario(Integer.parseInt(editIdHorario.getText().toString()));

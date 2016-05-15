@@ -53,6 +53,7 @@ public class CicloBD {
         db = dbHelper.getWritableDatabase();
 
         if (verificarIntegridad(ciclo, 1)) {
+
             String[] id = {ciclo.getId_ciclo()};
             ContentValues cicl = new ContentValues();
 
@@ -71,8 +72,10 @@ public class CicloBD {
     }
 
     public Ciclo consultar(String idCiclo) {
+
         db = dbHelper.getWritableDatabase();
         String[] id = {idCiclo};
+
         Cursor c = db.query("Ciclo", camposCiclo, "id_ciclo=?", id, null, null, null);
         if (c.moveToFirst()) {
             Ciclo ciclo = new Ciclo();
@@ -94,7 +97,7 @@ public class CicloBD {
         String regAfectados = "filas afectadas";
         int contador = 0;
 
-        if (verificarIntegridad(ciclo, 1)) {
+        if (verificarIntegridad(ciclo, 2)) {
             contador += db.delete("GrupoMateria", "ciclo='" + ciclo.getId_ciclo() + "'", null);
         }
         contador += db.delete("Ciclo", "id_ciclo='" + ciclo.getId_ciclo() + "'", null);
@@ -114,14 +117,23 @@ public class CicloBD {
                 Cursor c = db.query("Ciclo", null, "id_ciclo=?", id, null, null, null);
                 if (c.moveToFirst()) {
                     //se encontro Ciclo
-                    dbHelper.close();
                     return true;
                 }
-                dbHelper.close();
+                return false;
+            }
+            case 2: {
+                //Verificar que exista Ciclo
+                Ciclo ciclo = (Ciclo) dato;
+                String[] id = {ciclo.getId_ciclo()};
+
+                Cursor c = db.query("GrupoMateria", null, "ciclo=?", id, null, null, null);
+                if (c.moveToFirst()) {
+                    //se encontro Ciclo en GrupoMateria
+                    return true;
+                }
                 return false;
             }
             default:
-                dbHelper.close();
                 return false;
         }
     }
