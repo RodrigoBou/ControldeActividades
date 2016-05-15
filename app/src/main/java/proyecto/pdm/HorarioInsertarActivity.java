@@ -1,6 +1,7 @@
 package proyecto.pdm;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ public class HorarioInsertarActivity extends Activity {
         editHoraFin = (EditText) findViewById(R.id.editHoraFin);
     }
 
-    public void insertarHorario(View v) {
+    public void insertarHorario(View v, int hora, int minuto) {
 
         String idHorario = editIdHorario.getText().toString();
         String horaIni = editHoraIni.getText().toString();
@@ -35,7 +36,7 @@ public class HorarioInsertarActivity extends Activity {
 
         Horario horario = new Horario();
         horario.setId_horario(Integer.parseInt(idHorario));
-        horario.setHora_ini(horaIni);
+        horario.setHora_ini(String.valueOf(hora) + ":" + String.valueOf(minuto));
         horario.setHora_fin(horaFin);
 
         regInsertados = helper.insertar(horario);
