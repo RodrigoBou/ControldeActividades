@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by kevin on 05-11-16.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String BASE_DATOS = "PDMv1.s3db";
+    private static final String BASE_DATOS = "PDMv3.s3db";
     private static final int VERSION = 1;
 
     private static DatabaseHelper ourInstance;
@@ -41,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.execSQL("CREATE TABLE [TipoGrupo] ( [cod_tipo_grupo] VARCHAR(5) NOT NULL PRIMARY KEY, [tipo_grupo] VARCHAR(25) NOT NULL );");
 
+
             db.execSQL("CREATE TABLE Docente (cod_docente VARCHAR (7) PRIMARY KEY NOT NULL, nom_docente VARCHAR (150) NOT NULL);");
 
             db.execSQL("CREATE TABLE [Ciclo] ( [id_ciclo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [anio_ciclo] VARCHAR(4) NOT NULL, [ciclo_num] VARCHAR(2) NOT NULL );");
@@ -57,7 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.execSQL("CREATE TABLE Materia (cod_materia VARCHAR (6) PRIMARY KEY NOT NULL, nom_materia VARCHAR (50) NOT NULL);");
 
-            db.execSQL("CREATE TABLE [CargaAcademica] ( [materia] VARCHAR(50) NOT NULL, [docente] VARCHAR(50) NOT NULL, [ciclo] VARCHAR (7) NOT NULL, [cargo] VARCHAR (20) NOT NULL, PRIMARY KEY ([materia],[docente],[ciclo],[cargo]) );");
+            db.execSQL("CREATE TABLE [CargaAcademica] ( [materia] VARCHAR(50) NOT NULL, [docente] VARCHAR(50) NOT NULL, [ciclo] INTEGER (2) NOT NULL, [cargo] INTEGER (2) NOT NULL, PRIMARY KEY ([materia],[docente],[ciclo],[cargo]) );");
 
             db.execSQL("CREATE TABLE [GrupoMateria] ( [id_grupo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [tipo_grupo] VARCHAR(2) NOT NULL, [materia] VARCHAR(6) NOT NULL, [docente] VARCHAR(7) NOT NULL, [ciclo] INTEGER NOT NULL, [LOCAL] VARCHAR(10) NOT NULL, [diasImpartida] VARCHAR(50) NOT NULL, [num_grupo] VARCHAR(2) NOT NULL, [horario] INTEGER NOT NULL );");
 

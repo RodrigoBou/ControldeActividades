@@ -109,8 +109,8 @@ public class CargaAcademicaEliminarActivity extends Activity {
         CargaAcademica cargaAcademica = new CargaAcademica();
         cargaAcademica.setMateria(spinnerMapMateria.get(mat));
         cargaAcademica.setDocente(spinnerMapDocente.get(doc));
-        cargaAcademica.setCiclo(spinnerMapCiclo.get(cic));
-        cargaAcademica.setCargo(String.valueOf(spinnerMapCargo.get(car)));
+        cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
+        cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regEliminados = helper.eliminar(cargaAcademica);
         Toast.makeText(this, regEliminados, Toast.LENGTH_SHORT).show();
     }

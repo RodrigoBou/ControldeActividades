@@ -58,7 +58,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
         int i = 0;
         for (Docente d: docenteList){
             spinnerMapDocente.put(d.getNomDocente(), d.getCodDocente());
-            spinnerResource[i]=d.getNomDocente();
+            spinnerResource[i]=d.getCodDocente();
             i++;
         }
         List<Materia>materiaList = materiaBD.getMaterias();
@@ -66,7 +66,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
         int j = 0;
         for (Materia m: materiaList){
             spinnerMapMateria.put(m.getNomMateria(), m.getCodMateria());
-            spinnerRosurce02[j]=m.getNomMateria();
+            spinnerRosurce02[j]=m.getCodMateria();
             j++;
         }
        List<Ciclo>cicloList = cicloBD.getCiclos();
@@ -74,15 +74,15 @@ public class CargaAcademicaInsertarActivity extends Activity {
         int k = 0;
         for (Ciclo c : cicloList){
             spinnerMapCiclo.put(c.getCiclo_num(),c.getId_ciclo());
-            spinnerRosurse03[k]=c.getCiclo_num();
+            spinnerRosurse03[k]=c.getId_ciclo();
             k++;
         }
         List<Cargo>cargoList=cargoBD.getCargos();
-        String[] spinnerRosurse04= new String[cargoList.size()];
+        Integer[] spinnerRosurse04= new Integer[cargoList.size()];
         int l= 0;
         for (Cargo ca : cargoList){
             spinnerMapCargo.put(ca.getNomCargo(), ca.getIdCargo());
-            spinnerRosurse04[l]=ca.getNomCargo();
+            spinnerRosurse04[l]=ca.getIdCargo();
             l++;
         }
 
@@ -101,7 +101,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
         ArrayAdapter<String> adapter03 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse03);
         adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCiclo.setAdapter(adapter03);
-        ArrayAdapter<String> adapter04 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse04);
+        ArrayAdapter<Integer> adapter04 = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, spinnerRosurse04);
         adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCargo.setAdapter(adapter04);
     }
@@ -114,8 +114,8 @@ public class CargaAcademicaInsertarActivity extends Activity {
         CargaAcademica cargaAcademica= new CargaAcademica();
         cargaAcademica.setMateria(spinnerMapMateria.get(mat));
         cargaAcademica.setDocente(spinnerMapDocente.get(doc));
-        cargaAcademica.setCiclo(spinnerMapCiclo.get(cic));
-        cargaAcademica.setCargo(String.valueOf(spinnerMapCargo.get(car)));
+        cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
+        cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regInsertados = helper.insertar(cargaAcademica);
         Toast.makeText(this,regInsertados,Toast.LENGTH_SHORT).show();
 

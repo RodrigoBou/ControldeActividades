@@ -34,9 +34,7 @@ public class CargaAcademicaBD {
             ca.put("materia", cargaAcademica.getMateria());
             ca.put("docente",cargaAcademica.getDocente());
             ca.put("ciclo",cargaAcademica.getCiclo());
-
             ca.put("cargo", cargaAcademica.getCargo());
-
             db= controlBD.getWritableDatabase();
             contador =db.insert("CargaAcademica",null,ca);
             controlBD.close();
@@ -56,10 +54,10 @@ public class CargaAcademicaBD {
         Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo=?",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
-            cargaAcademica.setDocente(cursor.getString(0));
-            cargaAcademica.setCargo(cursor.getString(3));
-            cargaAcademica.setMateria(cursor.getString(2));
-            cargaAcademica.setCiclo(cursor.getString(1));
+            cargaAcademica.setDocente(cursor.getString(1));
+            cargaAcademica.setCargo(Integer.valueOf(cursor.getInt(3)));
+            cargaAcademica.setMateria(cursor.getString(0));
+            cargaAcademica.setCiclo(Integer.valueOf(cursor.getInt(2)));
             return cargaAcademica;
         }else{
             return null;
@@ -68,7 +66,7 @@ public class CargaAcademicaBD {
     public String actualizar(CargaAcademica cargaAcademica){
 
         if(verificarIntegriad(cargaAcademica, 1)){
-            String[] id={cargaAcademica.getDocente(), cargaAcademica.getCiclo()};
+            String[] id={cargaAcademica.getDocente(), String.valueOf(cargaAcademica.getCiclo())};
             ContentValues cv = new ContentValues();
             cv.put("CargaAcademica", cargaAcademica.getCargo());
             cv.put("CargaAcademica", cargaAcademica.getMateria());
@@ -82,22 +80,11 @@ public class CargaAcademicaBD {
     public String eliminar(CargaAcademica cargaAcademica){
         String regAfectados ="filas afectadas= ";
         int contador = 0;
-        db=controlBD.getWritableDatabase();
-        String mat = cargaAcademica.getMateria().toString();
-        String doc = cargaAcademica.getDocente().toString();
-        String cic = cargaAcademica.getCiclo().toString();
-        String car = cargaAcademica.getCargo().toString();
-        String[]id={mat, doc, cic, car};
-        try{
-            contador+=db.delete("CargaAcademica", "materia=? AND docente=? AND ciclo=? AND cargo=?", id);
-            regAfectados="filas afectadas";
-            regAfectados+=contador;
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        controlBD.close();
-        return  regAfectados;
+        String where="docente ='"+cargaAcademica.getDocente()+"'";
+        where = where + " AND ciclo="+cargaAcademica.getCiclo();
+        contador+=db.delete("CargaAcademica",where,null);
+        regAfectados+=contador;
+        return regAfectados;
     }
 
 
@@ -119,9 +106,9 @@ public class CargaAcademicaBD {
                 //verifica si el docente, el cargo, la meteria y el ciclo existe
                 CargaAcademica cargaAcademica=(CargaAcademica)dato;
                 String[] id2 = {cargaAcademica.getDocente()};
-                String[] id4 ={cargaAcademica.getCargo()};
+                String[] id4 ={String.valueOf(cargaAcademica.getCargo())};
                 String[] id1 = {cargaAcademica.getMateria()};
-                String[] id3 = {cargaAcademica.getCiclo()};
+                String[] id3 = {String.valueOf(cargaAcademica.getCiclo())};
 
                 //abrir;
                 Cursor cursor1=db.query("Docente", null,"nom_docente=?", id2,null,null,null);
@@ -136,7 +123,7 @@ public class CargaAcademicaBD {
             case 2:{
                 //verificar si la carga academica existe
                 CargaAcademica cargaAcademica2 =(CargaAcademica)dato;
-                String[] id ={cargaAcademica2.getDocente(), cargaAcademica2.getCiclo(), };
+                String[] id ={cargaAcademica2.getDocente(), String.valueOf(cargaAcademica2.getCiclo()) };
                 abrir();
                 Cursor c2 =db.query("CargaAcademica", null,"docente=? AND ciclo =?",id,null,null,null);
                 if(c2.moveToFirst()){

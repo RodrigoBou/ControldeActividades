@@ -34,7 +34,7 @@ public class CargaAcademicaConsultarActivity extends Activity {
         CargaAcademica cargaAcademica=helper.consultar(editDocente.getText().toString(),editCiclo.getText().toString());
         helper.cerrar();
         if (cargaAcademica==null)
-            Toast.makeText(this,"Carga Academica no registrada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Carga Academica no registrada "+editDocente.getText().toString()+editCiclo.getText().toString(), Toast.LENGTH_SHORT).show();
         else {
             editCargo.setText(String.valueOf(cargaAcademica.getCargo()));
             editMateria.setText(cargaAcademica.getMateria());
