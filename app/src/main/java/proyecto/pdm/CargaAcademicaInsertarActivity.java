@@ -42,7 +42,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
     private HashMap<String, String> spinnerMapDocente = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapMateria = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
-    private HashMap<String,Integer> spinnerMapCargo = new HashMap<String, Integer>();
+    private HashMap<String, Integer> spinnerMapCargo = new HashMap<String, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -78,11 +78,11 @@ public class CargaAcademicaInsertarActivity extends Activity {
             k++;
         }
         List<Cargo>cargoList=cargoBD.getCargos();
-        Integer[] spinnerRosurse04= new Integer[cargoList.size()];
+        String[] spinnerRosurse04= new String[cargoList.size()];
         int l= 0;
         for (Cargo ca : cargoList){
             spinnerMapCargo.put(ca.getNomCargo(), ca.getIdCargo());
-            spinnerRosurse04[l]=ca.getIdCargo();
+            spinnerRosurse04[l]=ca.getNomCargo();
             l++;
         }
 
@@ -101,10 +101,11 @@ public class CargaAcademicaInsertarActivity extends Activity {
         ArrayAdapter<String> adapter03 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse03);
         adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCiclo.setAdapter(adapter03);
-        ArrayAdapter<Integer> adapter04 = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, spinnerRosurse04);
+        ArrayAdapter<String> adapter04 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse04);
         adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCargo.setAdapter(adapter04);
     }
+
     public void insertarCargaAcademica(View v){
         String doc =SpinDocente.getSelectedItem().toString();
         String mat =SpinMateria.getSelectedItem().toString();

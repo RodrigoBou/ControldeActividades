@@ -4,10 +4,10 @@ package proyecto.pdm.ClasesModelo;
  * Created by kelly on 23/04/2016.
  */
 public class CargaAcademica {
-    private Integer cargo;
+    private int cargo;
     private String materia;
     private String docente;
-    private Integer ciclo;
+    private int ciclo;
 
     public CargaAcademica() {
     }
