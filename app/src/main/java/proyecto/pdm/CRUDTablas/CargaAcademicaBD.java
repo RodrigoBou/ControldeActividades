@@ -5,6 +5,7 @@ package proyecto.pdm.CRUDTablas;
  */
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -85,14 +86,24 @@ public class CargaAcademicaBD {
         }
     }
     public String eliminar(CargaAcademica cargaAcademica){
-        db=controlBD.getWritableDatabase();
+
         String regAfectados ="filas afectadas= ";
         int contador = 0;
-        String where="docente ='"+cargaAcademica.getDocente()+"'";
-        where = where + " AND ciclo="+cargaAcademica.getCiclo();
-        contador+=db.delete("CargaAcademica",where,null);
-        regAfectados+=contador;
-        controlBD.close();
+        db=controlBD.getWritableDatabase();
+        String mat =cargaAcademica.getMateria().toString();
+        String doc=cargaAcademica.getDocente().toString();
+        String cic =String.valueOf(cargaAcademica.getCiclo().toString());
+        String car = String.valueOf(cargaAcademica.getCargo().toString());
+        String [] id= {mat,doc,cic,car};
+        try{
+            contador+=db.delete("CargaAcademica","materia=? AND docente=? AND ciclo=? AND cargo=?", id);
+            regAfectados="filas afectadas ";
+            regAfectados+=contador;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        db.close();
         return regAfectados;
     }
 

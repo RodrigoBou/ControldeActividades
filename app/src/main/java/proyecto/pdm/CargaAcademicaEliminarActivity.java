@@ -36,79 +36,77 @@ public class CargaAcademicaEliminarActivity extends Activity {
     private HashMap<String, String> spinnerMapMateria = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
     private HashMap<String, Integer> spinnerMapCargo = new HashMap<String, Integer>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carga_academica_eliminar);
-        helper = new CargaAcademicaBD(this);
-        docenteBD = new DocenteBD(this);
-        cargoBD = new CargoDB(this);
-        cicloBD = new CicloBD(this);
-        materiaBD = new MateriaBD(this);
+        helper=new CargaAcademicaBD(this);
+        docenteBD =new DocenteBD(this);
+        cargoBD=new CargoDB(this);
+        cicloBD=new CicloBD(this);
+        materiaBD=new MateriaBD(this);
         List<Docente> docenteList = docenteBD.getDocentes();
         String[] spinnerResource = new String[docenteList.size()];
         int i = 0;
-        for (Docente d : docenteList) {
+        for (Docente d: docenteList){
             spinnerMapDocente.put(d.getNomDocente(), d.getCodDocente());
-            spinnerResource[i] = d.getNomDocente();
+            spinnerResource[i]=d.getCodDocente();
             i++;
         }
-        List<Materia> materiaList = materiaBD.getMaterias();
-        String[] spinnerRosurce02 = new String[materiaList.size()];
+        List<Materia>materiaList = materiaBD.getMaterias();
+        String[] spinnerRosurce02=new String[materiaList.size()];
         int j = 0;
-        for (Materia m : materiaList) {
+        for (Materia m: materiaList){
             spinnerMapMateria.put(m.getNomMateria(), m.getCodMateria());
-            spinnerRosurce02[j] = m.getNomMateria();
+            spinnerRosurce02[j]=m.getCodMateria();
             j++;
         }
-        List<Ciclo> cicloList = cicloBD.getCiclos();
-        String[] spinnerRosurse03 = new String[cicloList.size()];
+        List<Ciclo>cicloList = cicloBD.getCiclos();
+        String[] spinnerRosurse03= new String[cicloList.size()];
         int k = 0;
-        for (Ciclo c : cicloList) {
-            spinnerMapCiclo.put(c.getCiclo_num(), c.getId_ciclo());
-            spinnerRosurse03[k] = c.getCiclo_num();
+        for (Ciclo c : cicloList){
+            spinnerMapCiclo.put(c.getCiclo_num(),c.getId_ciclo());
+            spinnerRosurse03[k]=c.getId_ciclo();
             k++;
         }
-        List<Cargo> cargoList = cargoBD.getCargos();
-        String[] spinnerRosurse04 = new String[cargoList.size()];
-        int l = 0;
-        for (Cargo ca : cargoList) {
+        List<Cargo>cargoList=cargoBD.getCargos();
+        String[] spinnerRosurse04= new String[cargoList.size()];
+        int l= 0;
+        for (Cargo ca : cargoList){
             spinnerMapCargo.put(ca.getNomCargo(), ca.getIdCargo());
-            spinnerRosurse04[l] = ca.getNomCargo();
+            spinnerRosurse04[l]=ca.getNomCargo();
             l++;
         }
 
 
-        SpinDocente = (Spinner) findViewById(R.id.spinnerDocente);
-        SpinMateria = (Spinner) findViewById(R.id.spinnerMateria);
-        SpinCiclo = (Spinner) findViewById(R.id.spinnerCiclo);
-        SpinCargo = (Spinner) findViewById(R.id.spinnerCargo);
-        ArrayAdapter<String> adapter01 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerResource);
+
+        SpinDocente=(Spinner)findViewById(R.id.spinnerDocente);
+        SpinMateria=(Spinner)findViewById(R.id.spinnerMateria);
+        SpinCiclo=(Spinner)findViewById(R.id.spinnerCiclo);
+        SpinCargo=(Spinner)findViewById(R.id.spinnerCargo);
+        ArrayAdapter <String> adapter01 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerResource);
         adapter01.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinDocente.setAdapter(adapter01);
-        ArrayAdapter<String> adapter02 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurce02);
+        ArrayAdapter<String> adapter02 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurce02);
         adapter02.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinMateria.setAdapter(adapter02);
-        ArrayAdapter<String> adapter03 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse03);
+        ArrayAdapter<String> adapter03 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse03);
         adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCiclo.setAdapter(adapter03);
         ArrayAdapter<String> adapter04 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerRosurse04);
         adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinCargo.setAdapter(adapter04);
-
-
     }
 
     public void eliminarCargaAcademica() {
-        String doc = SpinDocente.getSelectedItem().toString();
-        String mat = SpinMateria.getSelectedItem().toString();
-        String cic = SpinCiclo.getSelectedItem().toString();
-        String car = SpinCargo.getSelectedItem().toString();
+        String doc =SpinDocente.getSelectedItem().toString();
+        String mat =SpinMateria.getSelectedItem().toString();
+        String cic= SpinCiclo.getSelectedItem().toString();
+        String car =SpinCargo.getSelectedItem().toString();
         String regEliminados = "";
-        CargaAcademica cargaAcademica = new CargaAcademica();
-        cargaAcademica.setMateria(spinnerMapMateria.get(mat));
-        cargaAcademica.setDocente(spinnerMapDocente.get(doc));
+        CargaAcademica cargaAcademica= new CargaAcademica();
+        cargaAcademica.setMateria(mat);
+        cargaAcademica.setDocente(doc);
         cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
         cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regEliminados = helper.eliminar(cargaAcademica);
