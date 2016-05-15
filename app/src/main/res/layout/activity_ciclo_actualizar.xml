@@ -29,13 +29,12 @@
         android:inputType="number"
         android:paddingTop="45dp" />
 
-    <EditText
-        android:id="@+id/editNumCiclo"
+    <Spinner
+        android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/InsertarCicloHint3"
-        android:inputType="number"
-        android:paddingTop="20dp" />
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,17 +47,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarCiclo"
-            android:text="@string/ActualizarCicloButton1"
-           />
+            android:text="@string/ActualizarCicloButton1" />
 
         <Button
             style="@style/BotonEstilo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="limpiarTextoCiclo"
-            android:text="@string/InsertarCicloButton2"
-
-            />
+            android:text="@string/InsertarCicloButton2" />
 
     </LinearLayout>
 

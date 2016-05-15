@@ -1,10 +1,11 @@
 package proyecto.pdm;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import proyecto.pdm.CRUDTablas.CicloBD;
@@ -15,7 +16,7 @@ public class CicloActualizarActivity extends Activity {
     CicloBD helper;
     EditText editIdCiclo;
     EditText editAnioCiclo;
-    EditText editNumCiclo;
+    Spinner dropdown;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,24 +25,21 @@ public class CicloActualizarActivity extends Activity {
         helper = new CicloBD(this);
         editIdCiclo = (EditText) findViewById(R.id.editIdCiclo);
         editAnioCiclo = (EditText) findViewById(R.id.editAnioCiclo);
-        editNumCiclo = (EditText) findViewById(R.id.editNumCiclo);
+
+        dropdown = (Spinner) findViewById(R.id.spinner1);
+        String[] items = new String[]{"1", "2"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
     }
 
     public void actualizarCiclo(View v) {
-
-        String idCiclo = editIdCiclo.getText().toString();
-        String anioCiclo = editAnioCiclo.getText().toString();
-        String numCiclo = editNumCiclo.getText().toString();
-        String regInsertados;
-
         Ciclo ciclo = new Ciclo();
-        ciclo.setId_ciclo(idCiclo);
-        ciclo.setAnio_ciclo(anioCiclo);
-        ciclo.setCiclo_num(numCiclo);
+        ciclo.setId_ciclo(editIdCiclo.getText().toString());
+        ciclo.setAnio_ciclo(editAnioCiclo.getText().toString());
+        ciclo.setCiclo_num(dropdown.getSelectedItem().toString());
 
 
-
-        regInsertados = helper.actualizar(ciclo);
+        String regInsertados = helper.actualizar(ciclo);
 
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
@@ -50,6 +48,5 @@ public class CicloActualizarActivity extends Activity {
     public void limpiarTextoCiclo(View v) {
         editIdCiclo.setText("");
         editAnioCiclo.setText("");
-        editNumCiclo.setText("");
     }
 }
