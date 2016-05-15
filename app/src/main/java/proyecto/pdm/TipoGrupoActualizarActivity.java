@@ -26,9 +26,7 @@ public class TipoGrupoActualizarActivity extends Activity {
         TipoGrupo tipoGrupo = new TipoGrupo();
         tipoGrupo.setcodTipoGrupo(editCodTipoGrupo.getText().toString());
         tipoGrupo.setTipoGrupo(editTipoGrupo.getText().toString());
-
         String estado=helper.actualizar(tipoGrupo);
-        
         Toast.makeText(this,estado,Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v){

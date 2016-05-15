@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -21,7 +22,7 @@ public class RecursoInsertarActivity extends AppCompatActivity {
 
     private EditText editNomRecurso;
     private EditText editDetRecurso;
-    private ToggleButton toggleEstado;
+    private Switch switchEstado;
     private Spinner spinnerCatRecurso;
     private HashMap<String, Integer> spinnerMap = new HashMap<String, Integer>();
     private RecursoDB dbHelper;
@@ -48,7 +49,7 @@ public class RecursoInsertarActivity extends AppCompatActivity {
 
         editNomRecurso = (EditText) findViewById(R.id.editNomRecurso);
         editDetRecurso = (EditText) findViewById(R.id.editDetRecurso);
-        toggleEstado = (ToggleButton) findViewById(R.id.toggleEstado);
+        switchEstado = (Switch) findViewById(R.id.switchEstado);
         spinnerCatRecurso = (Spinner) findViewById(R.id.spinnerCategoria);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerResource);
@@ -60,7 +61,7 @@ public class RecursoInsertarActivity extends AppCompatActivity {
     public void insertarCargo(View v){
         String nom_recurso = editNomRecurso.getText().toString();
         String det_recurso = editDetRecurso.getText().toString();
-        int estado = toggleEstado.isChecked() ? 1 : 0;
+        int estado = switchEstado.isChecked() ? 1 : 0;
         String categoria = spinnerCatRecurso.getSelectedItem().toString();
 
         String regInsertados = "";
@@ -79,6 +80,6 @@ public class RecursoInsertarActivity extends AppCompatActivity {
     public void limpiarTexto(View v){
         editNomRecurso.setText("");
         editDetRecurso.setText("");
-        toggleEstado.setChecked(false);
+        switchEstado.setChecked(false);
     }
 }

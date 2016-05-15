@@ -82,8 +82,10 @@
         <activity android:name=".ReservaActividadMenuActivity" />
         <activity android:name=".ReservaActividadInsertarActivity" />
         <activity android:name=".ReservaActividadActualizarActivity" />
-        <activity android:name=".ReservaActividadConsultarActivity" />
         <activity android:name=".ReservaActividadEliminarActivity" />
+        <activity android:name=".ReservaActividadConsultarActivity" />
+        <activity android:name=".InformacionRecursoActivity"
+            android:theme="@android:style/Theme.Holo.Dialog"></activity>
     </application>
 
 </manifest>

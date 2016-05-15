@@ -32,9 +32,8 @@ public class CargoDB {
 
         cat.put("nom_cargo", cargo.getNomCargo());
 
-        db=dbHelper.getWritableDatabase();
+        db = dbHelper.getWritableDatabase();
         contador = db.insert("Cargo", null, cat);
-
         dbHelper.close();
 
         if (contador == 0 || contador == -1){
@@ -103,8 +102,8 @@ public class CargoDB {
         Cargo cargo = new Cargo();
 
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("Cargo", camposCargo, camposCargo[0]+" = ?", new String[]{String.valueOf(id)}, null, null,
-                null, null);
+        Cursor c = db.query("Cargo", camposCargo, camposCargo[0]+" = ?", new String[]{String.valueOf(id)}, null,
+                null, null, null);
         if (c.moveToFirst()){
             cargo.setIdCargo(c.getInt(0));
             cargo.setNomCargo(c.getString(1));

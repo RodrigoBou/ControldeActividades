@@ -6,13 +6,11 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import org.xml.sax.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import proyecto.pdm.ClasesModelo.GrupoMateria;
-
 import proyecto.pdm.DatabaseHelper;
 
 /**
@@ -27,10 +25,8 @@ public class GrupoMateriaBD {
     public GrupoMateriaBD(Context ctx){
         dbHelper = DatabaseHelper.getInstance(ctx);
 
-
     }
     public String insertar(GrupoMateria grupoMateria){
-        db = dbHelper.getWritableDatabase();
         String regInsertados="Registro Insertado N°:";
         long contador = 0;
 
@@ -43,7 +39,9 @@ public class GrupoMateriaBD {
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
         grupMa.put("numGrupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());
+        db = dbHelper.getWritableDatabase();
         contador = db.insert("GrupoMateria", null, grupMa);
+        dbHelper.close();
 
         if (contador == 0 || contador == -1){
             regInsertados="Error al insertar el registro, Registro duplicado. Verificar insercion";
@@ -51,15 +49,13 @@ public class GrupoMateriaBD {
         else{
             regInsertados = regInsertados + contador;
         }
-
-        dbHelper.close();
         return regInsertados;
 
     }
 
     public GrupoMateria consultar(int idGrupo){
-        db = dbHelper.getWritableDatabase();
         String[] id ={String.valueOf(idGrupo)};
+        db = dbHelper.getWritableDatabase();
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, "id_grupo=?", id, null, null, null);
         if (c.moveToFirst()){
             GrupoMateria grupoMateria = new GrupoMateria();
@@ -82,7 +78,6 @@ public class GrupoMateriaBD {
     }
 
     public String actualizar(GrupoMateria grupoMateria){
-        db = dbHelper.getWritableDatabase();
         if (verificarIntegridad(grupoMateria, 1)){
             String[] id={String.valueOf(grupoMateria.getIdGrupo())};
             ContentValues grupMa = new ContentValues();
@@ -94,40 +89,36 @@ public class GrupoMateriaBD {
             grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
             grupMa.put("numGrupo", grupoMateria.getNumGrupo());
             grupMa.put("horario", grupoMateria.getHorario());
+            db = dbHelper.getWritableDatabase();
             db.update("GrupoMateria", grupMa, "id_grupo=?", id);
             dbHelper.close();
             return "Registro Actualizado Correctamente";
         }else {
-            dbHelper.close();
             return "Registro con idGrupo" + grupoMateria.getIdGrupo() + "no existe";
         }
     }
 
     public String eliminar(GrupoMateria grupoMateria){
-        db = dbHelper.getWritableDatabase();
         String regAfectados = "filas afectadas";
         int contador = 0;
-
+        db = dbHelper.getWritableDatabase();
         if (verificarIntegridad(grupoMateria, 1)) {
             contador += db.delete("Reserva", "grupo='" + grupoMateria.getIdGrupo() + "'", null);
         }
         contador+=db.delete("GrupoMateria", "id_grupo='"+grupoMateria.getIdGrupo()+"'", null);
-        regAfectados+=contador;
         dbHelper.close();
+        regAfectados+=contador;
         return  regAfectados;
     }
 
-
-
     public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-        db = dbHelper.getWritableDatabase();
         switch(relacion){
             case 1:
             {
                 //Verificar que exista el GrupoMateria
                 GrupoMateria grupoMateria =(GrupoMateria)dato;
                 String[] id = {String.valueOf(grupoMateria.getIdGrupo())};
-
+                db = dbHelper.getWritableDatabase();
                 Cursor c = db.query("GrupoMateria",null,"id_grupo=?",id,null,null,null);
                 if(c.moveToFirst()){
                     //se encontro GrupoMateria
@@ -137,8 +128,7 @@ public class GrupoMateriaBD {
                 dbHelper.close();
                 return false;
             }
-            default: dbHelper.close();
-                return false;
+            default: return false;
         }
     }
 
@@ -165,6 +155,7 @@ public class GrupoMateriaBD {
             }while(c.moveToNext());
         }
         dbHelper.close();
+
         return grupoMateriaList;
     }
 }

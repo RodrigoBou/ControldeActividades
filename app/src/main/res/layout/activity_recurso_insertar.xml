@@ -21,7 +21,7 @@
 
     <TableRow>
         <TextView android:text="@string/estado"/>
-        <ToggleButton android:id="@+id/toggleEstado"
+        <Switch android:id="@+id/switchEstado"
             android:textOn="@string/activo"
             android:textOff="@string/inactivo"
             android:checked="false"/>

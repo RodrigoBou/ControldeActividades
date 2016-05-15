@@ -26,9 +26,7 @@ public class MateriaEliminarActivity extends Activity {
         String regEliminadas;
         Materia materia = new Materia();
         materia.setCodMateria(editCodMateria.getText().toString());
-
         regEliminadas = controlHelper.eliminar(materia);
-
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

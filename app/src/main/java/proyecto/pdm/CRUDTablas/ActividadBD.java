@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto.pdm.ClasesModelo.Actividad;
-
 import proyecto.pdm.DatabaseHelper;
+
 
 /**
  * Created by Rodrigo on 5/11/2016.
@@ -27,7 +27,13 @@ public class ActividadBD {
 
 
     public ActividadBD(Context ctx) {
-        dbHelper = DatabaseHelper.getInstance(ctx);
+       dbHelper = DatabaseHelper.getInstance(ctx);
+
+
+
+
+
+
 
     }
 
@@ -47,6 +53,7 @@ public class ActividadBD {
         reg.put("docente", actividad.getDocente());
 
 
+
         db = dbHelper.getWritableDatabase();
         contador = db.insert("Actividad", null, reg);
         dbHelper.close();
@@ -56,7 +63,6 @@ public class ActividadBD {
         else {
             registrosInsertados = "Registro Insertado Nº=" + contador;
         }
-
         return registrosInsertados;
     }
 
@@ -74,10 +80,9 @@ public class ActividadBD {
         String regAfectados="";
         int contador = 0;
         db = dbHelper.getWritableDatabase();
-
     try{
-
         contador+=db.delete("Actividad", "id_actividad='"+actividad.getIdActividad()+"'", null);
+        dbHelper.close();
         regAfectados = "filas afectadas";
         regAfectados+=contador;
 
@@ -88,7 +93,7 @@ public class ActividadBD {
        e.printStackTrace();
 
     }
-        dbHelper.close();
+
         return  regAfectados;
     }
 
@@ -104,6 +109,7 @@ public class ActividadBD {
         String[] id = {idActividad};
         db = dbHelper.getWritableDatabase();
         Cursor c = db.query("Actividad", camposActividad, "id_actividad=?", id, null, null, null);
+
         if (c.moveToFirst()){
             Actividad act = new Actividad();
 
@@ -120,9 +126,7 @@ public class ActividadBD {
             dbHelper.close();
             return  null;
         }
-
     }
-
 
 
 
@@ -148,22 +152,10 @@ public class ActividadBD {
                 act.setHoraFin(Time.valueOf(c.getString(5)));
                 act.setDocente(c.getString(6));
 
-                 actividadList.add(act);
+                actividadList.add(act);
             }while(c.moveToNext());
         }
         dbHelper.close();
         return actividadList;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

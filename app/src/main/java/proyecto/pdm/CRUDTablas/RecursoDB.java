@@ -72,4 +72,58 @@ public class RecursoDB {
         DBHelper.close();
         return recursoList;
     }
+
+    public String eliminar(int id){
+        String regEliminado = "";
+        int contador = 0;
+
+        db = DBHelper.getWritableDatabase();
+        contador = db.delete("Recurso", camposRecurso[0] + " = ?", new String[]{String.valueOf(id)});
+        DBHelper.close();
+
+        if (contador == 0)
+            regEliminado = "No se puedo eliminar el registro";
+        else
+            regEliminado = "El registro fue exitosamente eliminado";
+
+        return regEliminado;
+    }
+
+    public String actualizar(Recurso recurso){
+        String msg = "";
+        long contador = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(camposRecurso[1], recurso.getNomRecurso());
+        contentValues.put(camposRecurso[2], recurso.getDetalleRecurso());
+        contentValues.put(camposRecurso[3], recurso.getEstado());
+        contentValues.put(camposRecurso[4], recurso.getCatRecurso());
+
+        db = DBHelper.getWritableDatabase();
+        db.update("Recurso", contentValues, camposRecurso[0] + " = ?",
+                new String[]{String.valueOf(recurso.getIdRecurso())});
+        DBHelper.close();
+
+        msg = (contador <= 0) ? "No se pudo actualizar el registro" : "El registro fue actualizado exitosamente";
+
+        return msg;
+    }
+
+    public Recurso getRecurso(int id) {
+        Recurso recurso = new Recurso();
+
+        db = DBHelper.getWritableDatabase();
+        Cursor c = db.query("Recurso", camposRecurso, camposRecurso[0] + " = ?", new String[]{String.valueOf(id)},
+                null, null, null, null);
+        if (c.moveToFirst()) {
+            recurso.setIdRecurso(c.getInt(0));
+            recurso.setNomRecurso(c.getString(1));
+            recurso.setDetalleRecurso(c.getString(2));
+            recurso.setEstado(c.getInt(3));
+            recurso.setCatRecurso(c.getInt(4));
+        }
+        DBHelper.close();
+
+        return recurso;
+    }
 }

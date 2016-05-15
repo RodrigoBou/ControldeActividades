@@ -46,9 +46,7 @@ public class GrupoMateriaActualizarActivity extends Activity {
         grupoMateria.setDiasImpartida(editDiasImpartida.getText().toString());
         grupoMateria.setHorario(Integer.parseInt(editHorario.getText().toString()));
         grupoMateria.setNumGrupo(editNumGrupo.getText().toString());
-
         String estado = helper.actualizar(grupoMateria);
-
 
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }

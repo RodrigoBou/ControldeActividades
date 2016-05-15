@@ -41,9 +41,7 @@ public class ActividadConsultarActivity extends AppCompatActivity {
     }
 
     public void ConsultarActividad(View v){
-
         Actividad actividad = helper.consultar(editID.getText().toString());
-
         if (actividad == null){
             Toast.makeText(this, "Actividad " + editID.getText().toString() + "no encontrada",
                     Toast.LENGTH_LONG).show();

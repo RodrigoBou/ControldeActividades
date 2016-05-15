@@ -32,7 +32,6 @@ public class TipoGrupoInsertarActivity extends Activity {
         tipoGrupo.setTipoGrupo(tipo_grupo);
 
         regIngresados=helper.insertar(tipoGrupo);
-
         Toast.makeText(this, regIngresados, Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v){

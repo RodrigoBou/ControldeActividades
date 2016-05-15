@@ -10,9 +10,8 @@ import android.widget.ListView;
 
 public class RecursoMenuActivity extends ListActivity {
 
-    String[] menu = {"Insertar Registro", "Eliminar Registro", "Consultar Registro", "Actualizar Regsitro"};
-    String[] activities = {"RecursoInsertarActivity", "RecursoEliminarActivity", "RecursoConsultarActivity",
-            "RecursoActualizarActivity"};
+    String[] menu = {"Insertar Registro", "Consultar Registros"};
+    String[] activities = {"RecursoInsertarActivity", "RecursoConsultarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

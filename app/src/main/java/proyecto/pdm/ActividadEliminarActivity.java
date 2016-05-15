@@ -27,9 +27,7 @@ public class ActividadEliminarActivity extends AppCompatActivity {
         String regEliminadas;
         Actividad actividad = new Actividad();
        actividad.setIdActividad(Integer.parseInt(editActividadID.getText().toString()));
-
         regEliminadas=controlHelper.Eliminar(actividad);
-
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
         editActividadID.setText("");
     }

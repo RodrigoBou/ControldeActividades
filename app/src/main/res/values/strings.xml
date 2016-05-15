@@ -73,4 +73,6 @@
     <string name="EliminarReservaHeader">Eliminar Reserva</string>
     <string name="InsertarReservaHeader">Insertar Reserva</string>
 
+    <string name="cerrar">Cerrar</string>
+
 </resources>

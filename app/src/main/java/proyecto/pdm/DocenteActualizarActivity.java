@@ -28,9 +28,7 @@ public class DocenteActualizarActivity extends Activity {
         docente.setCodDocente(editCodDocente.getText().toString());
         docente.setNomDocente(editNomDocente.getText().toString());
 
-
         String estado = helper.actualizar(docente);
-
 
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
 

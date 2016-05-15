@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView android:text="@string/id"/>
+        <TextView android:id="@+id/textIdRecursoInfo"
+            android:textColor="#FFFFFF"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/nom_recurso"/>
+        <TextView android:id="@+id/textNomRecursoInfo"
+        android:textColor="#FFFFFF"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/det_recurso" />
+        <TextView android:id="@+id/textDetRecursoInfo"
+            android:lines="3"
+            android:textColor="#FFFFFF"
+            android:scrollbars="vertical"/>
+    </TableRow>
+
+
+    <TableRow>
+        <TextView android:text="@string/estado"/>
+        <TextView android:id="@+id/textEstadoInfo"
+            android:textColor="#FFFFFF"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/categoriaRecurso"/>
+        <TextView android:id="@+id/textCatRecursoInfo"
+            android:textColor="#FFFFFF"/>
+    </TableRow>
+    <TableRow>
+        <Button android:onClick="cerrar"
+            android:text="@string/cerrar"/>
+    </TableRow>
+
+</TableLayout>
+
