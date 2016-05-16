@@ -52,7 +52,7 @@ public class CargaAcademicaBD {
 
     public CargaAcademica consultar(String docente, String ciclo){
         db=controlBD.getWritableDatabase();
-        String[] id = {docente,ciclo};
+        String[] id = {docente, ciclo};
         Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo=?",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
