@@ -2,6 +2,7 @@ package proyecto.pdm.CRUDTablas;
 
 import android.content.ContentValues;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import proyecto.pdm.ClasesModelo.Docente;
@@ -61,18 +62,19 @@ public class DocenteBD {
     }
 
     public String actualizar(Docente docente){
-        if (verificarIntegridad(docente, 1)) {
-            String[] id = {docente.getCodDocente()};
-            ContentValues doc = new ContentValues();
-            doc.put("cod_docente", docente.getCodDocente());
-            doc.put("nom_docente", docente.getNomDocente());
-            db = dbHelper.getWritableDatabase();
-            db.update("Materia", doc, "cod_materia=?", id);
-            dbHelper.close();
+        int contador;
+        String[] id = {docente.getCodDocente()};
+        ContentValues doc = new ContentValues();
+        doc.put("cod_docente", docente.getCodDocente());
+        doc.put("nom_docente", docente.getNomDocente());
+        db = dbHelper.getWritableDatabase();
+        contador = db.update("Materia", doc, "cod_materia=?", id);
+        dbHelper.close();
+        if (contador > 0)
             return "Registro Actualizado Correctamente";
-        }else {
+        else
             return "Registro con Codigo docente: " + docente.getCodDocente() + "no existe";
-        }
+
 
     }
 
@@ -80,37 +82,15 @@ public class DocenteBD {
 
         String regAfectados = "filas afectadas";
         int contador = 0;
-        db = dbHelper.getWritableDatabase();
-        if (verificarIntegridad(docente, 1)) {
-            contador+= db.delete("GrupoMateria", "cod_docente='"+ docente.getCodDocente()+"'", null);
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador += db.delete("Docente", "cod_docente='" + docente.getCodDocente() + "'", null);
+            dbHelper.close();
+            regAfectados += contador;
+        }catch (SQLiteConstraintException e){
+            e.printStackTrace();
         }
-        contador+=db.delete("Docente", "cod_docente='"+docente.getCodDocente()+"'", null);
-        dbHelper.close();
-        regAfectados+=contador;
         return  regAfectados;
-    }
-
-    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-
-        switch(relacion){
-            case 1:
-            {
-                //Verificar que exista el Docente
-                Docente docente =(Docente)dato;
-                String[] id = {docente.getCodDocente()};
-                db = dbHelper.getWritableDatabase();
-                Cursor c = db.query("Docente",null,"cod_docente=?",id,null,null,null);
-                if(c.moveToFirst()){
-                    //se encontro Docente
-                    dbHelper.close();
-                    return true;
-                }
-                dbHelper.close();
-                return false;
-            }
-            default:
-                return false;
-        }
     }
 
     public List<Docente> getDocentes(){

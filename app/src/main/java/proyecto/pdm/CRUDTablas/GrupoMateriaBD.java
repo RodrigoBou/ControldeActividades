@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 
@@ -78,63 +79,41 @@ public class GrupoMateriaBD {
     }
 
     public String actualizar(GrupoMateria grupoMateria){
-        if (verificarIntegridad(grupoMateria, 1)){
-            String[] id={String.valueOf(grupoMateria.getIdGrupo())};
-            ContentValues grupMa = new ContentValues();
-            grupMa.put("tipoGrupo", grupoMateria.getTipoGrupo());
-            grupMa.put("materia", grupoMateria.getMateria());
-            grupMa.put("docente", grupoMateria.getDocente());
-            grupMa.put("ciclo", grupoMateria.getCiclo());
-            grupMa.put("local", grupoMateria.getLocal());
-            grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
-            grupMa.put("numGrupo", grupoMateria.getNumGrupo());
-            grupMa.put("horario", grupoMateria.getHorario());
-            db = dbHelper.getWritableDatabase();
-            db.update("GrupoMateria", grupMa, "id_grupo=?", id);
-            dbHelper.close();
+        int contador;
+        String[] id={String.valueOf(grupoMateria.getIdGrupo())};
+        ContentValues grupMa = new ContentValues();
+        grupMa.put("tipoGrupo", grupoMateria.getTipoGrupo());
+        grupMa.put("materia", grupoMateria.getMateria());
+        grupMa.put("docente", grupoMateria.getDocente());
+        grupMa.put("ciclo", grupoMateria.getCiclo());
+        grupMa.put("local", grupoMateria.getLocal());
+        grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
+        grupMa.put("numGrupo", grupoMateria.getNumGrupo());
+        grupMa.put("horario", grupoMateria.getHorario());
+        db = dbHelper.getWritableDatabase();
+        contador = db.update("GrupoMateria", grupMa, "id_grupo=?", id);
+        dbHelper.close();
+        if (contador > 0)
             return "Registro Actualizado Correctamente";
-        }else {
+        else
             return "Registro con idGrupo" + grupoMateria.getIdGrupo() + "no existe";
-        }
-    }
+}
 
     public String eliminar(GrupoMateria grupoMateria){
         String regAfectados = "filas afectadas";
         int contador = 0;
-        db = dbHelper.getWritableDatabase();
-        if (verificarIntegridad(grupoMateria, 1)) {
-            contador += db.delete("Reserva", "grupo='" + grupoMateria.getIdGrupo() + "'", null);
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador += db.delete("GrupoMateria", "id_grupo='" + grupoMateria.getIdGrupo() + "'", null);
+            dbHelper.close();
+        }catch (SQLiteConstraintException e) {
+            e.printStackTrace();
         }
-        contador+=db.delete("GrupoMateria", "id_grupo='"+grupoMateria.getIdGrupo()+"'", null);
-        dbHelper.close();
         regAfectados+=contador;
         return  regAfectados;
     }
 
-    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-        switch(relacion){
-            case 1:
-            {
-                //Verificar que exista el GrupoMateria
-                GrupoMateria grupoMateria =(GrupoMateria)dato;
-                String[] id = {String.valueOf(grupoMateria.getIdGrupo())};
-                db = dbHelper.getWritableDatabase();
-                Cursor c = db.query("GrupoMateria",null,"id_grupo=?",id,null,null,null);
-                if(c.moveToFirst()){
-                    //se encontro GrupoMateria
-                    dbHelper.close();
-                    return true;
-                }
-                dbHelper.close();
-                return false;
-            }
-            default: return false;
-        }
-    }
-
-
-
-    public List<GrupoMateria> getGruposMateria(){
+        public List<GrupoMateria> getGruposMateria(){
         db = dbHelper.getWritableDatabase();
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, null, null, null, null, null, null);
         List<GrupoMateria> grupoMateriaList = new ArrayList<GrupoMateria>();

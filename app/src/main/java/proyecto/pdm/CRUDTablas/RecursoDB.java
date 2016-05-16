@@ -3,6 +3,7 @@ package proyecto.pdm.CRUDTablas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -76,11 +77,13 @@ public class RecursoDB {
     public String eliminar(int id){
         String regEliminado = "";
         int contador = 0;
-
-        db = DBHelper.getWritableDatabase();
-        contador = db.delete("Recurso", camposRecurso[0] + " = ?", new String[]{String.valueOf(id)});
-        DBHelper.close();
-
+        try {
+            db = DBHelper.getWritableDatabase();
+            contador = db.delete("Recurso", camposRecurso[0] + " = ?", new String[]{String.valueOf(id)});
+            DBHelper.close();
+        }catch (SQLiteConstraintException e){
+            e.printStackTrace();
+        }
         if (contador == 0)
             regEliminado = "No se puedo eliminar el registro";
         else

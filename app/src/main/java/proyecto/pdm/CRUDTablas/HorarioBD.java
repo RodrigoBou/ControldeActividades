@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -49,26 +50,26 @@ public class HorarioBD {
     }
 
     public String actualizar(Horario horario) {
-
+        int contador;
         db = dbHelper.getWritableDatabase();
 
-        if (verificarIntegridad(horario, 1)) {
-            String[] id = {String.valueOf(horario.getId_horario())};
-            ContentValues hora = new ContentValues();
 
-            hora.put("id_horario", horario.getId_horario());
-            hora.put("hora_ini", horario.getHora_ini());
-            hora.put("hora_fin", horario.getHora_fin());
+        String[] id = {String.valueOf(horario.getId_horario())};
+        ContentValues hora = new ContentValues();
 
-            db.update("Horario", hora, "id_horario=?", id);
-            dbHelper.close();
+        hora.put("id_horario", horario.getId_horario());
+        hora.put("hora_ini", horario.getHora_ini());
+        hora.put("hora_fin", horario.getHora_fin());
+
+        contador=db.update("Horario", hora, "id_horario=?", id);
+        dbHelper.close();
+        if (contador > 0) {
             return "Registro Actualizado Correctamente";
-        } else {
-            dbHelper.close();
+        }else {
             return "Registro con Codigo horario: " + horario.getId_horario() + "no existe";
         }
 
-    }
+}
 
     public Horario consultar(String idHorario) {
         db = dbHelper.getWritableDatabase();
@@ -89,51 +90,22 @@ public class HorarioBD {
 
     public String eliminar(Horario horario) {
 
-        db = dbHelper.getWritableDatabase();
 
         String regAfectados = "filas afectadas";
         int contador = 0;
 
-        if (verificarIntegridad(horario, 2)) {
-            contador += db.delete("GrupoMateria", "horario='" + horario.getId_horario() + "'", null);
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador += db.delete("Horario", "id_horario='" + horario.getId_horario() + "'", null);
+            regAfectados += contador;
+            dbHelper.close();
         }
-        contador += db.delete("Horario", "id_horario='" + horario.getId_horario() + "'", null);
-        regAfectados += contador;
-        dbHelper.close();
+        catch (SQLiteConstraintException e){
+            e.printStackTrace();
+        }
         return regAfectados;
     }
 
-    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-        db = dbHelper.getWritableDatabase();
-        switch (relacion) {
-            case 1: {
-                //Verificar que exista Horario
-                Horario horario = (Horario) dato;
-                String[] id = {String.valueOf(horario.getId_horario())};
-
-                Cursor c = db.query("Horario", null, "id_horario=?", id, null, null, null);
-                if (c.moveToFirst()) {
-                    //se encontro Horario
-                    return true;
-                }
-                return false;
-            }
-            case 2: {
-                //Verificar que exista Horario
-                Horario horario = (Horario) dato;
-                String[] id = {String.valueOf(horario.getId_horario())};
-
-                Cursor c = db.query("GrupoMateria", null, "horario=?", id, null, null, null);
-                if (c.moveToFirst()) {
-                    //se encontro Horario en GrupoMateria
-                    return true;
-                }
-                return false;
-            }
-            default:
-                return false;
-        }
-    }
 
     public List<Horario> getHorarios() {
         db = dbHelper.getWritableDatabase();

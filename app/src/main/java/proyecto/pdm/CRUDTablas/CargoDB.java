@@ -3,6 +3,7 @@ package proyecto.pdm.CRUDTablas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -68,12 +69,14 @@ public class CargoDB {
     public String eliminar(int id){
         String regEliminado = "";
         int contador = 0;
-
-        db = dbHelper.getWritableDatabase();
-        contador = db.delete("Cargo", camposCargo[0] + " = ?", new String[]{String.valueOf(id)});
-        dbHelper.close();
-
-        if (contador == 0)
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.delete("Cargo", camposCargo[0] + " = ?", new String[]{String.valueOf(id)});
+            dbHelper.close();
+        }catch (SQLiteConstraintException e){
+            e.printStackTrace();
+        }
+        if (contador <= 0)
             regEliminado = "No se puedo eliminar el registro";
         else
             regEliminado = "El registro fue exitosamente eliminado";

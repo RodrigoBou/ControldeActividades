@@ -56,10 +56,10 @@ public class CargaAcademicaBD {
         Cursor cursor= db.query("CargaAcademica",camposCargaAcademica, "docente=? AND ciclo=?",id,null,null,null);
         if (cursor.moveToFirst()){
             CargaAcademica cargaAcademica= new CargaAcademica();
-            cargaAcademica.setDocente(cursor.getString(1));
-            cargaAcademica.setCargo(Integer.valueOf(cursor.getInt(3)));
-            cargaAcademica.setMateria(cursor.getString(0));
-            cargaAcademica.setCiclo(Integer.valueOf(cursor.getInt(2)));
+            cargaAcademica.setDocente(cursor.getString(2));
+            cargaAcademica.setCargo(cursor.getInt(0));
+            cargaAcademica.setMateria(cursor.getString(1));
+            cargaAcademica.setCiclo(cursor.getInt(3));
             controlBD.close();
             return cargaAcademica;
         }else{

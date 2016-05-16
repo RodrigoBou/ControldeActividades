@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -63,18 +64,19 @@ public class MateriaBD {
     }
 
     public String actualizar(Materia materia){
-        if (verificarIntegridad(materia, 1)) {
-            String[] id = {materia.getCodMateria()};
-            ContentValues doc = new ContentValues();
-            doc.put("cod_materia", materia.getCodMateria());
-            doc.put("nom_materia", materia.getNomMateria());
-            db = dbHelper.getWritableDatabase();
-            db.update("Materia", doc, "cod_materia=?", id);
-            dbHelper.close();
+        int contador;
+        String[] id = {materia.getCodMateria()};
+        ContentValues doc = new ContentValues();
+        doc.put("cod_materia", materia.getCodMateria());
+        doc.put("nom_materia", materia.getNomMateria());
+        db = dbHelper.getWritableDatabase();
+        contador = db.update("Materia", doc, "cod_materia=?", id);
+        dbHelper.close();
+        if(contador > 0)
             return "Registro Actualizado Correctamente";
-        }else {
+        else
             return "Registro con Codigo materia: " +materia.getCodMateria() + "no existe";
-        }
+
 
     }
 
@@ -82,37 +84,15 @@ public class MateriaBD {
 
         String regAfectados = "filas afectadas";
         int contador = 0;
-        db = dbHelper.getWritableDatabase();
-        if (verificarIntegridad(materia, 1)) {
-            contador+= db.delete("GrupoMateria", "cod_materia='"+ materia.getCodMateria()+"'", null);
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador += db.delete("Materia", "cod_materia='" + materia.getCodMateria() + "'", null);
+            dbHelper.close();
+        }catch (SQLiteConstraintException e){
+            e.printStackTrace();
         }
-        contador+=db.delete("Materia", "cod_materia='"+materia.getCodMateria()+"'", null);
-        dbHelper.close();
         regAfectados+=contador;
         return  regAfectados;
-    }
-
-    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-
-        switch(relacion){
-            case 1:
-            {
-                //Verificar que exista la Materia
-                Materia materia =(Materia)dato;
-                String[] id = {materia.getCodMateria()};
-                db = dbHelper.getWritableDatabase();
-                Cursor c = db.query("Materia",null,"cod_materia=?",id,null,null,null);
-                if(c.moveToFirst()){
-                    //se encontro Materia
-                    dbHelper.close();
-                    return true;
-                }
-                dbHelper.close();
-                return false;
-            }
-            default:
-                return false;
-        }
     }
 
     public List<Materia> getMaterias(){

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -49,24 +50,23 @@ public class CicloBD {
     }
 
     public String actualizar(Ciclo ciclo) {
-
+        int contador;
         db = dbHelper.getWritableDatabase();
 
-        if (verificarIntegridad(ciclo, 1)) {
-            String[] id = {ciclo.getId_ciclo()};
-            ContentValues cicl = new ContentValues();
+        String[] id = {ciclo.getId_ciclo()};
+        ContentValues cicl = new ContentValues();
 
-            cicl.put("id_ciclo", ciclo.getId_ciclo());
-            cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
-            cicl.put("ciclo_num", ciclo.getCiclo_num());
+        cicl.put("id_ciclo", ciclo.getId_ciclo());
+        cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
+        cicl.put("ciclo_num", ciclo.getCiclo_num());
 
-            db.update("Ciclo", cicl, "id_ciclo=?", id);
-            dbHelper.close();
+        contador = db.update("Ciclo", cicl, "id_ciclo=?", id);
+        dbHelper.close();
+        if(contador <= 0)
             return "Registro Actualizado Correctamente";
-        } else {
-            dbHelper.close();
+        else
             return "Registro con Codigo ciclo: " + ciclo.getId_ciclo() + "no existe";
-        }
+
 
     }
 
@@ -89,41 +89,20 @@ public class CicloBD {
 
     public String eliminar(Ciclo ciclo) {
 
-        db = dbHelper.getWritableDatabase();
+
 
         String regAfectados = "filas afectadas";
         int contador = 0;
 
-        if (verificarIntegridad(ciclo, 1)) {
-            contador += db.delete("GrupoMateria", "ciclo='" + ciclo.getId_ciclo() + "'", null);
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador += db.delete("Ciclo", "id_ciclo='" + ciclo.getId_ciclo() + "'", null);
+            regAfectados += contador;
+            dbHelper.close();
+        }catch (SQLiteConstraintException e){
+            e.printStackTrace();
         }
-        contador += db.delete("Ciclo", "id_ciclo='" + ciclo.getId_ciclo() + "'", null);
-        regAfectados += contador;
-        dbHelper.close();
         return regAfectados;
-    }
-
-    public boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
-        db = dbHelper.getWritableDatabase();
-        switch (relacion) {
-            case 1: {
-                //Verificar que exista Ciclo
-                Ciclo ciclo = (Ciclo) dato;
-                String[] id = {ciclo.getId_ciclo()};
-
-                Cursor c = db.query("Ciclo", null, "id_ciclo=?", id, null, null, null);
-                if (c.moveToFirst()) {
-                    //se encontro Ciclo
-                    dbHelper.close();
-                    return true;
-                }
-                dbHelper.close();
-                return false;
-            }
-            default:
-                dbHelper.close();
-                return false;
-        }
     }
 
     public List<Ciclo> getCiclos() {
