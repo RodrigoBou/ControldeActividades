@@ -3,6 +3,7 @@ package proyecto.pdm;
 import android.app.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -67,7 +68,7 @@ public class CargaAcademicaEliminarActivity extends Activity {
         int k = 0;
         for (Ciclo c : cicloList) {
             spinnerMapCiclo.put(c.getCiclo_num(), c.getId_ciclo());
-            spinnerRosurse03[k] = c.getCiclo_num();
+            spinnerRosurse03[k] = c.getId_ciclo();
             k++;
         }
         List<Cargo> cargoList = cargoBD.getCargos();
@@ -100,7 +101,7 @@ public class CargaAcademicaEliminarActivity extends Activity {
 
     }
 
-    public void eliminarCargaAcademica() {
+    public void eliminarCargaAcademica(View v) {
         String doc = SpinDocente.getSelectedItem().toString();
         String mat = SpinMateria.getSelectedItem().toString();
         String cic = SpinCiclo.getSelectedItem().toString();
@@ -109,7 +110,7 @@ public class CargaAcademicaEliminarActivity extends Activity {
         CargaAcademica cargaAcademica = new CargaAcademica();
         cargaAcademica.setMateria(spinnerMapMateria.get(mat));
         cargaAcademica.setDocente(spinnerMapDocente.get(doc));
-        cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
+        cargaAcademica.setCiclo(Integer.valueOf(cic));
         cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regEliminados = helper.eliminar(cargaAcademica);
         Toast.makeText(this, regEliminados, Toast.LENGTH_SHORT).show();

@@ -115,7 +115,7 @@ public class CargaAcademicaInsertarActivity extends Activity {
         CargaAcademica cargaAcademica= new CargaAcademica();
         cargaAcademica.setMateria(mat);
         cargaAcademica.setDocente(doc);
-        cargaAcademica.setCiclo(Integer.valueOf(spinnerMapCiclo.get(cic)));
+        cargaAcademica.setCiclo(Integer.valueOf(cic));
         cargaAcademica.setCargo(Integer.valueOf(spinnerMapCargo.get(car)));
         regInsertados = helper.insertar(cargaAcademica);
         Toast.makeText(this,regInsertados,Toast.LENGTH_SHORT).show();

@@ -88,9 +88,8 @@ public class CargaAcademicaBD {
         db=controlBD.getWritableDatabase();
         String regAfectados ="filas afectadas= ";
         int contador = 0;
-        String where="docente ='"+cargaAcademica.getDocente()+"'";
-        where = where + " AND ciclo="+cargaAcademica.getCiclo();
-        contador+=db.delete("CargaAcademica",where,null);
+
+        contador+=db.delete("CargaAcademica", "docente='"+cargaAcademica.getDocente()+"' AND ciclo='"+cargaAcademica.getCiclo()+"'",null);
         regAfectados+=contador;
         controlBD.close();
         return regAfectados;
