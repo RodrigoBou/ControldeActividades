@@ -23,6 +23,7 @@ public class GrupoMateriaEliminarActivity extends Activity {
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
     }
 
+
     public void eliminarGrupoMateria(View v){
         String regEliminadas;
         GrupoMateria grupoMateria = new GrupoMateria();
