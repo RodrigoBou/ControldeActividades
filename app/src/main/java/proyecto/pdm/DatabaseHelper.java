@@ -12,7 +12,7 @@ import proyecto.pdm.ClasesModelo.TipoGrupo;
  * Created by kevin on 05-11-16.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String BASE_DATOS = "PDMv5.s3db";
+    private static final String BASE_DATOS = "PDMv7.s3db";
     private static final int VERSION = 1;
 
     private static DatabaseHelper ourInstance;

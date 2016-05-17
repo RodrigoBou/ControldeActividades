@@ -32,13 +32,13 @@ public class GrupoMateriaBD {
         long contador = 0;
 
         ContentValues grupMa = new ContentValues();
-        grupMa.put("tipoGrupo", grupoMateria.getTipoGrupo());
+        grupMa.put("tipo_grupo", grupoMateria.getTipoGrupo());
         grupMa.put("materia", grupoMateria.getMateria());
         grupMa.put("docente", grupoMateria.getDocente());
         grupMa.put("ciclo", grupoMateria.getCiclo());
         grupMa.put("local", grupoMateria.getLocal());
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
-        grupMa.put("numGrupo", grupoMateria.getNumGrupo());
+        grupMa.put("num_grupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());
         db = dbHelper.getWritableDatabase();
         contador = db.insert("GrupoMateria", null, grupMa);
@@ -82,13 +82,13 @@ public class GrupoMateriaBD {
         int contador;
         String[] id={String.valueOf(grupoMateria.getIdGrupo())};
         ContentValues grupMa = new ContentValues();
-        grupMa.put("tipoGrupo", grupoMateria.getTipoGrupo());
+        grupMa.put("tipo_grupo", grupoMateria.getTipoGrupo());
         grupMa.put("materia", grupoMateria.getMateria());
         grupMa.put("docente", grupoMateria.getDocente());
         grupMa.put("ciclo", grupoMateria.getCiclo());
         grupMa.put("local", grupoMateria.getLocal());
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
-        grupMa.put("numGrupo", grupoMateria.getNumGrupo());
+        grupMa.put("num_Grupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());
         db = dbHelper.getWritableDatabase();
         contador = db.update("GrupoMateria", grupMa, "id_grupo=?", id);

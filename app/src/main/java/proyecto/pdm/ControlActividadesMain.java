@@ -143,7 +143,7 @@ public class ControlActividadesMain extends ListActivity {
         //CargaAcademica
         final Integer[] CAcargo={1};
         final String[] CAmateria={"PDM115"};
-        final String[] CAdocente={"01"};
+        final String[] CAdocente={"CG001"};
         final Integer[] CAciclo={1};
 
         //Reserva Actividad
@@ -160,7 +160,7 @@ public class ControlActividadesMain extends ListActivity {
         final String[] GMnum={"01"};
         final String[] GMlocal={"B1"};
         final String[] GMdias={"Lunes"};
-        final String[] GMtipo={"01"};
+        final String[] GMtipo={"GT"};
         final String[] GMmateria={"PDM115"};
         final String[] GMdocente={"CG001"};
         final String[] GMciclo={"1"};
@@ -174,6 +174,16 @@ public class ControlActividadesMain extends ListActivity {
         final Time[] Aini={Time.valueOf("7:00:00")};
         final Time[] Afin={Time.valueOf("8:00:00")};
         final String[] Adoc={"CG001"};
+
+
+
+
+        Docente docente =new Docente();
+        for(int i=0;i<3;i++){
+            docente.setCodDocente(Dcod_docente[i]);
+            docente.setNomDocente(Dnom_docente[i]);
+            D.insertar(docente);
+        }
 
         Actividad actividad= new Actividad();
         for(int i=0;i<1;i++)
@@ -189,12 +199,58 @@ public class ControlActividadesMain extends ListActivity {
 
         }
 
-        Reserva reserva=new Reserva();
+        Horario horario=new Horario();
+        for(int i=0;i<3;i++){
+            horario.setId_horario(HidHorario[i]);
+            horario.setHora_ini(Hhora_ini[i]);
+            horario.setHora_fin(Hhora_fin[i]);
+            H.insertar(horario);
+        }
+
+
+        CategoriaRecurso categoriaRecurso=new CategoriaRecurso();
+        for(int i=0;i<3;i++){
+            categoriaRecurso.setIdCatRecurso(CTid_recurso[i]);
+            categoriaRecurso.setCategoriaRecurso(CTnom_recurso[i]);
+            Cat.insertar(categoriaRecurso);
+        }
+
+
+
+        Recurso recurso=new Recurso();
         for(int i=0;i<1;i++){
-            reserva.setIdReserva(Rid_recurso[i]);
-            reserva.setRecurso(Rrecurso[i]);
-            reserva.setGrupo(RgrupoMateria[i]);
-            Res.insertar(reserva);
+            recurso.setIdRecurso(Recursoid[i]);
+            recurso.setNomRecurso(Recursonom[i]);
+            recurso.setDetalleRecurso(RecursoDetalle[i]);
+            recurso.setEstado(RecursoEstado[i]);
+            recurso.setCatRecurso(RecursoCat[i]);
+            Re.insertar(recurso);
+
+        }
+
+
+        Materia materia=new Materia();
+        for (int i=0;i<3;i++){
+            materia.setCodMateria(Mcod_materia[i]);
+            materia.setNomMateria(Mnom_materia[i]);
+            M.insertar(materia);
+        }
+
+
+        TipoGrupo tipoGrupo=new TipoGrupo();
+        for (int i=0;i<3;i++) {
+            tipoGrupo.setcodTipoGrupo(VTGcod_tipo_grupo[i]);
+            tipoGrupo.setTipoGrupo(VTGtipo_grupo[i]);
+            TG.insertar(tipoGrupo);
+        }
+
+
+        Ciclo ciclo=new Ciclo();
+        for (int i=0;i<3;i++){
+            ciclo.setId_ciclo(CidCiclo[i]);
+            ciclo.setAnio_ciclo(Canio_ciclo[i]);
+            ciclo.setCiclo_num(Cciclo_num[i]);
+            C.insertar(ciclo);
         }
 
 
@@ -213,17 +269,25 @@ public class ControlActividadesMain extends ListActivity {
 
         }
 
-
-
-
-
-        ReservaActividad reservaActividad= new ReservaActividad();
+        Reserva reserva=new Reserva();
         for(int i=0;i<1;i++){
-            reservaActividad.setRecurso(RArecurso[i]);
-            reservaActividad.setActividad(RAcat[i]);
-            RA.insertar(reservaActividad);
-
+            reserva.setIdReserva(Rid_recurso[i]);
+            reserva.setRecurso(Rrecurso[i]);
+            reserva.setGrupo(RgrupoMateria[i]);
+            Res.insertar(reserva);
         }
+
+
+
+        Cargo cargo=new Cargo();
+        for(int i=0;i<3;i++){
+            cargo.setIdCargo(Carid_cargo[i]);
+            cargo.setNomCargo(Cnom_cargo[i]);
+            Car.insertar(cargo);
+        }
+
+
+
 
 
         CargaAcademica cargaAcademica = new CargaAcademica();
@@ -237,68 +301,21 @@ public class ControlActividadesMain extends ListActivity {
 
 
 
-        Recurso recurso=new Recurso();
+
+
+        ReservaActividad reservaActividad= new ReservaActividad();
         for(int i=0;i<1;i++){
-            recurso.setIdRecurso(Recursoid[i]);
-            recurso.setNomRecurso(Recursonom[i]);
-            recurso.setDetalleRecurso(RecursoDetalle[i]);
-            recurso.setEstado(RecursoEstado[i]);
-            recurso.setCatRecurso(RecursoCat[i]);
-            Re.insertar(recurso);
+            reservaActividad.setRecurso(RArecurso[i]);
+            reservaActividad.setActividad(RAcat[i]);
+            RA.insertar(reservaActividad);
 
         }
 
 
-        CategoriaRecurso categoriaRecurso=new CategoriaRecurso();
-        for(int i=0;i<3;i++){
-            categoriaRecurso.setIdCatRecurso(CTid_recurso[i]);
-            categoriaRecurso.setCategoriaRecurso(CTnom_recurso[i]);
-            Cat.insertar(categoriaRecurso);
-        }
-
-        Cargo cargo=new Cargo();
-        for(int i=0;i<3;i++){
-            cargo.setIdCargo(Carid_cargo[i]);
-            cargo.setNomCargo(Cnom_cargo[i]);
-            Car.insertar(cargo);
-        }
-
-        Horario horario=new Horario();
-        for(int i=0;i<3;i++){
-            horario.setId_horario(HidHorario[i]);
-            horario.setHora_ini(Hhora_ini[i]);
-            horario.setHora_fin(Hhora_fin[i]);
-            H.insertar(horario);
-        }
-
-        Docente docente =new Docente();
-        for(int i=0;i<3;i++){
-            docente.setCodDocente(Dcod_docente[i]);
-            docente.setNomDocente(Dnom_docente[i]);
-            D.insertar(docente);
-        }
 
 
-        Materia materia=new Materia();
-        for (int i=0;i<3;i++){
-            materia.setCodMateria(Mcod_materia[i]);
-            materia.setNomMateria(Mnom_materia[i]);
-            M.insertar(materia);
-        }
 
-        Ciclo ciclo=new Ciclo();
-        for (int i=0;i<3;i++){
-            ciclo.setId_ciclo(CidCiclo[i]);
-            ciclo.setAnio_ciclo(Canio_ciclo[i]);
-            ciclo.setCiclo_num(Cciclo_num[i]);
-            C.insertar(ciclo);
-        }
-        TipoGrupo tipoGrupo=new TipoGrupo();
-        for (int i=0;i<3;i++) {
-            tipoGrupo.setcodTipoGrupo(VTGcod_tipo_grupo[i]);
-            tipoGrupo.setTipoGrupo(VTGtipo_grupo[i]);
-            TG.insertar(tipoGrupo);
-        }
+
         return "Guardado correctamente";
     }
 

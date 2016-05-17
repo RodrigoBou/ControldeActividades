@@ -140,13 +140,6 @@
     </TableRow>
 
 
-    <TableRow>
-
-              <Button
-            android:onClick="actualizarActividad"
-            android:text="Actualizar"
-                  style="@style/BotonEstilo"/>
-    </TableRow>
 
 
 

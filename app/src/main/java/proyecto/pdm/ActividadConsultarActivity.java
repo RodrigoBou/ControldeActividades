@@ -12,7 +12,7 @@ import proyecto.pdm.ClasesModelo.Actividad;
 public class ActividadConsultarActivity extends AppCompatActivity {
 
     ActividadBD helper;
-    EditText ActividadID;
+
 
     EditText editID;
     EditText editNombre;
@@ -39,7 +39,7 @@ public class ActividadConsultarActivity extends AppCompatActivity {
         editID = (EditText) findViewById(R.id.editActividad);
         editNombre = (EditText) findViewById(R.id.editNombreActividad);
         editDetalle = (EditText) findViewById(R.id.editDetalle);
-        editFecha=(EditText) findViewById(R.id.editFecha);
+
         editHoraI = (EditText) findViewById(R.id.editHoraI);
         editHoraF = (EditText) findViewById(R.id.editHoraF);
         editDocente = (EditText) findViewById(R.id.editDocente);

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="proyecto.pdm.ActividadConsultarActivity">
+    tools:context="proyecto.pdm.ActividadActualizarActivity">
 
     <TableRow android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -61,10 +61,26 @@
         <TextView android:text="@string/fecha_actividad" />
 
         <EditText
-            android:id="@+id/editFecha"
+            android:id="@+id/editDia"
             android:inputType="date"
             android:layout_weight="0.25"
-            android:maxLength="10" />
+            android:maxLength="2" />
+
+        <TextView android:text="/" />
+
+        <EditText
+            android:id="@+id/editMes"
+            android:inputType="date"
+            android:layout_weight="0.25"
+            android:maxLength="2" />
+
+        <TextView android:text="/" />
+
+        <EditText
+            android:id="@+id/editAnio"
+            android:inputType="date"
+            android:layout_weight="0.25"
+            android:maxLength="4" />
 
 
     </TableRow>
@@ -73,21 +89,44 @@
 
     <TableRow>
         <TextView android:text="@string/horaI_actividad" />
+
         <EditText
             android:id="@+id/editHoraI"
-            android:inputType="time"
+            android:inputType="date"
             android:layout_weight="0.25"
-            android:maxLength="10" />
+            android:maxLength="2" />
+
+        <TextView android:text=":" />
+
+        <EditText
+            android:id="@+id/editMinI"
+            android:inputType="date"
+            android:layout_weight="0.25"
+            android:maxLength="2" />
+
+
+
     </TableRow>
 
 
     <TableRow>
         <TextView android:text="@string/horaF_actividad" />
+
         <EditText
             android:id="@+id/editHoraF"
-            android:inputType="time"
+            android:inputType="date"
             android:layout_weight="0.25"
-            android:maxLength="10" />
+            android:maxLength="2" />
+
+        <TextView android:text=":" />
+
+        <EditText
+            android:id="@+id/editMinF"
+            android:inputType="date"
+            android:layout_weight="0.25"
+            android:maxLength="2" />
+
+
     </TableRow>
 
 
@@ -101,12 +140,15 @@
     </TableRow>
 
 
+
+
     <TableRow>
 
         <Button
             android:onClick="actualizarActividad"
-            android:text="@string/actualizar"
+            android:text="Actualizar"
             style="@style/BotonEstilo"/>
+
     </TableRow>
 
 
