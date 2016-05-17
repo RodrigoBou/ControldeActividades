@@ -27,16 +27,18 @@ public class GrupoMateriaBD {
         dbHelper = DatabaseHelper.getInstance(ctx);
 
     }
+
     public String insertar(GrupoMateria grupoMateria){
         String regInsertados="Registro Insertado N°:";
         long contador = 0;
 
         ContentValues grupMa = new ContentValues();
+        grupMa.put("id_grupo", grupoMateria.getIdGrupo());
         grupMa.put("tipo_grupo", grupoMateria.getTipoGrupo());
         grupMa.put("materia", grupoMateria.getMateria());
         grupMa.put("docente", grupoMateria.getDocente());
         grupMa.put("ciclo", grupoMateria.getCiclo());
-        grupMa.put("local", grupoMateria.getLocal());
+        grupMa.put("LOCAL", grupoMateria.getLocal());
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
         grupMa.put("num_grupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());
@@ -60,7 +62,7 @@ public class GrupoMateriaBD {
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, "id_grupo=?", id, null, null, null);
         if (c.moveToFirst()){
             GrupoMateria grupoMateria = new GrupoMateria();
-            grupoMateria.setIdGrupo(c.getInt(0));
+            grupoMateria.setIdGrupo(Integer.parseInt(c.getString(0)));
             grupoMateria.setTipoGrupo(c.getString(1));
             grupoMateria.setMateria(c.getString(2));
             grupoMateria.setDocente(c.getString(3));
@@ -68,7 +70,7 @@ public class GrupoMateriaBD {
             grupoMateria.setLocal(c.getString(5));
             grupoMateria.setDiasImpartida(c.getString(6));
             grupoMateria.setNumGrupo(c.getString(7));
-            grupoMateria.setHorario(c.getInt(8));
+            grupoMateria.setHorario(Integer.parseInt(c.getString(8)));
             dbHelper.close();
             return grupoMateria;
         }else {

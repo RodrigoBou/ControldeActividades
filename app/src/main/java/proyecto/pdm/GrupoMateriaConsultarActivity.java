@@ -31,14 +31,15 @@ public class GrupoMateriaConsultarActivity extends Activity {
         editMateria = (EditText) findViewById(R.id.editMateria);
         editDocente = (EditText) findViewById(R.id.editDocente);
         editCiclo = (EditText) findViewById(R.id.editCiclo);
-        editLocal = (EditText) findViewById(R.id.editIdGrupo);
-        editDiasImpartida = (EditText) findViewById(R.id.editMateria);
-        editHorario= (EditText) findViewById(R.id.editDocente);
-        editNumGrupo= (EditText) findViewById(R.id.editCiclo);
+        editLocal = (EditText) findViewById(R.id.editLocal);
+        editDiasImpartida = (EditText) findViewById(R.id.editDiasImpartida);
+        editHorario= (EditText) findViewById(R.id.editHorario);
+        editNumGrupo= (EditText) findViewById(R.id.editNumGrupo);
     }
 
     public  void consultarGrupoMateria(View v){
-        GrupoMateria grupoMateria = helper.consultar(Integer.parseInt(editIdGrupo.getText().toString()));
+
+        GrupoMateria grupoMateria = helper.consultar(Integer.valueOf(editIdGrupo.getText().toString()));
         if(grupoMateria == null){
             Toast.makeText(this, "Grupo Materia con Id" + editIdGrupo.getText().toString() + "no encontrado",
                     Toast.LENGTH_LONG).show();
@@ -50,7 +51,7 @@ public class GrupoMateriaConsultarActivity extends Activity {
             editCiclo.setText(grupoMateria.getCiclo());
             editLocal.setText(grupoMateria.getLocal());
             editDiasImpartida.setText(grupoMateria.getDiasImpartida());
-            editHorario.setText(grupoMateria.getHorario());
+            editHorario.setText(String.valueOf(grupoMateria.getHorario()));
             editNumGrupo.setText(grupoMateria.getNumGrupo());
         }
 

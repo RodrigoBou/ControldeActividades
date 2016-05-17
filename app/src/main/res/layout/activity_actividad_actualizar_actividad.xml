@@ -30,6 +30,13 @@
             android:layout_column="0"
             android:background="@mipmap/buscar"
             android:onClick="ConsultarActividad"/>
+
+
+        <Button
+            android:onClick="reiniciarConsulta"
+            android:text="Reiniciar"
+            style="@style/BotonEstilo"/>
+
     </TableRow>
 
 

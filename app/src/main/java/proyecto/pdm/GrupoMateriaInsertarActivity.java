@@ -14,7 +14,7 @@ import java.util.List;
 import proyecto.pdm.CRUDTablas.CicloBD;
 import proyecto.pdm.CRUDTablas.DocenteBD;
 import proyecto.pdm.CRUDTablas.GrupoMateriaBD;
-
+import proyecto.pdm.CRUDTablas.HorarioBD;
 import proyecto.pdm.CRUDTablas.MateriaBD;
 import proyecto.pdm.CRUDTablas.TipoGrupoBD;
 import proyecto.pdm.ClasesModelo.Ciclo;
@@ -27,7 +27,7 @@ import proyecto.pdm.ClasesModelo.TipoGrupo;
 public class GrupoMateriaInsertarActivity extends Activity {
     private GrupoMateriaBD helper;
     private Spinner SpinDocente1;
-    //private Spinner SpinHorario;
+    private Spinner SpinHorario;
     private Spinner SpinCiclo1;
     private Spinner SpinMateria1;
     private Spinner SpinTipoGrupo;
@@ -42,7 +42,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
     private EditText editNumGrupo;
     private DocenteBD docenteBD;
     private CicloBD cicloBD;
-   //private HorarioBD horarioBD;
+    private HorarioBD horarioBD;
     private MateriaBD materiaBD;
     private TipoGrupoBD tipoGrupoBD;
 
@@ -55,6 +55,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         cicloBD=new CicloBD(this);
         materiaBD=new MateriaBD(this);
         tipoGrupoBD=new TipoGrupoBD(this);
+        horarioBD=new HorarioBD(this);
 
 
         List<Docente> docenteList = docenteBD.getDocentes();
@@ -101,7 +102,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         String[] spinnerRosurse04= new String[tipoGrupoList.size()];
         int z = 0;
         for (TipoGrupo p : tipoGrupoList){
-            spinnerMapTipoGrupo.put(p.getTipoGrupo(), p.getTipoGrupo());
+            spinnerMapTipoGrupo.put(p.getcodTipoGrupo(), p.getTipoGrupo());
             spinnerRosurse04[z]=p.getcodTipoGrupo();
             z++;
         }
@@ -109,6 +110,19 @@ public class GrupoMateriaInsertarActivity extends Activity {
         ArrayAdapter<String> adapter04 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,  spinnerRosurse04);
         adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinTipoGrupo.setAdapter(adapter04);
+
+        List<Horario>horarioList = horarioBD.getHorarios();
+        String[] spinnerRosurse05= new String[horarioList.size()];
+        int h = 0;
+        for (Horario y : horarioList) {
+            spinnerMapHorario.put(y.getHora_ini(), y.getId_horario());
+            spinnerRosurse05[h]= String.valueOf(y.getId_horario());
+            h++;
+        }
+        SpinHorario=(Spinner)findViewById(R.id.spinnerHorario);
+        ArrayAdapter<String> adapter05 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,  spinnerRosurse05);
+        adapter05.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinHorario.setAdapter(adapter05);
 
 
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
@@ -127,19 +141,19 @@ public class GrupoMateriaInsertarActivity extends Activity {
         String ciclo = SpinCiclo1.getSelectedItem().toString();
         String local = editLocal.getText().toString();
         String diasImpartida = editDiasImpartida.getText().toString();
-      // String horario = SpinHorario.getSelectedItem().toString();
+        String horario = SpinHorario.getSelectedItem().toString();
         String numGrupo = editNumGrupo.getText().toString();
         String regInsertados;
 
         GrupoMateria grupoMateria = new GrupoMateria();
-        grupoMateria.setIdGrupo(Integer.parseInt(idGrupo));
-        grupoMateria.setTipoGrupo(spinnerMapTipoGrupo.get(tipoGrupo));
+        grupoMateria.setIdGrupo(Integer.valueOf(idGrupo));
+        grupoMateria.setTipoGrupo(tipoGrupo);
         grupoMateria.setMateria(spinnerMapMateria.get(materia));
         grupoMateria.setDocente(spinnerMapDocente.get(docente));
-        grupoMateria.setCiclo(spinnerMapCiclo.get(ciclo));
+        grupoMateria.setCiclo((ciclo));
         grupoMateria.setLocal(local);
         grupoMateria.setDiasImpartida(diasImpartida);
-      //  grupoMateria.setHorario(spinnerMapHorario.get(horario));
+        grupoMateria.setHorario(Integer.valueOf(horario));
         grupoMateria.setNumGrupo(numGrupo);
 
         regInsertados=helper.insertar(grupoMateria);
