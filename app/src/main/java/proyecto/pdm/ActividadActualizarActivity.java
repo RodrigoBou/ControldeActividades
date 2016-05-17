@@ -1,5 +1,8 @@
 package proyecto.pdm;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +13,15 @@ import java.sql.Date;
 import java.sql.Time;
 
 import proyecto.pdm.CRUDTablas.ActividadBD;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Actividad;
 
 public class ActividadActualizarActivity extends AppCompatActivity {
 
     ActividadBD helper;
-
+    UsuarioBD credencialesUsuario;
+    
+    EditText ActividadID;
 
     EditText editID;
     EditText editNombre;
@@ -38,7 +44,9 @@ public class ActividadActualizarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_actualizar_actividad);
 
-        helper = new ActividadBD(this);
+        helper=new ActividadBD(this);
+        credencialesUsuario = new UsuarioBD(this);
+
         editID = (EditText) findViewById(R.id.editActividad);
         editNombre = (EditText) findViewById(R.id.editNombreActividad);
         editDetalle = (EditText) findViewById(R.id.editDetalle);
@@ -46,6 +54,17 @@ public class ActividadActualizarActivity extends AppCompatActivity {
         editHoraI = (EditText) findViewById(R.id.editHoraI);
         editHoraF = (EditText) findViewById(R.id.editHoraF);
         editDocente = (EditText) findViewById(R.id.editDocente);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Modificacion de Actividad", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         editMinI = (EditText) findViewById(R.id.editMinI);
         editMinF = (EditText) findViewById(R.id.editMinF);
 
@@ -55,13 +74,15 @@ public class ActividadActualizarActivity extends AppCompatActivity {
 
     }
 
+    public void ConsultarActividad(View v){
 
-    public void ConsultarActividad(View v) {
         Actividad actividad = helper.consultar(editID.getText().toString());
-        if (actividad == null) {
+
+        if (actividad == null){
             Toast.makeText(this, "Actividad " + editID.getText().toString() + "no encontrada",
                     Toast.LENGTH_LONG).show();
-        } else {
+        }
+        else {
 
 
             String fecha = actividad.getFecha().toString();

@@ -8,13 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ControlActividadesMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ControlActividadesMain"/>
         <activity android:name=".TipoGrupoMenuActivity" />
         <activity android:name=".TipoGrupoInsertarActivity" />
         <activity android:name=".TipoGrupoActualizarActivity" />
@@ -84,8 +78,15 @@
         <activity android:name=".ReservaActividadActualizarActivity" />
         <activity android:name=".ReservaActividadEliminarActivity" />
         <activity android:name=".ReservaActividadConsultarActivity" />
-        <activity android:name=".InformacionRecursoActivity"
-            android:theme="@android:style/Theme.Holo.Dialog"></activity>
+        <activity
+            android:name=".InformacionRecursoActivity"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

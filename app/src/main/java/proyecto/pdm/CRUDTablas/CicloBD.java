@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class CicloBD {
     }
 
     public String insertar(Ciclo ciclo) {
-        db = dbHelper.getWritableDatabase();
+
 
         String regInsertados = "Registro Insertado No= ";
         long contador = 0;
@@ -37,15 +38,19 @@ public class CicloBD {
         cicl.put("anio_ciclo", ciclo.getAnio_ciclo());
         cicl.put("ciclo_num", ciclo.getCiclo_num());
 
-        contador = db.insert("Ciclo", null, cicl);
-
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("Ciclo", null, cicl);
+            dbHelper.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == -1 || contador == 0) {
             regInsertados = "Error al Insertar el registro, Registro Duplicado.Verificar inserción ";
         } else {
             regInsertados = regInsertados + contador;
         }
 
-        dbHelper.close();
         return regInsertados;
     }
 

@@ -3,6 +3,8 @@ package proyecto.pdm;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -18,12 +20,16 @@ import android.widget.ToggleButton;
 import java.util.List;
 
 import proyecto.pdm.CRUDTablas.RecursoDB;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Recurso;
 
 public class RecursoConsultarActivity extends AppCompatActivity implements View.OnClickListener{
 
     private RecursoDB dbHelper;
     private TableLayout tableRecurso;
+    private UsuarioBD credencialesUsuario;
+    private SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    private int idUsuario = session.getInt("id", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,15 @@ public class RecursoConsultarActivity extends AppCompatActivity implements View.
         tableRecurso = (TableLayout) findViewById(R.id.tableRecurso);
 
         dbHelper = new RecursoDB(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        if(!credencialesUsuario.validarPermiso("Consulta de Recurso", idUsuario)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         crearTabla();
     }
@@ -80,15 +95,18 @@ public class RecursoConsultarActivity extends AppCompatActivity implements View.
             editar.setId(100 + recurso.getIdRecurso());
             editar.setOnClickListener(this);
 
-            ImageButton eliminar = new ImageButton(this);
-            eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            eliminar.setImageResource(R.drawable.delete_file_icon24);
-            eliminar.setId(-recurso.getIdRecurso());
-            eliminar.setOnClickListener(this);
+            if(!credencialesUsuario.validarPermiso("Eliminacion de Recurso", idUsuario)) {
+                ImageButton eliminar = new ImageButton(this);
+                eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                eliminar.setImageResource(R.drawable.delete_file_icon24);
+                eliminar.setId(-recurso.getIdRecurso());
+                eliminar.setOnClickListener(this);
+                buttonsWrapper.addView(eliminar);
+            }
 
             buttonsWrapper.addView(editar);
-            buttonsWrapper.addView(eliminar);
+
 
             row.addView(id);
             row.addView(nomCargo);

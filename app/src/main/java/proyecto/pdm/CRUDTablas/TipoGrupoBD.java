@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.widget.Switch;
 
 import java.util.ArrayList;
@@ -30,9 +31,13 @@ public class TipoGrupoBD {
         ContentValues tipoG = new ContentValues();
         tipoG.put("cod_tipo_grupo", tipoGrupo.getcodTipoGrupo());
         tipoG.put("tipo_grupo",tipoGrupo.getTipoGrupo());
-        db = dbHelper.getWritableDatabase();
-        contador=db.insert("TipoGrupo",null, tipoG);
-        dbHelper.close();
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("TipoGrupo", null, tipoG);
+            dbHelper.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador==-1||contador==0){
             regIngresados="Error al igresar, Registro duplicado. Verificar insercion";
 

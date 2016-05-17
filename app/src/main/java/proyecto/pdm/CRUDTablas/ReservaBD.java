@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import org.xml.sax.Parser;
 
@@ -31,7 +32,7 @@ public class ReservaBD {
     }
 
     public String insertar(Reserva reserva) {
-        db = dbHelper.getWritableDatabase();
+
         String regInsertados = "Registro Insertado N°:";
         long contador = 0;
 
@@ -39,16 +40,20 @@ public class ReservaBD {
         reser.put("id_reservacion", reserva.getIdReserva());
         reser.put("recurso", reserva.getRecurso());
         reser.put("grupo", reserva.getGrupo());
-
-        contador = db.insert("Reserva", null, reser);
-
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("Reserva", null, reser);
+            dbHelper.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1) {
             regInsertados = "Error al insertar el registro, Registro duplicado. Verificar insercion";
         } else {
             regInsertados = regInsertados + contador;
         }
 
-        dbHelper.close();
+
         return regInsertados;
 
     }

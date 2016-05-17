@@ -1,7 +1,10 @@
 package proyecto.pdm;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,6 +20,7 @@ import proyecto.pdm.CRUDTablas.GrupoMateriaBD;
 import proyecto.pdm.CRUDTablas.HorarioBD;
 import proyecto.pdm.CRUDTablas.MateriaBD;
 import proyecto.pdm.CRUDTablas.TipoGrupoBD;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Ciclo;
 import proyecto.pdm.ClasesModelo.Docente;
 import proyecto.pdm.ClasesModelo.GrupoMateria;
@@ -45,16 +49,30 @@ public class GrupoMateriaInsertarActivity extends Activity {
     private HorarioBD horarioBD;
     private MateriaBD materiaBD;
     private TipoGrupoBD tipoGrupoBD;
+    private UsuarioBD credencialesUsuario;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupo_materia_insertar);
+
         helper = new GrupoMateriaBD(this);
         docenteBD =new DocenteBD(this);
         cicloBD=new CicloBD(this);
         materiaBD=new MateriaBD(this);
         tipoGrupoBD=new TipoGrupoBD(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Adicion de GrupoMateria", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         horarioBD=new HorarioBD(this);
 
 
@@ -102,7 +120,7 @@ public class GrupoMateriaInsertarActivity extends Activity {
         String[] spinnerRosurse04= new String[tipoGrupoList.size()];
         int z = 0;
         for (TipoGrupo p : tipoGrupoList){
-            spinnerMapTipoGrupo.put(p.getcodTipoGrupo(), p.getTipoGrupo());
+            spinnerMapTipoGrupo.put(p.getTipoGrupo(), p.getTipoGrupo());
             spinnerRosurse04[z]=p.getcodTipoGrupo();
             z++;
         }
@@ -123,7 +141,6 @@ public class GrupoMateriaInsertarActivity extends Activity {
         ArrayAdapter<String> adapter05 =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,  spinnerRosurse05);
         adapter05.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinHorario.setAdapter(adapter05);
-
 
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
         editLocal = (EditText) findViewById(R.id.editLocal);

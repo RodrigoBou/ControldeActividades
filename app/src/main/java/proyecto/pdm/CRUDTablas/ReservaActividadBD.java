@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ReservaActividadBD {
 
     public String insertar(ReservaActividad ra){
 
-        String regIngresados="Registro Insertados NÂ°= ";
+        String regIngresados="Registro Insertados N°= ";
         long contador=0;
 
 
@@ -42,10 +43,13 @@ public class ReservaActividadBD {
             c.put("recurso", ra.getRecurso());
             c.put("actividad", ra.getActividad());
 
-            db = dbHelper.getWritableDatabase();
-            contador = db.insert("ReservaActividad", null, c);
-            dbHelper.close();
-
+            try {
+                db = dbHelper.getWritableDatabase();
+                contador = db.insert("ReservaActividad", null, c);
+                dbHelper.close();
+            }catch (SQLiteException e){
+                e.printStackTrace();
+            }
         }
 
         if (contador==-1||contador==0){

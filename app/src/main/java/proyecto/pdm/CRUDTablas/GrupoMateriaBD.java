@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 
 import java.util.ArrayList;
@@ -42,10 +43,14 @@ public class GrupoMateriaBD {
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
         grupMa.put("num_grupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());
-        db = dbHelper.getWritableDatabase();
-        contador = db.insert("GrupoMateria", null, grupMa);
-        dbHelper.close();
 
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("GrupoMateria", null, grupMa);
+            dbHelper.close();
+        }catch(SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1){
             regInsertados="Error al insertar el registro, Registro duplicado. Verificar insercion";
         }

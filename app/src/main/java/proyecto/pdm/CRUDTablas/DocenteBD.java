@@ -11,6 +11,8 @@ import proyecto.pdm.DatabaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
+
 /**
  * Created by kelly on 06/05/2016.
  */
@@ -32,9 +34,14 @@ public class DocenteBD {
         ContentValues doc = new ContentValues();
         doc.put("cod_docente", docente.getCodDocente());
         doc.put("nom_docente", docente.getNomDocente());
-        db = dbHelper.getWritableDatabase();
-        contador = db.insert("Docente", null, doc);
-        dbHelper.close();
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("Docente", null, doc);
+            dbHelper.close();
+        }catch (SQLiteException e)
+        {
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1){
             regInsertados="Error al insertar el registro, Registro duplicado. Verificar insercion";
         }

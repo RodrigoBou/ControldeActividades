@@ -2,8 +2,10 @@ package proyecto.pdm;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -64,7 +66,7 @@ public class ControlActividadesMain extends ListActivity {
     String[] activities = {"ReservaMenuActivity", "MateriaMenuActivity", "DocenteMenuActivity",
             "RecursoMenuActivity", "CargaAcademicaMenuActivity", "CargoMenuActivity", "ActividadMenuActivity", "CicloMenuActivity",
             "HorarioMenuActivity", "TipoGrupoMenuActivity", "GrupoMateriaMenuActivity",
-            "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity",};
+            "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity", "Cerrar sesión"};
 
 
 
@@ -108,6 +110,15 @@ public class ControlActividadesMain extends ListActivity {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+        else if (position == l.getCount() - 1){
+            SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = session.edit();
+            editor.remove("id");
+            editor.apply();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
     }
     public String llenarControlDeActividades(){

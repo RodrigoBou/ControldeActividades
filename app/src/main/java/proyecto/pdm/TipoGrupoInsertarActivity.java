@@ -1,24 +1,43 @@
 package proyecto.pdm;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import proyecto.pdm.CRUDTablas.TipoGrupoBD;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.TipoGrupo;
 
 public class TipoGrupoInsertarActivity extends Activity {
     TipoGrupoBD helper;
     EditText editIdTipoGrupo;
     EditText editTipoGrupo;
+    UsuarioBD credencialesUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_grupo_insertar);
+
         helper= new TipoGrupoBD(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int idUsuario = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Adicion de TipoGrupo", idUsuario)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
         editIdTipoGrupo=(EditText)findViewById(R.id.editIdTipoGrupo);
         editTipoGrupo=(EditText)findViewById(R.id.editTipoGrupo);
 

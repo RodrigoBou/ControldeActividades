@@ -1,5 +1,8 @@
 package proyecto.pdm;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,12 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import proyecto.pdm.CRUDTablas.ActividadBD;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Actividad;
 
 public class ActividadConsultarActivity extends AppCompatActivity {
 
     ActividadBD helper;
-
+    UsuarioBD credencialesUsuario;
+    EditText ActividadID;
 
     EditText editID;
     EditText editNombre;
@@ -36,6 +41,8 @@ public class ActividadConsultarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_actividad_consultar);
 
         helper=new ActividadBD(this);
+        credencialesUsuario = new UsuarioBD(this);
+
         editID = (EditText) findViewById(R.id.editActividad);
         editNombre = (EditText) findViewById(R.id.editNombreActividad);
         editDetalle = (EditText) findViewById(R.id.editDetalle);
@@ -49,6 +56,18 @@ public class ActividadConsultarActivity extends AppCompatActivity {
         editDia=(EditText) findViewById(R.id.editDia);
         editMes= (EditText) findViewById(R.id.editMes);
         editAnio=(EditText) findViewById(R.id.editAnio);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Consulta de Actividad", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
 
 
     }

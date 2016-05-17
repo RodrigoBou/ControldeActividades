@@ -1,5 +1,8 @@
 package proyecto.pdm;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import proyecto.pdm.CRUDTablas.CargoDB;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Cargo;
 
 public class CargoActualizarActivity extends AppCompatActivity {
@@ -16,6 +20,7 @@ public class CargoActualizarActivity extends AppCompatActivity {
     private TextView textIdCargoActualizar;
     private EditText editCargoActualizar;
     private CargoDB dbHelper;
+    private UsuarioBD credencialesUsuario;
     private int id;
 
     @Override
@@ -24,6 +29,18 @@ public class CargoActualizarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cargo_actualizar);
 
         dbHelper = new CargoDB(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Modificacion de Cargo", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         textIdCargoActualizar = (TextView) findViewById(R.id.textIdCargoActualizar);
         editCargoActualizar = (EditText) findViewById(R.id.editCargoActualizar);

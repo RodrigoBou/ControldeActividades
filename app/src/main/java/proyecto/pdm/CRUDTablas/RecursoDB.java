@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,13 @@ public class RecursoDB {
         reg.put("estado", recurso.getEstado());
         reg.put("cat_recurso", recurso.getCatRecurso());
 
-        db = DBHelper.getWritableDatabase();
-        contador = db.insert("Recurso", null, reg);
-        DBHelper.close();
+        try {
+            db = DBHelper.getWritableDatabase();
+            contador = db.insert("Recurso", null, reg);
+            DBHelper.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1){
             registrosInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }

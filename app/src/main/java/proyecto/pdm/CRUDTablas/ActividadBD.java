@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -54,10 +55,13 @@ public class ActividadBD {
         reg.put("docente", actividad.getDocente());
 
 
-
-        db = dbHelper.getWritableDatabase();
-        contador = db.insert("Actividad", null, reg);
-        dbHelper.close();
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("Actividad", null, reg);
+            dbHelper.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1){
             registrosInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }

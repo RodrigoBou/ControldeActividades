@@ -2,7 +2,10 @@ package proyecto.pdm;
 
 import android.app.Activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ import proyecto.pdm.CRUDTablas.CargoDB;
 import proyecto.pdm.CRUDTablas.CicloBD;
 import proyecto.pdm.CRUDTablas.DocenteBD;
 import proyecto.pdm.CRUDTablas.MateriaBD;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.CargaAcademica;
 import proyecto.pdm.ClasesModelo.Cargo;
 import proyecto.pdm.ClasesModelo.Ciclo;
@@ -28,25 +32,43 @@ public class CargaAcademicaEliminarActivity extends Activity {
     private Spinner SpinCargo;
     private Spinner SpinCiclo;
     private Spinner SpinMateria;
+
     private CargaAcademicaBD helper;
     private DocenteBD docenteBD;
     private CicloBD cicloBD;
     private CargoDB cargoBD;
     private MateriaBD materiaBD;
+    private UsuarioBD credencialesUsuario;
+
     private HashMap<String, String> spinnerMapDocente = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapMateria = new HashMap<String, String>();
     private HashMap<String, String> spinnerMapCiclo = new HashMap<String, String>();
     private HashMap<String, Integer> spinnerMapCargo = new HashMap<String, Integer>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carga_academica_eliminar);
+
         helper = new CargaAcademicaBD(this);
         docenteBD = new DocenteBD(this);
         cargoBD = new CargoDB(this);
         cicloBD = new CicloBD(this);
         materiaBD = new MateriaBD(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Eliminacion de CargaAcademica", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
         List<Docente> docenteList = docenteBD.getDocentes();
         String[] spinnerResource = new String[docenteList.size()];
         int i = 0;

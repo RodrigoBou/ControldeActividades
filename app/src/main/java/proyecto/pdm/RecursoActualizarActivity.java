@@ -1,5 +1,8 @@
 package proyecto.pdm;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import proyecto.pdm.CRUDTablas.CategoriaRecursoDB;
 import proyecto.pdm.CRUDTablas.RecursoDB;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.CategoriaRecurso;
 import proyecto.pdm.ClasesModelo.Recurso;
 
@@ -32,6 +36,7 @@ public class RecursoActualizarActivity extends AppCompatActivity {
     private RecursoDB dbHelper;
     private CategoriaRecursoDB categoriaRecursoDB;
     private int id;
+    private UsuarioBD credencialesUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,18 @@ public class RecursoActualizarActivity extends AppCompatActivity {
 
         dbHelper = new RecursoDB(this);
         categoriaRecursoDB = new CategoriaRecursoDB(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int idUsuario = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Modificacion de Recurso", idUsuario)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         Recurso recurso = dbHelper.getRecurso(id);
 

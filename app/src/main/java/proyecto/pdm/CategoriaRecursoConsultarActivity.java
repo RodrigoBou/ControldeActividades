@@ -3,6 +3,8 @@ package proyecto.pdm;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -17,12 +19,16 @@ import android.widget.Toast;
 import java.util.List;
 
 import proyecto.pdm.CRUDTablas.CategoriaRecursoDB;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.CategoriaRecurso;
 
 public class CategoriaRecursoConsultarActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CategoriaRecursoDB helper;
     private TableLayout tableCategoriaRecurso;
+    private UsuarioBD credencialesUsuario;
+    private SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    private int idUsuario = session.getInt("id", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,15 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
         tableCategoriaRecurso = (TableLayout) findViewById(R.id.tablaCatRecursos);
 
         helper = new CategoriaRecursoDB(this);
+        credencialesUsuario = new UsuarioBD(this);
+
+        if(!credencialesUsuario.validarPermiso("Modificacion de CategoriaRecurso", idUsuario)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         crearTabla();
 
@@ -75,18 +90,21 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
             editar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             editar.setImageResource(R.drawable.files_edit_file_icon24);
-            editar.setId(100+cat.getIdCatRecurso());
+            editar.setId(100 + cat.getIdCatRecurso());
             editar.setOnClickListener(this);
 
-            ImageButton eliminar = new ImageButton(this);
-            eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            eliminar.setImageResource(R.drawable.delete_file_icon24);
-            eliminar.setId(-cat.getIdCatRecurso());
-            eliminar.setOnClickListener(this);
+            if(!credencialesUsuario.validarPermiso("Eliminacion de CategoriaRecurso", idUsuario)) {
+                ImageButton eliminar = new ImageButton(this);
+                eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                eliminar.setImageResource(R.drawable.delete_file_icon24);
+                eliminar.setId(-cat.getIdCatRecurso());
+                eliminar.setOnClickListener(this);
+                buttonsWrapper.addView(eliminar);
+            }
 
             buttonsWrapper.addView(editar);
-            buttonsWrapper.addView(eliminar);
+
 
             row.addView(id);
             row.addView(catRecurso);

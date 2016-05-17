@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,13 @@ public class MateriaBD {
         ContentValues doc = new ContentValues();
         doc.put("cod_materia", materia.getCodMateria());
         doc.put("nom_materia", materia.getNomMateria());
-        db = dbHelper.getWritableDatabase();
-        contador = db.insert("Materia", null, doc);
-        dbHelper.close();
+        try {
+            db = dbHelper.getWritableDatabase();
+            contador = db.insert("Materia", null, doc);
+            dbHelper.close();
+        }catch(SQLiteException e){
+            e.printStackTrace();
+        }
         if (contador == 0 || contador == -1){
             regInsertados="Error al insertar el registro, Registro duplicado. Verificar insercion";
         }

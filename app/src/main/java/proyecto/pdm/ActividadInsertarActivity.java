@@ -1,8 +1,11 @@
 package proyecto.pdm;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,7 @@ import java.sql.Time;
 
 import proyecto.pdm.CRUDTablas.ActividadBD;
 import proyecto.pdm.CRUDTablas.CargoDB;
+import proyecto.pdm.CRUDTablas.UsuarioBD;
 import proyecto.pdm.ClasesModelo.Actividad;
 
 public class ActividadInsertarActivity extends Activity {
@@ -31,13 +35,12 @@ public class ActividadInsertarActivity extends Activity {
     EditText editMinF;
     EditText editDocente;
 
-
-
     String vDia;
     String vMes;
     String vAnio;
 
     private ActividadBD dbHelper;
+    UsuarioBD credencialesUsuario;
 
 
     @Override
@@ -46,10 +49,22 @@ public class ActividadInsertarActivity extends Activity {
         setContentView(R.layout.activity_actividad_insertar);
 
         dbHelper=new ActividadBD(this);
+        credencialesUsuario = new UsuarioBD(this);
 
         editID = (EditText) findViewById(R.id.editActividad);
         editNombre = (EditText) findViewById(R.id.editNombreActividad);
         editDetalle = (EditText) findViewById(R.id.editDetalle);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = session.getInt("id", 0);
+
+        if(!credencialesUsuario.validarPermiso("Adicion de Actividad", id)){
+            Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         String[] meses = {"01","02","03","04","05","06","07","08","09","10","11","12",};
 
