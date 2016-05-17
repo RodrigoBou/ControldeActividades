@@ -26,7 +26,7 @@ public class UsuarioBD {
         int cantidad;
         db = dbHelper.getWritableDatabase();
         Cursor c = db.query("Usuario", new String[]{"COUNT("+camposUsuario[0]+")"},
-                camposUsuario[1] + " = ? AND" +camposUsuario[2] + " = ?", new String[]{nombreUsuario, password}, null,
+                camposUsuario[1] + " = ? AND " +camposUsuario[2] + " = ?", new String[]{nombreUsuario, password}, null,
                 null, null, null);
         if (c.moveToFirst()){
             cantidad = c.getInt(0);
@@ -52,7 +52,7 @@ public class UsuarioBD {
         boolean validacion = false;
         int cantidad;
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT COUNT(id_usuario) FROM AccesoUsuario where id_usuario = ? AND " +
+        Cursor c = db.rawQuery("SELECT COUNT(id_usuario) FROM AccesoUsuario,OpcionCRUD  where id_usuario = ? AND " +
                         "AccesoUsuario.id_opcion = OpcionCRUD.id_opcion AND OpcionCRUD.des_opcion = ?",
                 new String[]{String.valueOf(idUsuario), permiso});
         if (c.moveToFirst()){
@@ -120,7 +120,7 @@ public class UsuarioBD {
             reg.put("id_opcion", opcionCRUD);
             try {
                 db = dbHelper.getWritableDatabase();
-                db.insert("AccesoUsuarios", null, reg);
+                db.insert("AccesoUsuario", null, reg);
                 db.close();
             } catch (SQLiteException e) {
                 e.printStackTrace();

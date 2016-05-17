@@ -28,8 +28,8 @@ public class RecursoConsultarActivity extends AppCompatActivity implements View.
     private RecursoDB dbHelper;
     private TableLayout tableRecurso;
     private UsuarioBD credencialesUsuario;
-    private SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    private int idUsuario = session.getInt("id", 0);
+    private SharedPreferences session;
+    private int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,9 @@ public class RecursoConsultarActivity extends AppCompatActivity implements View.
 
         dbHelper = new RecursoDB(this);
         credencialesUsuario = new UsuarioBD(this);
+
+        SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        idUsuario = session.getInt("id", 0);
 
         if(!credencialesUsuario.validarPermiso("Consulta de Recurso", idUsuario)){
             Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
@@ -95,7 +98,7 @@ public class RecursoConsultarActivity extends AppCompatActivity implements View.
             editar.setId(100 + recurso.getIdRecurso());
             editar.setOnClickListener(this);
 
-            if(!credencialesUsuario.validarPermiso("Eliminacion de Recurso", idUsuario)) {
+            if(credencialesUsuario.validarPermiso("Eliminacion de Recurso", idUsuario)) {
                 ImageButton eliminar = new ImageButton(this);
                 eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));

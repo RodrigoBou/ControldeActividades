@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by kevin on 05-11-16.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String BASE_DATOS = "PDMv7.s3db";
+    private static final String BASE_DATOS = "PDMv8.s3db";
     private static final int VERSION = 1;
 
     private static DatabaseHelper ourInstance;
@@ -62,8 +62,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.execSQL("CREATE TABLE [GrupoMateria] ( [id_grupo] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [tipo_grupo] VARCHAR(2) NOT NULL, [materia] VARCHAR(6) NOT NULL, [docente] VARCHAR(7) NOT NULL, [ciclo] INTEGER NOT NULL, [LOCAL] VARCHAR(10) NOT NULL, [diasImpartida] VARCHAR(50) NOT NULL, [num_grupo] VARCHAR(2) NOT NULL, [horario] INTEGER NOT NULL );");
 
+            db.execSQL("CREATE TABLE Usuario (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nombre_usuario VARCHAR (30) NOT NULL, clave CHAR (5) NOT NULL);");
 
+            db.execSQL("CREATE TABLE OpcionCRUD (id_opcion INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, des_opcion VARCHAR (30) NOT NULL, num_crud INTEGER NOT NULL);");
 
+            db.execSQL("CREATE TABLE AccesoUsuario (id_usuario INTEGER NOT NULL, id_opcion INTEGER NOT NULL, PRIMARY KEY (id_usuario, id_opcion));");
 
             // TRIGGERS
 
