@@ -96,9 +96,27 @@ public class ActividadActualizarActivity extends AppCompatActivity {
             editMinI.setText(mi);
             editNombre.setText(actividad.getNomActividad());
 
+            editID.setEnabled(false);
+
         }
     }
 
+
+
+    public void reiniciarConsulta (View v){
+
+        editID.setEnabled(true);
+        editID.setText("");
+        editNombre.setText("");
+        editDetalle.setText("");
+        editDocente.setText("");
+        editHoraF.setText("");
+        editHoraI.setText("");
+        editMinF.setText("");
+        editMinI.setText("");
+
+
+    }
 
 
     public void actualizarActividad(View v){
@@ -112,9 +130,9 @@ public class ActividadActualizarActivity extends AppCompatActivity {
         actividad.setNomActividad(editNombre.getText().toString());
         actividad.setHoraFin(Time.valueOf((editHoraF.getText().toString()) + ":" + (editMinI.getText().toString())+ ":00"));
         actividad.setHoraIni(Time.valueOf((editHoraI.getText().toString()) + ":" +(editMinF.getText().toString()) + ":00"));
-        //actividad.setDocente(editDocente.getText().toString());
-       // actividad.setFecha(Date.valueOf(vAnio + "-" + vMes + "-" + vDia));
-       // regInsertados = dbHelper.Insertar(actividad);
+        actividad.setDocente(editDocente.getText().toString());
+        actividad.setFecha(Date.valueOf(editAnio.getText() + "-" + editMes.getText() + "-" + editDia.getText()));
+        regInsertados = helper.actualizar(actividad);
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 }

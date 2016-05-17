@@ -144,30 +144,6 @@ public class ActividadInsertarActivity extends Activity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 

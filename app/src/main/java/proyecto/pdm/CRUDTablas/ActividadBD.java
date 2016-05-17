@@ -130,7 +130,27 @@ public class ActividadBD {
     }
 
 
+    public String actualizar(Actividad act){
+        String msg = "";
+        long contador = 0;
 
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(camposActividad[1], act.getNomActividad());
+        contentValues.put(camposActividad[2], act.getDetalleActividad());
+        contentValues.put(camposActividad[3], act.getFecha().toString());
+        contentValues.put(camposActividad[4], act.getHoraIni().toString());
+        contentValues.put(camposActividad[5], act.getHoraFin().toString());
+        contentValues.put(camposActividad[6], act.getDocente());
+
+        db = dbHelper.getWritableDatabase();
+        contador = db.update("Actividad", contentValues, camposActividad[0] + " = ?",
+                new String[]{String.valueOf(act.getIdActividad())});
+        dbHelper.close();
+
+        msg = (contador <= 0) ? "No se pudo actualizar el registro" : "El registro fue actualizado exitosamente";
+
+        return msg;
+    }
 
 
 
