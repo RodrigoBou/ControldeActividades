@@ -27,16 +27,18 @@ public class GrupoMateriaBD {
         dbHelper = DatabaseHelper.getInstance(ctx);
 
     }
+
     public String insertar(GrupoMateria grupoMateria){
         String regInsertados="Registro Insertado N°:";
         long contador = 0;
 
         ContentValues grupMa = new ContentValues();
+        grupMa.put("id_grupo", grupoMateria.getIdGrupo());
         grupMa.put("tipo_grupo", grupoMateria.getTipoGrupo());
         grupMa.put("materia", grupoMateria.getMateria());
         grupMa.put("docente", grupoMateria.getDocente());
         grupMa.put("ciclo", grupoMateria.getCiclo());
-        grupMa.put("local", grupoMateria.getLocal());
+        grupMa.put("LOCAL", grupoMateria.getLocal());
         grupMa.put("diasImpartida", grupoMateria.getDiasImpartida());
         grupMa.put("num_grupo", grupoMateria.getNumGrupo());
         grupMa.put("horario", grupoMateria.getHorario());

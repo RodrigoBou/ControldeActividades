@@ -38,7 +38,8 @@ public class GrupoMateriaConsultarActivity extends Activity {
     }
 
     public  void consultarGrupoMateria(View v){
-        GrupoMateria grupoMateria = helper.consultar(Integer.parseInt(editIdGrupo.getText().toString()));
+
+        GrupoMateria grupoMateria = helper.consultar(Integer.valueOf(editIdGrupo.getText().toString()));
         if(grupoMateria == null){
             Toast.makeText(this, "Grupo Materia con Id" + editIdGrupo.getText().toString() + "no encontrado",
                     Toast.LENGTH_LONG).show();
