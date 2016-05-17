@@ -22,10 +22,8 @@
     <string name="consular">Consultar</string>
     <string name="limpiar">Limpiar</string>
     <string name="eliminar">Eliminar</string>
-    <string name="id_tipo_grupo">id_tipo_grupo</string>
-    <string name="tipo_grupo">tipo_grupo</string>
     <string name="insertar">insertar</string>
-    <string name="actualizar">actualizar</string>
+    <string name="actualizar">Actualizar</string>
     <string name="categoriaRecurso">Categoria Recurso</string>
 
     <string name="cargo">Cargo</string>
@@ -84,5 +82,9 @@
     <string name="ConsultarReservaHeader">Consultar Reserva</string>
     <string name="EliminarReservaHeader">Eliminar Reserva</string>
     <string name="InsertarReservaHeader">Insertar Reserva</string>
+    <string name="EliminarCargaAcademicaButton1">Eliminar Carga Academica</string>
+    <string name="Recurso">Recurso</string>
+    <string name="acciones">Acciones</string>
+    <string name="cerrar">Cerrar</string>
 
 </resources>

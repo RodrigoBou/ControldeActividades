@@ -1,49 +1,47 @@
 <resources>
-    <string name="app_name">Control de Actividades</string>
+    <string name="app_name">Activity Control</string>
 
     <string name="title_activity_docente_menu">DocenteMenuActivity</string>
     <string name="title_activity_materia_menu">MateriaMenuActivity</string>
     <string name="title_activity_grupo_materia">GrupoMateriaMenuActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="tipoGrupo">Tipo Grupo</string>
-    <string name="materia">Materia</string>
-    <string name="docente">Docente</string>
-    <string name="ciclo">Ciclo</string>
+    <string name="tipoGrupo">Group Type</string>
+    <string name="materia">Subject</string>
+    <string name="docente">Teacher</string>
+    <string name="ciclo">Semester</string>
     <string name="local">Local</string>
-    <string name="diasImpartida">Día que se imparte</string>
-    <string name="horario">Horario</string>
-    <string name="idGrupo">Id Grupo</string>
-    <string name="numGrupo">Numero de Grupo</string>
-    <string name="codDocente">Codigo Docente</string>
-    <string name="nomDocente">Nombre Docente</string>
-    <string name="codMateria">Codigo Materia</string>
-    <string name="nomMateria">Nombre Materia</string>
-    <string name="consular">Consultar</string>
-    <string name="limpiar">Limpiar</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="id_tipo_grupo">id_tipo_grupo</string>
-    <string name="tipo_grupo">tipo_grupo</string>
-    <string name="insertar">insertar</string>
-    <string name="actualizar">actualizar</string>
-    <string name="categoriaRecurso">Categoria Recurso</string>
+    <string name="diasImpartida">Day Is Given</string>
+    <string name="horario">Schedule</string>
+    <string name="idGrupo">Group ID</string>
+    <string name="numGrupo">Group Number</string>
+    <string name="codDocente">Teacher ID</string>
+    <string name="nomDocente">Teacher Name</string>
+    <string name="codMateria">Subject ID</string>
+    <string name="nomMateria">Subject Name</string>
+    <string name="consular">Read</string>
+    <string name="limpiar">Clear Values</string>
+    <string name="eliminar">Delete</string>
+    <string name="insertar">Insert</string>
+    <string name="actualizar">Update</string>
+    <string name="categoriaRecurso">resource Category</string>
 
-    <string name="cargo">Cargo</string>
+    <string name="cargo">Position</string>
 
 
-    <string name="id_actividad">ID Actividad</string>
-    <string name="nombre_actividad">Nombre</string>
-    <string name="detalle_actividad">Detalle</string>
-    <string name="fecha_actividad">Fecha</string>
-    <string name="horaI_actividad">Hora de inicio</string>
-    <string name="horaF_actividad">Hora de finalización</string>
-    <string name="docente_actividad">Docente</string>
+    <string name="id_actividad">Activity ID</string>
+    <string name="nombre_actividad">Name</string>
+    <string name="detalle_actividad">Detail</string>
+    <string name="fecha_actividad">Date</string>
+    <string name="horaI_actividad">Hour to Strat</string>
+    <string name="horaF_actividad">Hour to Finish</string>
+    <string name="docente_actividad">Teacher</string>
 
-    <string name="nom_recurso">Recurso</string>
-    <string name="det_recurso">Detalle Recurso</string>
-    <string name="estado">Estado</string>
-    <string name="inactivo">Inactivo</string>
-    <string name="activo">Activo</string>
+    <string name="nom_recurso">Resource</string>
+    <string name="det_recurso">Resource Detail</string>
+    <string name="estado">State</string>
+    <string name="inactivo">Inactive</string>
+    <string name="activo">Active</string>
 
 
     <string-array name="meses">
@@ -84,5 +82,9 @@
     <string name="ConsultarReservaHeader">Read Reservation</string>
     <string name="EliminarReservaHeader">Delete Reservation</string>
     <string name="InsertarReservaHeader">Insert Reservation</string>
+    <string name="EliminarCargaAcademicaButton1">Delete Academic Load</string>
+    <string name="Recurso">Resource</string>
+    <string name="acciones">Actions</string>
+    <string name="cerrar">Close</string>
 
 </resources>
