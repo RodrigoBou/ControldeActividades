@@ -148,8 +148,8 @@ public class GrupoMateriaInsertarActivity extends Activity {
         GrupoMateria grupoMateria = new GrupoMateria();
         grupoMateria.setIdGrupo(Integer.valueOf(idGrupo));
         grupoMateria.setTipoGrupo(tipoGrupo);
-        grupoMateria.setMateria(materia);
-        grupoMateria.setDocente(docente);
+        grupoMateria.setMateria(spinnerMapMateria.get(materia));
+        grupoMateria.setDocente(spinnerMapDocente.get(docente));
         grupoMateria.setCiclo((ciclo));
         grupoMateria.setLocal(local);
         grupoMateria.setDiasImpartida(diasImpartida);
