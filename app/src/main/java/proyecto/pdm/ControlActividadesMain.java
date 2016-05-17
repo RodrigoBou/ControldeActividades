@@ -10,25 +10,32 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.Date;
 
+import proyecto.pdm.CRUDTablas.ActividadBD;
 import proyecto.pdm.CRUDTablas.CargaAcademicaBD;
 import proyecto.pdm.CRUDTablas.CargoDB;
 import proyecto.pdm.CRUDTablas.CategoriaRecursoDB;
 import proyecto.pdm.CRUDTablas.CicloBD;
 import proyecto.pdm.CRUDTablas.DocenteBD;
+import proyecto.pdm.CRUDTablas.GrupoMateriaBD;
 import proyecto.pdm.CRUDTablas.HorarioBD;
 import proyecto.pdm.CRUDTablas.MateriaBD;
 import proyecto.pdm.CRUDTablas.RecursoDB;
 import proyecto.pdm.CRUDTablas.ReservaActividadBD;
+import proyecto.pdm.CRUDTablas.ReservaBD;
 import proyecto.pdm.CRUDTablas.TipoGrupoBD;
+import proyecto.pdm.ClasesModelo.Actividad;
 import proyecto.pdm.ClasesModelo.CargaAcademica;
 import proyecto.pdm.ClasesModelo.Cargo;
 import proyecto.pdm.ClasesModelo.CategoriaRecurso;
 import proyecto.pdm.ClasesModelo.Ciclo;
 import proyecto.pdm.ClasesModelo.Docente;
+import proyecto.pdm.ClasesModelo.GrupoMateria;
 import proyecto.pdm.ClasesModelo.Horario;
 import proyecto.pdm.ClasesModelo.Materia;
 import proyecto.pdm.ClasesModelo.Recurso;
+import proyecto.pdm.ClasesModelo.Reserva;
 import proyecto.pdm.ClasesModelo.ReservaActividad;
 import proyecto.pdm.ClasesModelo.TipoGrupo;
 
@@ -45,6 +52,9 @@ public class ControlActividadesMain extends ListActivity {
     public RecursoDB Re;
     public CargaAcademicaBD CA;
     public ReservaActividadBD RA;
+    public GrupoMateriaBD GM;
+    public ReservaBD Res;
+    public ActividadBD A;
 
 
     String[] menu = {"Reserva", "Materia", "Docente", "Recurso", "Carga academica", "Cargo", "Actividad",
@@ -73,6 +83,9 @@ public class ControlActividadesMain extends ListActivity {
         Re=new RecursoDB(this);
         CA=new CargaAcademicaBD(this);
         RA=new ReservaActividadBD(this);
+        GM=new GrupoMateriaBD(this);
+        Res=new ReservaBD(this);
+        A=new ActividadBD(this);
 
         llenarControlDeActividades();
 
@@ -104,12 +117,12 @@ public class ControlActividadesMain extends ListActivity {
         //Ciclo
         final String[] CidCiclo={"1","2","3"};
         final String[] Canio_ciclo={"2014","2015","2016"};
-        final String[] Cciclo_num={"01","02","03"};
+        final String[] Cciclo_num={"I","II","III"};
         //Materia
         final String[] Mcod_materia={"PDM115", "PRN315", "SYP115"};
         final String[] Mnom_materia={"Programacion para moviles","Programacion III", "Sistemas y Procedimientos"};
         //Docente
-        final String[] Dcod_docente={"01","02","03"};
+        final String[] Dcod_docente={"CG001","YV001","JM001"};
         final String[] Dnom_docente={"Cesar Gonzalez","Yessenia Vigil","Jose Martinez"};
         //Horario
         final Integer[] HidHorario={1,2,3};
@@ -138,6 +151,70 @@ public class ControlActividadesMain extends ListActivity {
         final  Integer[] RAcat={1};
 
         //Reserva
+        final Integer[] Rid_recurso={1};
+        final Integer[] Rrecurso={1};
+        final Integer[] RgrupoMateria={1};
+
+        //GrupoMateria
+        final Integer[] GMid={1};
+        final String[] GMnum={"01"};
+        final String[] GMlocal={"B1"};
+        final String[] GMdias={"Lunes"};
+        final String[] GMtipo={"01"};
+        final String[] GMmateria={"PDM115"};
+        final String[] GMdocente={"CG001"};
+        final String[] GMciclo={"1"};
+        final Integer[] hiorario={1};
+
+        //Actividad
+        final Integer[] Aid={1};
+        final String[] Anom={"Actividad01"};
+        final String[] Adetalle={"Ninguno"};
+        final Date[] Afecha={java.sql.Date.valueOf("2016-01-01")};
+        final Time[] Aini={Time.valueOf("7:00:00")};
+        final Time[] Afin={Time.valueOf("8:00:00")};
+        final String[] Adoc={"CG001"};
+
+        Actividad actividad= new Actividad();
+        for(int i=0;i<1;i++)
+        {
+            actividad.setIdActividad(Aid[i]);
+            actividad.setNomActividad(Anom[i]);
+            actividad.setDetalleActividad(Adetalle[i]);
+            actividad.setFecha(Afecha[i]);
+            actividad.setHoraIni(Aini[i]);
+            actividad.setHoraFin(Afin[i]);
+            actividad.setDocente(Adoc[i]);
+            A.Insertar(actividad);
+
+        }
+
+        Reserva reserva=new Reserva();
+        for(int i=0;i<1;i++){
+            reserva.setIdReserva(Rid_recurso[i]);
+            reserva.setRecurso(Rrecurso[i]);
+            reserva.setGrupo(RgrupoMateria[i]);
+            Res.insertar(reserva);
+        }
+
+
+        GrupoMateria grupoMateria=new GrupoMateria();
+        for(int i=0;i<1;i++){
+            grupoMateria.setIdGrupo(GMid[i]);
+            grupoMateria.setNumGrupo(GMnum[i]);
+            grupoMateria.setLocal(GMlocal[i]);
+            grupoMateria.setDiasImpartida(GMdias[i]);
+            grupoMateria.setTipoGrupo(GMtipo[i]);
+            grupoMateria.setMateria(GMmateria[i]);
+            grupoMateria.setDocente(GMdocente[i]);
+            grupoMateria.setCiclo(GMciclo[i]);
+            grupoMateria.setHorario(hiorario[i]);
+            GM.insertar(grupoMateria);
+
+        }
+
+
+
 
 
         ReservaActividad reservaActividad= new ReservaActividad();
