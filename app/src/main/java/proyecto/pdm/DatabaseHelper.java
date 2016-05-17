@@ -5,6 +5,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import proyecto.pdm.CRUDTablas.TipoGrupoBD;
+import proyecto.pdm.ClasesModelo.TipoGrupo;
+
 /**
  * Created by kevin on 05-11-16.
  */
@@ -13,6 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
 
     private static DatabaseHelper ourInstance;
+    private SQLiteDatabase db;
+    public TipoGrupoBD TG;
 
     public static DatabaseHelper getInstance(Context ctx) {
         if (ourInstance == null){
@@ -133,6 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
 
     }
+
 
 
 
