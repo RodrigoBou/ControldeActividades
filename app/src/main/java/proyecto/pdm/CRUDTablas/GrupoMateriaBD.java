@@ -67,7 +67,7 @@ public class GrupoMateriaBD {
         Cursor c = db.query("GrupoMateria", camposGrupoMateria, "id_grupo=?", id, null, null, null);
         if (c.moveToFirst()){
             GrupoMateria grupoMateria = new GrupoMateria();
-            grupoMateria.setIdGrupo(c.getInt(0));
+            grupoMateria.setIdGrupo(Integer.parseInt(c.getString(0)));
             grupoMateria.setTipoGrupo(c.getString(1));
             grupoMateria.setMateria(c.getString(2));
             grupoMateria.setDocente(c.getString(3));
@@ -75,7 +75,7 @@ public class GrupoMateriaBD {
             grupoMateria.setLocal(c.getString(5));
             grupoMateria.setDiasImpartida(c.getString(6));
             grupoMateria.setNumGrupo(c.getString(7));
-            grupoMateria.setHorario(c.getInt(8));
+            grupoMateria.setHorario(Integer.parseInt(c.getString(8)));
             dbHelper.close();
             return grupoMateria;
         }else {

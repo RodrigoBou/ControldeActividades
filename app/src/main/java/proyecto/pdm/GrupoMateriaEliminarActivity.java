@@ -42,10 +42,11 @@ public class GrupoMateriaEliminarActivity extends Activity {
         editIdGrupo = (EditText) findViewById(R.id.editIdGrupo);
     }
 
+
     public void eliminarGrupoMateria(View v){
         String regEliminadas;
         GrupoMateria grupoMateria = new GrupoMateria();
-        grupoMateria.setIdGrupo(grupoMateria.getIdGrupo());
+        grupoMateria.setIdGrupo(Integer.parseInt(editIdGrupo.getText().toString()));
         regEliminadas=controlHelper.eliminar(grupoMateria);
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }

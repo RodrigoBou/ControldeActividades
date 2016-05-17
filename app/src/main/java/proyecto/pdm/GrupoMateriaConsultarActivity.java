@@ -70,7 +70,7 @@ public class GrupoMateriaConsultarActivity extends Activity {
             editCiclo.setText(grupoMateria.getCiclo());
             editLocal.setText(grupoMateria.getLocal());
             editDiasImpartida.setText(grupoMateria.getDiasImpartida());
-            editHorario.setText(grupoMateria.getHorario());
+            editHorario.setText(String.valueOf(grupoMateria.getHorario()));
             editNumGrupo.setText(grupoMateria.getNumGrupo());
         }
 

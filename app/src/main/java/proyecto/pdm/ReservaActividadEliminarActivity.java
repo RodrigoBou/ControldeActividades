@@ -34,10 +34,6 @@ public class ReservaActividadEliminarActivity extends Activity {
     private HashMap<String, Integer> spinnerMapRecurso = new HashMap<String, Integer>();
     private HashMap<String, Integer> spinnerMapActividad = new HashMap<String, Integer>();
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
