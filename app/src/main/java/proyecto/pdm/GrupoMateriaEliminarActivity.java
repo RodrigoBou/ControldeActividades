@@ -26,7 +26,7 @@ public class GrupoMateriaEliminarActivity extends Activity {
     public void eliminarGrupoMateria(View v){
         String regEliminadas;
         GrupoMateria grupoMateria = new GrupoMateria();
-        grupoMateria.setIdGrupo(grupoMateria.getIdGrupo());
+        grupoMateria.setIdGrupo(Integer.parseInt(editIdGrupo.getText().toString()));
         regEliminadas=controlHelper.eliminar(grupoMateria);
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
