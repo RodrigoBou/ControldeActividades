@@ -26,7 +26,6 @@ public class ControlActividadesMain extends ListActivity {
             "HorarioMenuActivity", "TipoGrupoMenuActivity", "GrupoMateriaMenuActivity",
             "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity",};
 
-    DatabaseHelper dbHelper;
 
 
     @Override
@@ -34,7 +33,7 @@ public class ControlActividadesMain extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
-        dbHelper = DatabaseHelper.getInstance(this);
+        TG = new TipoGrupoBD(this);
         llenarControlDeActividades();
 
     }
@@ -56,26 +55,18 @@ public class ControlActividadesMain extends ListActivity {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        } else {
-            dbHelper.getWritableDatabase();
-          // String tost = llenarControlDeActividades();
-            dbHelper.close();
-            //Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }
     public String llenarControlDeActividades(){
         //tipoGrupo
-        final String[] VTGcod_tipo_grupo ={"01","02","03"};
-        final String[] VTGtipo_grupo={"GT","GL","GD"};
-        ourInstance.getWritableDatabase();
-        db.execSQL("DELETE FROM TipoGrupo");
+        final String[] VTGcod_tipo_grupo ={"GT","GD","GL"};
+        final String[] VTGtipo_grupo={"Grupo Teórico","Grupo de Laboratorio","Grupo d Discusión"};
         TipoGrupo tipoGrupo=new TipoGrupo();
         for (int i=0;i<1;i++){
             tipoGrupo.setcodTipoGrupo(VTGcod_tipo_grupo[i]);
             tipoGrupo.setTipoGrupo(VTGtipo_grupo[i]);
             TG.insertar(tipoGrupo);
         }
-        ourInstance.close();
         return "Guardado correctamente";
     }
 
