@@ -60,13 +60,14 @@ public class ControlActividadesMain extends ListActivity {
 
 
     String[] menu = {"Reserva", "Materia", "Docente", "Recurso", "Carga academica", "Cargo", "Actividad",
-            "Ciclo", "Horario", "Tipo de grupo", "Grupo-Materia", "Categoria de recursos", "Reserva para actividades"};
+            "Ciclo", "Horario", "Tipo de grupo", "Grupo-Materia", "Categoria de recursos", "Reserva para actividades",
+    "Cerrar sesión", "Lenar BD"};
 
 
     String[] activities = {"ReservaMenuActivity", "MateriaMenuActivity", "DocenteMenuActivity",
             "RecursoMenuActivity", "CargaAcademicaMenuActivity", "CargoMenuActivity", "ActividadMenuActivity", "CicloMenuActivity",
             "HorarioMenuActivity", "TipoGrupoMenuActivity", "GrupoMateriaMenuActivity",
-            "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity", "Cerrar sesión"};
+            "CategoriaRecursoMenuActivity", "ReservaActividadMenuActivity"};
 
 
 
@@ -88,9 +89,6 @@ public class ControlActividadesMain extends ListActivity {
         GM=new GrupoMateriaBD(this);
         Res=new ReservaBD(this);
         A=new ActividadBD(this);
-
-        llenarControlDeActividades();
-
     }
 
 
@@ -111,7 +109,7 @@ public class ControlActividadesMain extends ListActivity {
                 e.printStackTrace();
             }
         }
-        else if (position == l.getCount() - 1){
+        else if (position == l.getCount() - 2){
             SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = session.edit();
             editor.remove("id");
@@ -119,6 +117,11 @@ public class ControlActividadesMain extends ListActivity {
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+        }else if (position == l.getCount() - 1){
+            String msg = llenarControlDeActividades();
+
+            Toast.makeText(ControlActividadesMain.this, msg,
+                    Toast.LENGTH_LONG).show();
         }
     }
     public String llenarControlDeActividades(){
@@ -327,7 +330,7 @@ public class ControlActividadesMain extends ListActivity {
 
 
 
-        return "Guardado correctamente";
+        return "Datos guardados correctamente";
     }
 
 

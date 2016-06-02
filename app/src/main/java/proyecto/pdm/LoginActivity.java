@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         if (idUser1 > 0 && idUser2 > 0) {
 
             for (int i = 0; i < 13; i++) {
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 5; j++) {
                     dbHelper.ingresarOpcionesCRUD(operaciones[j] + tablas[i], j);
                     dbHelper.ingresarPermisos(idUser2, operaciones[j] + tablas[i]);
                 }

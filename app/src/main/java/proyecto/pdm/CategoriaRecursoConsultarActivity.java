@@ -27,8 +27,8 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
     private CategoriaRecursoDB helper;
     private TableLayout tableCategoriaRecurso;
     private UsuarioBD credencialesUsuario;
-    private SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    private int idUsuario = session.getInt("id", 0);
+    private SharedPreferences session;
+    private int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,9 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
 
         helper = new CategoriaRecursoDB(this);
         credencialesUsuario = new UsuarioBD(this);
+
+        session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        idUsuario = session.getInt("id", 0);
 
         if(!credencialesUsuario.validarPermiso("Modificacion de CategoriaRecurso", idUsuario)){
             Toast.makeText(this, "Usted no tiene permiso para acceder a esta parte de la app",
@@ -93,7 +96,7 @@ public class CategoriaRecursoConsultarActivity extends AppCompatActivity impleme
             editar.setId(100 + cat.getIdCatRecurso());
             editar.setOnClickListener(this);
 
-            if(!credencialesUsuario.validarPermiso("Eliminacion de CategoriaRecurso", idUsuario)) {
+            if(credencialesUsuario.validarPermiso("Eliminacion de CategoriaRecurso", idUsuario)) {
                 ImageButton eliminar = new ImageButton(this);
                 eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));

@@ -29,8 +29,8 @@ public class CargoConsultarActivity extends AppCompatActivity implements View.On
 
     private UsuarioBD credencialesUsuario;
 
-    private SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    private int idUsuario = session.getInt("id", 0);
+    private SharedPreferences session;
+    private int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,9 @@ public class CargoConsultarActivity extends AppCompatActivity implements View.On
 
         dbHelper = new CargoDB(this);
         credencialesUsuario = new UsuarioBD(this);
+
+        session = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        idUsuario = session.getInt("id", 0);
 
 
         if(!credencialesUsuario.validarPermiso("Consulta de Cargo", idUsuario)){
@@ -95,7 +98,7 @@ public class CargoConsultarActivity extends AppCompatActivity implements View.On
             editar.setId(100 + cargo.getIdCargo());
             editar.setOnClickListener(this);
 
-            if(!credencialesUsuario.validarPermiso("Eliminacion de Cargo", idUsuario)) {
+            if(credencialesUsuario.validarPermiso("Eliminacion de Cargo", idUsuario)) {
                 ImageButton eliminar = new ImageButton(this);
                 eliminar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
